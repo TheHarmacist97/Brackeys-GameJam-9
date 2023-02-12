@@ -7,6 +7,7 @@
 */[Oo]bj/
 */[Ll]ogs/
 */[Mm]emoryCaptures/
+*/UserSettings
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -56,3 +57,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Brackeys-GameJam2023/UserSettings/Layouts/default-2021.dwlt
+*.dwlt
