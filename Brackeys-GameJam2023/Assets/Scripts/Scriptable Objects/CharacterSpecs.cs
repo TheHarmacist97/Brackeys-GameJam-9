@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "CharachterSpec", menuName = "Charachter Specification", order = 1)]
-public class CharachterSpecs : ScriptableObject
+public class CharacterSpecs : ScriptableObject
 {
     public float maxMoveSpeed;
     public float accel;
