@@ -13,15 +13,14 @@ public class SingleShotWeapon : WeaponsClass
         state = WeaponState.READY;
         waitBetweenShots = new WaitForSeconds(weaponData.minimumTimeBetweenShots);
         reloadWait = new WaitForSeconds(weaponData.reloadTime);
-
-        Debug.Log(weaponData.minimumTimeBetweenShots);
     }
-    public override void Fire(Vector3 target)
+    public override void Fire()
     {
         if (state == WeaponState.READY)
         {
             currentAmmo--;
-            Debug.Log("Fired " + currentAmmo);
+            Debug.Log("Fired " + currentAmmo); 
+            fireEvent?.Invoke();
             StartCoroutine(ShotLimiter());
         }
     }

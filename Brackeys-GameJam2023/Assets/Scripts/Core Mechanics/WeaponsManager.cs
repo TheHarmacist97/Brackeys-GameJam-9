@@ -10,9 +10,9 @@ public class WeaponsManager : MonoBehaviour
         MULTI
     }
 
+    [HideInInspector]
+    public WeaponsClass weapon;
     [SerializeField] WeaponSO weaponData;
-    [SerializeField] WeaponsClass weapon;
-    [SerializeField] Transform muzzle;
     void Start()
     {
         if (weaponData != null)
@@ -41,7 +41,7 @@ public class WeaponsManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            weapon.Fire(transform.forward);
+            weapon.Fire();
         }
         if (Input.GetMouseButtonDown(1))
         {

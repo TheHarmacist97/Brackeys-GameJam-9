@@ -31,11 +31,6 @@ public class Enemy : MonoBehaviour
         agent.speed = specs.maxMoveSpeed;
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         TrackDistance();

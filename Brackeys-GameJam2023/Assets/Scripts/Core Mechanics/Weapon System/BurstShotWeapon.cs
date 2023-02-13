@@ -6,7 +6,7 @@ public class BurstShotWeapon : WeaponsClass
     public BurstShotSO weaponData;
     private WaitForSeconds waitBetweenBullets;
     private WaitForSeconds waitBetweenTriggerPulls;
-    public override void Fire(Vector3 target)
+    public override void Fire()
     {
         if (state == WeaponState.READY)
         {
@@ -21,7 +21,13 @@ public class BurstShotWeapon : WeaponsClass
         {
             currentAmmo--;
             Debug.Log("Fired " + currentAmmo);
+            fireEvent?.Invoke();
+            if(currentAmmo == 0)
+            {
+                break;
+            }
             yield return waitBetweenBullets;
+            
         }
         Debug.Log("Limiting");
         yield return waitBetweenTriggerPulls;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,13 +12,14 @@ public enum WeaponState
 
 public abstract class WeaponsClass : MonoBehaviour
 {
-    public WeaponSO weaponBaseData;
     public int currentAmmo;
     public WeaponState state;
+    public WeaponSO weaponBaseData;
     public WaitForSeconds reloadWait;
-    public Transform muzzle;
 
-    public abstract void Fire(Vector3 target);
+    public delegate void FireEvent();
+    public FireEvent fireEvent;
+    public abstract void Fire();
     public abstract void Init();
     public virtual IEnumerator Reload()
     {

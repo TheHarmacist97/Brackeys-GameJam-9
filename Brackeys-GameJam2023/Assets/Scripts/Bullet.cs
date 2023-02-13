@@ -5,10 +5,11 @@ using UnityEngine;
 [System.Serializable] 
 public class Bullet:MonoBehaviour
 {
-    
-    void Start()
+    public BulletSO bulletData;
+
+    private void Update()
     {
-        
+        transform.Translate(bulletData.speed * Time.deltaTime * transform.forward);
     }
 
     private void OnCollisionEnter(Collision collision)
