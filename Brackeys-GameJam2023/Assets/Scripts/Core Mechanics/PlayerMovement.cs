@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        velocity = ((transform.right * x) + (transform.forward * z)) * Time.deltaTime * characterSpecs.maxMoveSpeed;
+        velocity = characterSpecs.maxMoveSpeed * Time.deltaTime * ((transform.right * x) + (transform.forward * z));
         if(Physics.CheckSphere(groundCheck.position, 0.5f, groundMask))
         {
             velocity.y = 0f;

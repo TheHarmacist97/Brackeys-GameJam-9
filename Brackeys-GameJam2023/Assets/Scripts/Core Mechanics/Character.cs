@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField] private CharacterSpecs charachterSpecs;
+    [SerializeField] private CharacterSpecs characterSpecs;
     [SerializeField] private WeaponSpecs weaponSpecs;
     public CharacterSpecs CharacterSpecs
     {
         get
         {
-            return charachterSpecs;
+            return characterSpecs;
         }
-        private set { charachterSpecs = value; }
+        private set { characterSpecs = value; }
     }
     public WeaponSpecs WeaponSpecs
     {

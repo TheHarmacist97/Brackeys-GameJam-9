@@ -9,7 +9,6 @@ public class CharacterSpecs : ScriptableObject
     public float effectiveRange;
     public float falloffRange;
 
-
     private float effectiveRangeSquare;
     public float EffectiveRangeSquare { 
         get
