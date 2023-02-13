@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b5eb0758c11a1429bc2bc257a741ee, type: 3}
+  m_Name: Enemy1
+  m_EditorClassIdentifier: 
+  maxMoveSpeed: 10
+  accel: 20
+  rotateSpeed: 200
+  effectiveRange: 13
+  falloffRange: 18
+  weapon: {fileID: 11400000, guid: 6bb6899e3fc013744b86e54ebfa12c5d, type: 2}
