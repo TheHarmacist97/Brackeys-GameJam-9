@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce3712372aba8d542af4b608ae76042a, type: 3}
-  m_Name: Weapon1
+  m_Script: {fileID: 11500000, guid: 59381f1c27cc4b54a9f80143ead0e417, type: 3}
+  m_Name: SingleShot
   m_EditorClassIdentifier: 
-  damage: 2
-  magazineSize: 3
-  fireType: 0
+  damage: 20
+  reloadTime: 3
+  magazineSize: 6
+  bullet: {fileID: 0}
+  currentAmmo: 6
+  isReloading: 0
+  state: 0
+  minimumTimeBetweenShots: 2

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [SerializeField] private CharacterSpecs characterSpecs;
-    [SerializeField] private WeaponSpecs weaponSpecs;
+    [SerializeField] private WeaponSO weaponSpecs;
     public CharacterSpecs CharacterSpecs
     {
         get
@@ -15,7 +15,7 @@ public class Character : MonoBehaviour
         }
         private set { characterSpecs = value; }
     }
-    public WeaponSpecs WeaponSpecs
+    public WeaponSO WeaponSpecs
     {
         get
         {

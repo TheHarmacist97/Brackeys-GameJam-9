@@ -39,5 +39,4 @@ public class CharacterSpecs : ScriptableObject
             falloffRange = value;
         }
     }
-    public WeaponSpecs weapon;
 }
