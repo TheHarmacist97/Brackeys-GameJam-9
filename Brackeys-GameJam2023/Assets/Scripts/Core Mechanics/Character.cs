@@ -7,6 +7,12 @@ public class Character : MonoBehaviour
 {
     [SerializeField] private CharacterSpecs characterSpecs;
     [SerializeField] private WeaponSO weaponSpecs;
+    public GameObject fpp;
+    public GameObject tpp;
+    private void Awake()
+    {
+        Switch(true);
+    }
     public CharacterSpecs CharacterSpecs
     {
         get
@@ -23,7 +29,8 @@ public class Character : MonoBehaviour
         }
         private set { weaponSpecs = value; }
     }
-    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement) };
+    
+    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem) };
     private List<Type> enemyComponents = new List<Type>();
     public void Switch(bool isPlayer)
     {
