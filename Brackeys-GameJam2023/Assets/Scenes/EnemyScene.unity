@@ -138,7 +138,6 @@ GameObject:
   - component: {fileID: 17717115}
   - component: {fileID: 17717114}
   - component: {fileID: 17717113}
-  - component: {fileID: 17717112}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: Untagged
@@ -146,21 +145,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &17717112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17717111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7d7e8f8853bb274da350fbc67e5d617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 416504577960606534, guid: 6497b1efdb7b50d4d8a124ad02bee524, type: 3}
-  wManager: {fileID: 17717113}
-  muzzle: {fileID: 82207886}
 --- !u!114 &17717113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 977384fccdb9ba3429516882c707856b, type: 2}
-  muzzle: {fileID: 0}
 --- !u!114 &17717114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,7 +570,6 @@ GameObject:
   - component: {fileID: 268675755}
   - component: {fileID: 268675754}
   - component: {fileID: 268675753}
-  - component: {fileID: 268675752}
   m_Layer: 0
   m_Name: Capsule (1)
   m_TagString: Untagged
@@ -595,21 +577,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &268675752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268675751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7d7e8f8853bb274da350fbc67e5d617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 416504577960606534, guid: 6497b1efdb7b50d4d8a124ad02bee524, type: 3}
-  wManager: {fileID: 268675753}
-  muzzle: {fileID: 1666668304}
 --- !u!114 &268675753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,7 +591,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 977384fccdb9ba3429516882c707856b, type: 2}
-  muzzle: {fileID: 0}
 --- !u!114 &268675754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,7 +724,6 @@ GameObject:
   - component: {fileID: 500796626}
   - component: {fileID: 500796627}
   - component: {fileID: 500796628}
-  - component: {fileID: 500796629}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -897,23 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  weaponData: {fileID: 11400000, guid: 977384fccdb9ba3429516882c707856b, type: 2}
-  muzzle: {fileID: 0}
---- !u!114 &500796629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500796621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7d7e8f8853bb274da350fbc67e5d617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 416504577960606534, guid: 6497b1efdb7b50d4d8a124ad02bee524, type: 3}
-  wManager: {fileID: 500796628}
-  muzzle: {fileID: 147111478}
+  weaponData: {fileID: 11400000, guid: e5f8698fc7d59764db0f2494940ac509, type: 2}
 --- !u!1 &836941490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,7 +1201,6 @@ GameObject:
   - component: {fileID: 1539962637}
   - component: {fileID: 1539962636}
   - component: {fileID: 1539962635}
-  - component: {fileID: 1539962634}
   m_Layer: 0
   m_Name: Capsule (3)
   m_TagString: Untagged
@@ -1260,21 +1208,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1539962634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539962633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7d7e8f8853bb274da350fbc67e5d617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 416504577960606534, guid: 6497b1efdb7b50d4d8a124ad02bee524, type: 3}
-  wManager: {fileID: 1539962635}
-  muzzle: {fileID: 1910524129}
 --- !u!114 &1539962635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1288,8 +1221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  weaponData: {fileID: 11400000, guid: 977384fccdb9ba3429516882c707856b, type: 2}
-  muzzle: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: e5f8698fc7d59764db0f2494940ac509, type: 2}
 --- !u!114 &1539962636
 MonoBehaviour:
   m_ObjectHideFlags: 0
