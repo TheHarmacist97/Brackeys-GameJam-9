@@ -3,6 +3,5 @@ using UnityEngine;
 public class BurstShotSO : WeaponSO
 {
     public float minimumTimeBetweenBursts;
-    public float fireRate; 
     public int burstsPerTriggerPull;
 }

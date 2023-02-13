@@ -11,7 +11,7 @@ public class SingleShotWeapon : WeaponsClass
         weaponData = weaponBaseData as SingleShotSO;
         currentAmmo = weaponData.magazineSize;
         state = WeaponState.READY;
-        waitBetweenShots = new WaitForSeconds(weaponData.minimumTimeBetweenShots);
+        waitBetweenShots = new WaitForSeconds(weaponData.fireRate);
         reloadWait = new WaitForSeconds(weaponData.reloadTime);
     }
     public override void Fire()

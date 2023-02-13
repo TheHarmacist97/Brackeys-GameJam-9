@@ -8,6 +8,7 @@ public class BulletSO : ScriptableObject
        PROJECTILE,
        PROJECTILE_WITH_GRAVITY
     }
+    public GameObject bulletPrefab;
     public BulletType type;
     public float speed;
     public float damage;

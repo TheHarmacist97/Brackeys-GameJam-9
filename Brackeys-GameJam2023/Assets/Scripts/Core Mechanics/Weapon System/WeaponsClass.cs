@@ -14,6 +14,7 @@ public abstract class WeaponsClass : MonoBehaviour
 {
     public int currentAmmo;
     public WeaponState state;
+    public BulletSO bulletData;
     public WeaponSO weaponBaseData;
     public WaitForSeconds reloadWait;
 
