@@ -14,7 +14,7 @@ public class BurstShotWeapon : WeaponsClass
         currentAmmo = weaponData.magazineSize;
         waitBetweenBullets = new WaitForSeconds(1f/weaponData.fireRate);
         waitBetweenTriggerPulls = new WaitForSeconds(weaponData.minimumTimeBetweenBursts);
-        continualFireWait = new WaitForSeconds(weaponData.minimumTimeBetweenBursts + ((float) weaponData.burstsPerTriggerPull / weaponData.fireRate));
+        continualFireWait = new WaitForSeconds(weaponData.minimumTimeBetweenBursts + (weaponData.burstsPerTriggerPull / weaponData.fireRate));
     }
     public override void Fire()
     {
@@ -47,6 +47,8 @@ public class BurstShotWeapon : WeaponsClass
     public override void FireContinually()
     {
         if (!weaponData.canContinuallyFire) return;
+        if (firingContinually) return;
+
         Debug.Log("called " + weaponData.name);
         firingContinually = true;
         StartCoroutine(CycleFire());

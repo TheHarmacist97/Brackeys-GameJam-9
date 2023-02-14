@@ -40,8 +40,10 @@ public class AutoShotWeapon : WeaponsClass
 
     public override void FireContinually()
     {
+        if (firingContinually) return;
+
         firingContinually = true;
-        Debug.Log("called " + weaponData.name);
+        //Debug.Log("called " + weaponData.name);
         Fire();
         return;
     }
@@ -49,10 +51,5 @@ public class AutoShotWeapon : WeaponsClass
     public override void StopFiring()
     {
         firingContinually = false;
-    }
-
-    protected override IEnumerator CycleFire()
-    {
-        yield break;
     }
 }

@@ -2,13 +2,6 @@ using UnityEngine;
 
 public class WeaponsManager : MonoBehaviour
 {
-    public enum WeaponType
-    {
-        SINGLE,
-        BURST,
-        AUTO,
-        MULTI
-    }
     [HideInInspector]
     public WeaponsClass weapon;
     [SerializeField] WeaponSO weaponData;
@@ -49,6 +42,10 @@ public class WeaponsManager : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
             weapon.FireContinually();
+        }
+        if(Input.GetMouseButtonUp(0))
+        {
+            weapon.StopFiring();
         }
         if (Input.GetMouseButtonDown(1))
         {
