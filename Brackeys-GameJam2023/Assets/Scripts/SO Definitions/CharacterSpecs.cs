@@ -4,6 +4,8 @@ using UnityEngine;
 public class CharacterSpecs : ScriptableObject
 {
     public float maxMoveSpeed;
+    public float mass;
+    public float jumpForce;
     public float accel;
     public float rotateSpeed;
     public float effectiveRange;
