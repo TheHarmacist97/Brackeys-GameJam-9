@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,16 +11,28 @@ public enum WeaponState
 
 public abstract class WeaponsClass : MonoBehaviour
 {
+    public bool firingContinually;
     public int currentAmmo;
     public WeaponState state;
-    public BulletSO bulletData;
     public WeaponSO weaponBaseData;
-    public WaitForSeconds reloadWait;
+    public Transform muzzle;
 
-    public delegate void FireEvent();
-    public FireEvent fireEvent;
+    public WaitForSeconds reloadWait;
+    public  WaitForSeconds waitBetweenBullets;
+    public abstract void Init(Transform muzzle);
     public abstract void Fire();
-    public abstract void Init();
+    public abstract void FireContinually();
+    protected virtual IEnumerator CycleFire()
+    {
+        yield break;
+    }
+    protected virtual void PropelBullet()
+    {
+        Debug.Log(weaponBaseData.bullet.bulletPrefab!=null);
+        Instantiate(weaponBaseData.bullet.bulletPrefab, muzzle.position, muzzle.rotation);
+
+    }
+    public abstract void StopFiring();
     public virtual IEnumerator Reload()
     {
         if (state == WeaponState.NEXT_WAIT)

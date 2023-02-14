@@ -4,14 +4,14 @@ using UnityEngine;
 public class SingleShotWeapon : WeaponsClass
 {
     public SingleShotSO weaponData;
-    private WaitForSeconds waitBetweenShots;
 
-    public override void Init()
+    public override void Init(Transform muzzle)
     {
+        this.muzzle = muzzle; 
         weaponData = weaponBaseData as SingleShotSO;
         currentAmmo = weaponData.magazineSize;
         state = WeaponState.READY;
-        waitBetweenShots = new WaitForSeconds(weaponData.fireRate);
+        waitBetweenBullets = new WaitForSeconds(weaponData.minimumTimeBetweenShots);
         reloadWait = new WaitForSeconds(weaponData.reloadTime);
     }
     public override void Fire()
@@ -19,8 +19,7 @@ public class SingleShotWeapon : WeaponsClass
         if (state == WeaponState.READY)
         {
             currentAmmo--;
-            Debug.Log("Fired " + currentAmmo); 
-            fireEvent?.Invoke();
+            PropelBullet();
             StartCoroutine(ShotLimiter());
         }
     }
@@ -29,9 +28,31 @@ public class SingleShotWeapon : WeaponsClass
     {
         state = WeaponState.NEXT_WAIT;
         Debug.Log("limiting");
-        yield return waitBetweenShots;
+        yield return waitBetweenBullets;
         Debug.Log("limited shot");
         state = currentAmmo > 0 ? WeaponState.READY : WeaponState.EMPTY;
     }
 
+    public override void FireContinually()
+    {
+        if (!weaponData.canContinuallyFire) return;
+        if (firingContinually) return;
+        Debug.Log("called " + weaponData.name);
+        firingContinually = true;
+        StartCoroutine(CycleFire());
+    }
+
+    protected override IEnumerator CycleFire()
+    {
+        while(firingContinually)
+        {
+            Fire();
+            yield return waitBetweenBullets;
+        }
+    }
+
+    public override void StopFiring()
+    {
+        firingContinually = false;
+    }
 }

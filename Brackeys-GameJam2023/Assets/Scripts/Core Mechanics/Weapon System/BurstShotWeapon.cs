@@ -4,8 +4,18 @@ using UnityEngine;
 public class BurstShotWeapon : WeaponsClass
 {
     public BurstShotSO weaponData;
-    private WaitForSeconds waitBetweenBullets;
     private WaitForSeconds waitBetweenTriggerPulls;
+    private WaitForSeconds continualFireWait;
+
+    public override void Init(Transform muzzle)
+    {
+        this.muzzle = muzzle;
+        weaponData = weaponBaseData as BurstShotSO;
+        currentAmmo = weaponData.magazineSize;
+        waitBetweenBullets = new WaitForSeconds(1f/weaponData.fireRate);
+        waitBetweenTriggerPulls = new WaitForSeconds(weaponData.minimumTimeBetweenBursts);
+        continualFireWait = new WaitForSeconds(weaponData.minimumTimeBetweenBursts + ((float) weaponData.burstsPerTriggerPull / weaponData.fireRate));
+    }
     public override void Fire()
     {
         if (state == WeaponState.READY)
@@ -20,8 +30,7 @@ public class BurstShotWeapon : WeaponsClass
         for (int i = 0; i < weaponData.burstsPerTriggerPull; i++)
         {
             currentAmmo--;
-            Debug.Log("Fired " + currentAmmo);
-            fireEvent?.Invoke();
+            PropelBullet();
             if(currentAmmo == 0)
             {
                 break;
@@ -35,11 +44,25 @@ public class BurstShotWeapon : WeaponsClass
         state = currentAmmo > 0 ? WeaponState.READY : WeaponState.EMPTY;
     }
 
-    public override void Init()
+    public override void FireContinually()
     {
-        weaponData = weaponBaseData as BurstShotSO;
-        currentAmmo = weaponData.magazineSize;
-        waitBetweenBullets = new WaitForSeconds(weaponData.fireRate);
-        waitBetweenTriggerPulls = new WaitForSeconds(weaponData.minimumTimeBetweenBursts);
+        if (!weaponData.canContinuallyFire) return;
+        Debug.Log("called " + weaponData.name);
+        firingContinually = true;
+        StartCoroutine(CycleFire());
+    }
+
+    public override void StopFiring()
+    {
+        firingContinually = false;
+    }
+
+    protected override IEnumerator CycleFire()
+    {
+        while (firingContinually)
+        {
+            Fire();
+            yield return continualFireWait;
+        }
     }
 }

@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54b5eb0758c11a1429bc2bc257a741ee, type: 3}
-  m_Name: Enemy1
+  m_Script: {fileID: 11500000, guid: b0347a3a583155f4e9c7138af87a5efb, type: 3}
+  m_Name: AutoShot
   m_EditorClassIdentifier: 
-  maxMoveSpeed: 10
-  accel: 20
-  rotateSpeed: 200
-  effectiveRange: 13
-  falloffRange: 18
-  weapon: {fileID: 11400000, guid: 6bb6899e3fc013744b86e54ebfa12c5d, type: 2}
+  damage: 10
+  reloadTime: 2
+  magazineSize: 45
+  canContinuallyFire: 1
+  bullet: {fileID: 11400000, guid: fb238859920b37142bdf32689b3507f5, type: 2}
+  fireRate: 2

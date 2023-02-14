@@ -1,4 +1,5 @@
 using UnityEngine;
+[System.Serializable]
 [CreateAssetMenu(fileName = "Bullet", menuName = "BulletType", order = 3)]
 public class BulletSO : ScriptableObject
 {

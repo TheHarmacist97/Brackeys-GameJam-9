@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Character : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class Character : MonoBehaviour
     }
     
     private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem) };
-    private List<Type> enemyComponents = new List<Type>();
+    private List<Type> enemyComponents = new List<Type>(); //{ typeof(Enemy), typeof(NavMeshAgent), typeof(WeaponsManager)}; will need these later
     public void Switch(bool isPlayer)
     {
         foreach (Type type in isPlayer ? enemyComponents : playerComponents)

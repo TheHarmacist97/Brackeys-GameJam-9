@@ -9,10 +9,10 @@ public class WeaponsManager : MonoBehaviour
         AUTO,
         MULTI
     }
-
     [HideInInspector]
     public WeaponsClass weapon;
     [SerializeField] WeaponSO weaponData;
+    [SerializeField] Transform muzzle;
     void Start()
     {
         if (weaponData != null)
@@ -25,7 +25,10 @@ public class WeaponsManager : MonoBehaviour
             {
                 weapon = gameObject.AddComponent<BurstShotWeapon>();
             }
-            //else if(weapon is)
+            else if (weaponData is AutoShotSO)
+            {
+                weapon = gameObject.AddComponent<AutoShotWeapon>();
+            }
             WeaponSetup();
         }
     }
@@ -33,7 +36,7 @@ public class WeaponsManager : MonoBehaviour
     private void WeaponSetup()
     {
         weapon.weaponBaseData = weaponData;
-        weapon.Init();
+        weapon.Init(muzzle);
     }
 
     // Update is called once per frame
@@ -42,6 +45,10 @@ public class WeaponsManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             weapon.Fire();
+        }
+        if(Input.GetMouseButton(0))
+        {
+            weapon.FireContinually();
         }
         if (Input.GetMouseButtonDown(1))
         {
