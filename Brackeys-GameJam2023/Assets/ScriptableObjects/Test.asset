@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   maxMoveSpeed: 10
+  mass: 10
+  jumpForce: 5
   accel: 0
-  rotateSpeed: 0
+  rotateSpeed: 0.5
   effectiveRange: 0
-  weapon: {fileID: 0}
+  falloffRange: 0

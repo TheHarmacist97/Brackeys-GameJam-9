@@ -7,8 +7,9 @@ public class Character : MonoBehaviour
 {
     [SerializeField] private CharacterSpecs characterSpecs;
     [SerializeField] private WeaponSO weaponSpecs;
-    public GameObject fpp;
-    public GameObject tpp;
+
+    public GameObject fpp;//Has to be shifted to Dependency Injector
+    public GameObject tpp;//Has to be shifted to Dependency Injector
     private void Awake()
     {
         Switch(true);
