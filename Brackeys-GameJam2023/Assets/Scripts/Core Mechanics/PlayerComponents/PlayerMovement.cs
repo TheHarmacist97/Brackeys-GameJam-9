@@ -11,12 +11,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterSpecs characterSpecs;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private float mass = 10;
-    [SerializeField] private float jumpForce = 10;
     private Vector3 velocity;
-    private float smoothTurnTime = .1f;
     private float smoothTurnVelocity;
-    private float acceleration = -9.81f;
+    private float acceleration = GameConfig.MAX_GAME_GRAVITY;
     private Transform camTransform;
     private void OnEnable() => EnableComponent();
     private void OnDisable() => velocity = Vector3.zero;
@@ -33,25 +30,27 @@ public class PlayerMovement : MonoBehaviour
     {
         MovementLogic();
     }
-
     private void MovementLogic()
     {
+        //GET PLAYER INPUT
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         if (x != 0 || z != 0)
         {
             velocity = characterSpecs.maxMoveSpeed * Time.deltaTime * ((transform.right * x) + (transform.forward * z));
-            transform.rotation = Quaternion.Euler(0f, camTransform.eulerAngles.y, 0f);
+            float targetAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, camTransform.eulerAngles.y, ref smoothTurnVelocity, characterSpecs.rotateSpeed);
+            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
         }
-        acceleration -= Time.deltaTime * mass;
-        acceleration = Mathf.Max(acceleration, -9.81f);
-        velocity.y += acceleration * Time.deltaTime;
+        velocity.y = acceleration * Time.deltaTime;
+        acceleration -= Time.deltaTime * characterSpecs.mass;
+        acceleration = Mathf.Max(acceleration, GameConfig.MAX_GAME_GRAVITY);
         if (Physics.CheckSphere(groundCheck.position, 0.5f, groundMask))
         {
             velocity.y = Mathf.Max(velocity.y, 0f);
+            acceleration = Mathf.Max(acceleration, 0f);
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                acceleration = jumpForce;
+                acceleration = characterSpecs.jumpForce;
             }
         }
         controller.Move(velocity);
