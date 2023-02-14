@@ -4,17 +4,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, IDamageble
 {
     [SerializeField] private CharacterSpecs characterSpecs;
     [SerializeField] private WeaponSO weaponSpecs;
 
-    public GameObject fpp;//Has to be shifted to Dependency Injector
-    public GameObject tpp;//Has to be shifted to Dependency Injector
-    private void Awake()
+    private GameObject fpp;
+    private GameObject tpp;
+
+    #region public References
+    public GameObject FirstPersonCamera
     {
-        Switch(true);
+        get
+        {
+            if (fpp == null)
+                fpp = GameManager.Instance.dependencyInjector.firstPersonCamera;
+            return fpp;
+        }
     }
+    public GameObject ThirdPersonCamera
+    {
+        get
+        {
+            if (tpp == null)
+                tpp = GameManager.Instance.dependencyInjector.thirdPersonCamera;
+            return tpp;
+        }
+    }
+
     public CharacterSpecs CharacterSpecs
     {
         get
@@ -31,9 +48,12 @@ public class Character : MonoBehaviour
         }
         private set { weaponSpecs = value; }
     }
-    
-    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem) };
-    private List<Type> enemyComponents = new List<Type>(); //{ typeof(Enemy), typeof(NavMeshAgent), typeof(WeaponsManager)}; will need these later
+    public int currentHealth { get => this.currentHealth; set => this.currentHealth = value; }
+    public int totalHealth { get => this.totalHealth; set => this.totalHealth = value; }
+    #endregion
+
+    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(WeaponsManager) };
+    private List<Type> enemyComponents = new List<Type>();//{ typeof(Enemy), typeof(NavMeshAgent), typeof(WeaponsManager)}; will need these later
     public void Switch(bool isPlayer)
     {
         foreach (Type type in isPlayer ? enemyComponents : playerComponents)
@@ -52,4 +72,23 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int value)
+    {
+        currentHealth -= value;
+        if (currentHealth < 0)
+        {
+            Die();
+        }
+    }
+
+    public void TakeHeal(int value)
+    {
+        currentHealth += value;
+        currentHealth = Mathf.Min(currentHealth, totalHealth);
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }

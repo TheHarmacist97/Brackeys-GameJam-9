@@ -52,4 +52,8 @@ public class WeaponsManager : MonoBehaviour
             StartCoroutine(weapon.Reload());
         }
     }
+    private void OnDestroy()
+    {
+        Destroy(weapon);
+    }
 }
