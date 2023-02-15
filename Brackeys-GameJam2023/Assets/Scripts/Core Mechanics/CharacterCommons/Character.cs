@@ -7,7 +7,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(WeaponsManager))]
 public class Character : MonoBehaviour, IDamageable
 {
-    private CharacterMovementVFX cmVFX;
     private WeaponsManager weaponsManager;
 
     private GameObject fpp;
@@ -53,8 +52,8 @@ public class Character : MonoBehaviour, IDamageable
     public int totalHealth { get => this.totalHealth; set => this.totalHealth = value; }
     #endregion
 
-    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(PlayerWeaponInput) };
-    private List<Type> enemyComponents = new List<Type>(){ typeof(Enemy), typeof(NavMeshAgent), typeof(CharacterMovementVFX)}; //will need these now
+    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(PlayerWeaponInput), typeof(PlayerMovementVFX) };
+    private List<Type> enemyComponents = new List<Type>(){ typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX)}; //will need these now
 
     private void Awake()
     {
@@ -63,13 +62,11 @@ public class Character : MonoBehaviour, IDamageable
     }
     private void CommonComponentGet()
     {
-        cmVFX = GetComponent<CharacterMovementVFX>();
         weaponsManager = GetComponent<WeaponsManager>();
     }
 
     private void CommonComponentInit()
     {
-        cmVFX.Init(data.characterSpecs.muzzleRotateSpeed, data.turretBase, data.mobilityUnit);
         weaponsManager.Init(data.weaponsData.ToArray(), data.muzzles.ToArray());
     }
     public void Switch(bool isPlayer)

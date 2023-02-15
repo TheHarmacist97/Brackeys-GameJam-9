@@ -1,12 +1,4 @@
-using UnityEditor;
 using UnityEngine;
-
-public enum WalkType
-{
-    HOVER,
-    TREAD,
-    SPIDER
-}
 
 [CreateAssetMenu(fileName = "CharacterSpec", menuName = "Character Specification", order = 1)]
 public class CharacterSO : ScriptableObject
@@ -19,9 +11,6 @@ public class CharacterSO : ScriptableObject
     public float rotateSpeed;
     public float effectiveRange;
     public float falloffRange;
-
-    [Header("Visuals")]
-    public WalkType walkType;
 
     [Header("Turret Variables")]
     public float muzzleRotateSpeed;

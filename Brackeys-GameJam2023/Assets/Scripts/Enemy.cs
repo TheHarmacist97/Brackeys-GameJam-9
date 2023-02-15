@@ -6,10 +6,12 @@ public class Enemy : MonoBehaviour
 {
     public enum EnemyState
     {
+        STUN,
         CHASE,
         ATTACK
     }
-    [SerializeField] private CharacterSO specs;
+    private Character character;
+    private CharacterData data;
     [SerializeField] private EnemyState enemyState;
     [SerializeField] private Transform target;
 
@@ -23,30 +25,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform turretUnit;
     [SerializeField] Transform mobilityUnit;
     [SerializeField] float turnThreshhold;
-    private Vector3 lastPos, difference, origRot, currentRot;
-    private bool willTurn;
 
     private void Awake()
     {
+        character = GetComponent<Character>();
+        data = character.data;
         agent = GetComponent<NavMeshAgent>();
         weaponsManager = GetComponent<WeaponsManager>();
         Init();
         outsideFalloffRangeTrigger = new Trigger(() => { StartAttack(); });
         GameManager.Instance.playerSet += UpdateTarget;
-    }
-    private void Start()
-    {
-        lastPos = transform.position;
-        switch (specs.walkType)
-        {
-            case WalkType.TREAD:
-                willTurn = true;
-                break;
-            case WalkType.HOVER:
-            case WalkType.SPIDER:
-                break;
-        }
-        lastPos = transform.position;
     }
 
     private void Update()
@@ -57,26 +45,26 @@ public class Enemy : MonoBehaviour
     private void Init()
     {
         agent.updateRotation = false;
-        agent.acceleration = specs.accel;
-        agent.angularSpeed = specs.rotateSpeed;
-        agent.speed = specs.maxMoveSpeed;
+        agent.acceleration = data.characterSpecs.accel ;
+        agent.angularSpeed = data.characterSpecs.rotateSpeed;
+        agent.speed = data.characterSpecs.maxMoveSpeed;
     }
 
     private void TrackDistance()
     {
         if (target == null) return;
         distanceToPlayer = (transform.position - target.position).sqrMagnitude;
-        if (distanceToPlayer > specs.FalloffRangeSquare)
+        if (distanceToPlayer > data.characterSpecs.FalloffRangeSquare)
         {
             outsideFalloffRangeTrigger.Reset();
-            if (distanceToPlayer > specs.EffectiveRangeSquare)
+            if (distanceToPlayer > data.characterSpecs.EffectiveRangeSquare)
             {
                 GiveChase();
             }
         }
-        else if (distanceToPlayer < specs.FalloffRangeSquare)
+        else if (distanceToPlayer < data.characterSpecs.FalloffRangeSquare)
         {
-            if (distanceToPlayer < specs.EffectiveRangeSquare)
+            if (distanceToPlayer < data.characterSpecs.EffectiveRangeSquare)
             {
                 outsideFalloffRangeTrigger.Fire();
             }
@@ -96,12 +84,6 @@ public class Enemy : MonoBehaviour
         weaponsManager.FireContinually(true);
     }
 
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(turretUnit.transform.position, currentRot * 5f);
-    }
     private void UpdateTarget()
     {
         target = GameManager.Instance.Player.transform;

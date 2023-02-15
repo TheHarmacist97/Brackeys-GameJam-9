@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
-public class CharacterMovementVFX : MonoBehaviour
+public class EnemyMovementVFX : MonoBehaviour
 {
-    public float muzzleRotateSpeed;
-    public Vector3 target;
+    private CharacterData data;
+    private float muzzleRotateSpeed;
+    private Transform target;
     private Transform turretUnit;
     private Transform mobilityUnit;
 
@@ -13,24 +15,37 @@ public class CharacterMovementVFX : MonoBehaviour
     private Vector3 lastPos;
     private Vector3 origRot;
 
-    public void Init(float muzzleRotateSpeed, Transform turretUnit, Transform mobilityUnit)
+    private void Awake()
     {
-        this.turretUnit = turretUnit;
-        this.mobilityUnit = mobilityUnit;
-        this.muzzleRotateSpeed = muzzleRotateSpeed;
+        data = GetComponent<Character>().data;
+        GameManager.Instance.playerSet += UpdateTarget;
+        Init();
+    }
+
+    private void UpdateTarget()
+    {
+        target = GameManager.Instance.Player.transform;
+    }
+
+    public void Init()
+    {
+        turretUnit = data.turretBase;
+        muzzleRotateSpeed = data.characterSpecs.muzzleRotateSpeed;
+        mobilityUnit = data.mobilityUnit;
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if(target != null)
+            TurretOrientation();
         MobilityUnitOrientation();
-        TurretOrientation();
     }
 
     private void TurretOrientation()
     {
         currentRot = turretUnit.forward;
-        currentRot = Vector3.RotateTowards(currentRot, target - turretUnit.position, muzzleRotateSpeed, 0.0f);
+        currentRot = Vector3.RotateTowards(currentRot, target.position - turretUnit.position, muzzleRotateSpeed, 0.0f);
         currentRot.y = Mathf.Clamp(currentRot.y, -0.5f, 0.5f);
         turretUnit.forward = currentRot;
     }

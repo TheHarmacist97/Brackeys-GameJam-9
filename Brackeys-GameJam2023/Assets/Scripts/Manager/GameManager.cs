@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Gate gate;
     [SerializeField] private List<Character> characterTypes;
-    [SerializeField]private List<IObjective> currentObjectives = new List<IObjective>();
-    [SerializeField]private List<Transform> spawnPositions = new List<Transform>();
+    [SerializeField] private List<IObjective> currentObjectives = new List<IObjective>();
+    [SerializeField] private List<Transform> spawnPositions = new List<Transform>();
     [SerializeField] private Vector2 spawnArea = new Vector2(1, 1);
 
     private List<Character> enemies = new List<Character>();
