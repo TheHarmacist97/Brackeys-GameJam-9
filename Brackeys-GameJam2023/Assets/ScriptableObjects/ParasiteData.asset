@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54b5eb0758c11a1429bc2bc257a741ee, type: 3}
-  m_Name: Parasite
+  m_Script: {fileID: 11500000, guid: 986c1ccbf10e06147b6d2804728de172, type: 3}
+  m_Name: ParasiteData
   m_EditorClassIdentifier: 
-  maxMoveSpeed: 30
-  mass: 1
-  jumpForce: 10
-  accel: 15
-  rotateSpeed: 200
-  effectiveRange: 0
-  falloffRange: 0
-  muzzleRotateSpeed: 0.2
+  thickness: 2
+  maxRange: 20
+  maxTime: 100
+  rate: 1
+  maxPulses: 30
+  layer:
+    serializedVersion: 2
+    m_Bits: 64

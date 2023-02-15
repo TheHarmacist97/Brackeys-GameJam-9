@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
-[RequireComponent(typeof(WeaponsManager))]
 public class Character : MonoBehaviour, IDamageable
 {
-    private WeaponsManager weaponsManager;
 
     private GameObject fpp;
     private GameObject tpp;
@@ -53,22 +50,8 @@ public class Character : MonoBehaviour, IDamageable
     #endregion
 
     private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(PlayerWeaponInput), typeof(PlayerMovementVFX) };
-    private List<Type> enemyComponents = new List<Type>(){ typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX)}; //will need these now
+    private List<Type> enemyComponents = new List<Type>(){ typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX)}; //will need these now 
 
-    private void Awake()
-    {
-        CommonComponentGet();
-        CommonComponentInit();
-    }
-    private void CommonComponentGet()
-    {
-        weaponsManager = GetComponent<WeaponsManager>();
-    }
-
-    private void CommonComponentInit()
-    {
-        weaponsManager.Init(data.weaponsData.ToArray(), data.muzzles.ToArray());
-    }
     public void Switch(bool isPlayer)
     {
         foreach (Type type in isPlayer ? enemyComponents : playerComponents)

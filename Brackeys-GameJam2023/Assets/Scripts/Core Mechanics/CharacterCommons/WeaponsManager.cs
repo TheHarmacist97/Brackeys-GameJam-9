@@ -5,6 +5,7 @@ public class WeaponsManager:MonoBehaviour
 {
     [HideInInspector]
     public List<WeaponsClass> weapons;
+    private CharacterData characterData;
     public void Init(WeaponSO[] weaponsArray, Transform[] muzzlesArray)
     {
         for (int i = 0; i < muzzlesArray.Length; i++)
@@ -13,6 +14,12 @@ public class WeaponsManager:MonoBehaviour
             weapons[i].weaponBaseData = weaponsArray[i];
             weapons[i].Init(muzzlesArray[i]);
         }
+    }
+
+    private void Awake()
+    {
+        characterData = GetComponent<Character>().data;
+        Init(characterData.weaponsData.ToArray(), characterData.muzzles.ToArray());
     }
 
     private void SetupWeapon(WeaponSO weaponData)

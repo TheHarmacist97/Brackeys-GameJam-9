@@ -27,8 +27,11 @@ public class PlayerMovementVFX : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        target = cameraMain.ScreenToWorldPoint(Vector3.one*0.5f);
-        TurretOrientation();
+        if(turretUnit!= null)
+        {
+            target = cameraMain.ScreenToWorldPoint(Vector3.one*0.5f);
+            TurretOrientation();
+        }
     }
 
     private void TurretOrientation()

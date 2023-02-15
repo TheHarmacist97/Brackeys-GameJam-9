@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class SearchForJackSpots : MonoBehaviour
 {
-    [Range(0.1f, 2f)]public float thickness;
-    public float maxRange;
-    public float rate;
-    public int maxPulses;
-    public LayerMask layer;
     public Collider[] jackInSpots;
 
     private int gotInRange;
@@ -19,8 +14,9 @@ public class SearchForJackSpots : MonoBehaviour
 
     private RaycastHit hit;
     private WaitForSeconds pulseWait;
-    [SerializeField] private Transform mainCamTransform;
-    [SerializeField] private PlayerMovement pMovement;
+    private Parasite parasite;
+    private Transform mainCamTransform;
+    private PlayerMovement pMovement;
     private Vector3 boxCastExtents;
     private bool startedHijacking;
 
@@ -29,20 +25,25 @@ public class SearchForJackSpots : MonoBehaviour
         alive = true;
     }
 
-    private void Init(Transform cameraTransform, PlayerMovement movement)
-    {
-        mainCamTransform = cameraTransform;
-        pMovement = movement;
-    }
-
     private void Awake()
     {
-        jackInSpots = new Collider[20];
-        timeBetweenPulses = 100f / maxPulses;
-        pulseWait = new WaitForSeconds(timeBetweenPulses);
-        boxCastExtents = Vector3.one*thickness;
-        boxCastExtents.y *= 2;
+        Init();
     }
+
+    private void Init()
+    {
+        parasite = GetComponent<Parasite>();    
+        jackInSpots = new Collider[20];
+        timeBetweenPulses = parasite.parasiteData.maxTime / parasite.parasiteData.maxPulses;
+        pulseWait = new WaitForSeconds(timeBetweenPulses);
+        boxCastExtents = Vector3.one * parasite.parasiteData.thickness;
+        boxCastExtents.y *= 2;
+
+        pMovement = GetComponent<PlayerMovement>();
+        mainCamTransform = Camera.main.transform;
+    }
+
+
     private void Start()
     {
         mainCamTransform = Camera.main.transform;   
@@ -61,14 +62,14 @@ public class SearchForJackSpots : MonoBehaviour
             currentPulses++;
             yield return pulseWait;
             Pulse();
-            if (currentPulses == maxPulses)
+            if (currentPulses == parasite.parasiteData.maxPulses)
                 alive = false;
         }
     }
 
     private void Pulse()
     {
-        gotInRange = Physics.OverlapSphereNonAlloc(gameObject.transform.position, maxRange, jackInSpots, layer);
+        gotInRange = Physics.OverlapSphereNonAlloc(gameObject.transform.position, parasite.parasiteData.maxRange, jackInSpots, parasite.parasiteData.layer);
     }
     private void Update()
     {
@@ -77,7 +78,7 @@ public class SearchForJackSpots : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.E)&&!startedHijacking)
             {
                 Debug.Log("Got casted");
-                if(Physics.BoxCast(mainCamTransform.position, boxCastExtents, mainCamTransform.forward, out hit, mainCamTransform.rotation, maxRange))
+                if(Physics.BoxCast(mainCamTransform.position, boxCastExtents, mainCamTransform.forward, out hit, mainCamTransform.rotation, parasite.parasiteData.maxRange))
                 {
                     isHit = false;
                     if(hit.transform.CompareTag(GameConfig.Constants.JACK_TAG))
@@ -96,26 +97,27 @@ public class SearchForJackSpots : MonoBehaviour
     {
         float elapsedTime = 0f;
         Vector3 startPos = transform.position;
-        while(elapsedTime <=rate)
+        while(elapsedTime <= parasite.parasiteData.rate)
         {
             yield return null;
             elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, target, elapsedTime / rate);
+            transform.position = Vector3.Lerp(startPos, target, elapsedTime / parasite.parasiteData.rate);
         }
         transform.forward = hit.normal;
     }
     private void OnDrawGizmos()
     {
+        
         if (isHit)
         {
             Gizmos.color = Color.red;
             Gizmos.DrawRay(mainCamTransform.position, mainCamTransform.forward * hit.distance);
-            Gizmos.DrawWireCube(mainCamTransform.position + mainCamTransform.forward * hit.distance, Vector3.one*thickness);
+            Gizmos.DrawWireCube(mainCamTransform.position + mainCamTransform.forward * hit.distance, Vector3.one * parasite.parasiteData.thickness);
         }
         else
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawRay(mainCamTransform.position, mainCamTransform.forward * maxRange);
+            Gizmos.DrawRay(mainCamTransform.position, mainCamTransform.forward * parasite.parasiteData.maxRange);
         }
     }
 }
