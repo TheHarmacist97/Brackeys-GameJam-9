@@ -9,7 +9,7 @@ public static class GameConfig
     //==========PLAYER SETTINGS===========
     public static bool fppToggle = false;
 
-    public static int[,] waveInfo = new int[,] { { 10, 20, 25, 27, 30 } };
+    public static int[,] waveInfo = new int[,] { { 5, 20, 25, 27, 30 } };
 
     public static class Constants
     {

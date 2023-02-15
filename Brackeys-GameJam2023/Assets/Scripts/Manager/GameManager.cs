@@ -13,10 +13,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Gate gate;
     [SerializeField] private List<Character> characterTypes;
-    [SerializeField] private List<GameObject> objectiveTypes;
+    [SerializeField]private List<IObjective> currentObjectives = new List<IObjective>();
+    [SerializeField]private List<Transform> spawnPositions = new List<Transform>();
+    [SerializeField] private Vector2 spawnArea = new Vector2(1, 1);
 
     private List<Character> enemies = new List<Character>();
-    private List<IObjective> currentObjectives = new List<IObjective>();
 
     private int waveNumber = 0;
     private int enemyThreshold;
@@ -90,10 +91,16 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            Character character = Instantiate(characterType, dependencyInjector.enemyParent);
+            Character character = Instantiate(characterType, spawnPositions[Random.Range(0, spawnPositions.Count)].position, characterType.transform.rotation, dependencyInjector.enemyParent);
             character.Switch(false);
             enemies.Add(character);
         }
+    }
+    private Vector3 GetRandomPosition()
+    {
+        Vector3 spawnPosition = spawnPositions[Random.Range(0, spawnPositions.Count)].position;
+        spawnPosition += (Vector3.forward * Random.Range(-spawnArea.y, spawnArea.y) + Vector3.right * Random.Range(-spawnArea.x, spawnArea.x));
+        return Vector3.zero;
     }
     #endregion
     

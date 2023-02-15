@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IObjective
+public abstract class IObjective: MonoBehaviour
 {
-    public void StartObjective();
-    public void ObjectiveCompleted();
+    public abstract void StartObjective();
+    public abstract void ObjectiveCompleted();
 }
