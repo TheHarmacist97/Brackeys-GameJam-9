@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         SpawnCharacter(characterTypes[Random.Range(0, characterTypes.Count)]);
         HackCharacter(enemies[0]);
         SpawnNewWave(characterTypes);
+        StartObjectives();
     }
 
     #region Public Functions
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadNextScene()
     {
-
+        Debug.Log("NEXT SCENE");
     }
     #endregion
 
@@ -106,12 +107,11 @@ public class GameManager : MonoBehaviour
     
     private void StartObjectives()
     {
-        
-    }
-    private void CreateObjective(GameObject objectiveType)
-    {
-        IObjective objective = Instantiate(objectiveType, dependencyInjector.objectiveParent).GetComponent<IObjective>();
-        objective.StartObjective();
+        foreach(IObjective objectives in currentObjectives)
+        {
+            Debug.Log("Called startObjectives");
+            objectives.StartObjective();
+        }
     }
 
     private void CheckNewWave()

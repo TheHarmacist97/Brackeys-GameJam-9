@@ -20,6 +20,7 @@ public class Gate : MonoBehaviour
     {
         if (other.CompareTag(GameConfig.Constants.PLAYER_TAG) && currentObjectives>=totalObjectives)
         {
+            //Player to die
             GameManager.Instance.LoadNextScene();
         }
     }

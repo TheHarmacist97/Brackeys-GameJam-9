@@ -1,37 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class KOTHObjective : IObjective
 {
+    [SerializeField]
     private Character player;
-    private Transform objectiveTransform;
-
-    private float fillRate = 1f;
-    private float decayRate = 0.1f;
+    [SerializeField]
+    private float fillRate = 10f;
+    [SerializeField]
+    private float decayRate = 10f;
+    [SerializeField]
     private float fillBar = 0f;
-    private float range = 5.0f;
+    [SerializeField]
+    
+    [Range(1f, 20f)]
+    private float range = 10.0f;
+    
+    private bool objectiveCompleted;
 
     public override void ObjectiveCompleted()
     {
+        Debug.Log("OBJECTIVE COMPLETED");
+        objectiveCompleted = true;
         GameManager.Instance.UpdateObjective(this);    
     }
 
     public override void StartObjective()
     {
+        Debug.Log("Objective Started");
         GetPlayer();
+        objectiveCompleted = false;
         GameManager.Instance.playerSet += GetPlayer;
     }
     private void Update()
     {
-        if (player == null) return;
-        if(Vector3.Distance(objectiveTransform.position, player.transform.position)<=range)
+        if (player == null || objectiveCompleted) return;
+        if(Vector3.Distance(transform.position, player.transform.position)<=range)
         {
             fillBar += fillRate * Time.deltaTime;
         }
         else
         {
             fillBar -= decayRate * Time.deltaTime;
+            fillBar = Mathf.Max(fillBar, 0f);
         }
 
         if(fillBar>=100)
@@ -43,5 +56,10 @@ public class KOTHObjective : IObjective
     private void GetPlayer()
     {
         this.player = GameManager.Instance.Player;
+    }
+    private void OnDrawGizmos()
+    {
+        Handles.color = Color.Lerp(Color.red, Color.blue, fillBar / 100f);
+        Handles.DrawWireDisc(transform.position, Vector3.up, range);
     }
 }
