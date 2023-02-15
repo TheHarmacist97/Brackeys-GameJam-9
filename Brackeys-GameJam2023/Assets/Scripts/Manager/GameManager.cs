@@ -15,8 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Character> characterTypes;
     [SerializeField] private List<GameObject> objectiveTypes;
 
-    private List<Character> enemies;
-    private List<IObjective> currentObjectives;
+    private List<Character> enemies = new List<Character>();
+    private List<IObjective> currentObjectives = new List<IObjective>();
 
     private int waveNumber = 0;
     private int enemyThreshold;
@@ -54,10 +54,10 @@ public class GameManager : MonoBehaviour
     {
         if (!enemies.Contains(character))
             return;
+        character.Switch(true);
         enemies.Remove(character);
         CheckNewWave();
         Player = character;
-        character.Switch(true);
     }
     public void EnemyDestroyed(Character character)
     {
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            Character character = Instantiate(characterType, dependencyInjector.enemyParent) as Character;
+            Character character = Instantiate(characterType, dependencyInjector.enemyParent);
             character.Switch(false);
             enemies.Add(character);
         }

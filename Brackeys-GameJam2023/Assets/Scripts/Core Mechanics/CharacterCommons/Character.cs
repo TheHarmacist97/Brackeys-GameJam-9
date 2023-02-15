@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 [RequireComponent(typeof(WeaponsManager))]
-[RequireComponent(typeof(CharacterMovementVFX))]
 public class Character : MonoBehaviour, IDamageable
 {
     private CharacterMovementVFX cmVFX;
@@ -54,7 +54,7 @@ public class Character : MonoBehaviour, IDamageable
     #endregion
 
     private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(PlayerWeaponInput) };
-    private List<Type> enemyComponents = new List<Type>();//{ typeof(Enemy), typeof(NavMeshAgent)}; will need these later
+    private List<Type> enemyComponents = new List<Type>(){ typeof(Enemy), typeof(NavMeshAgent), typeof(CharacterMovementVFX)}; //will need these now
 
     private void Awake()
     {

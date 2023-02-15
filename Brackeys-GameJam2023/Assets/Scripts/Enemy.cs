@@ -32,6 +32,7 @@ public class Enemy : MonoBehaviour
         weaponsManager = GetComponent<WeaponsManager>();
         Init();
         outsideFalloffRangeTrigger = new Trigger(() => { StartAttack(); });
+        GameManager.Instance.playerSet += UpdateTarget;
     }
     private void Start()
     {
@@ -63,6 +64,7 @@ public class Enemy : MonoBehaviour
 
     private void TrackDistance()
     {
+        if (target == null) return;
         distanceToPlayer = (transform.position - target.position).sqrMagnitude;
         if (distanceToPlayer > specs.FalloffRangeSquare)
         {
@@ -100,5 +102,8 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawRay(turretUnit.transform.position, currentRot * 5f);
     }
-
+    private void UpdateTarget()
+    {
+        target = GameManager.Instance.Player.transform;
+    }
 }

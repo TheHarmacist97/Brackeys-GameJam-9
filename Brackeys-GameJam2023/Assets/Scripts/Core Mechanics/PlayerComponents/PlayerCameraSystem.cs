@@ -17,13 +17,13 @@ public class PlayerCameraSystem : MonoBehaviour
     private void Initialise()
     {
         Character character = GetComponent<Character>();
+        this.fpp = character.FirstPersonCamera;
+        this.tpp = character.ThirdPersonCamera;
 
         SetFollow();
 
         SetCursor(true);
 
-        this.fpp = character.FirstPersonCamera;
-        this.tpp = character.ThirdPersonCamera;
 
         fppTrigger = new Trigger(() => SetFPP(true), () => SetFPP(false));
 
@@ -37,8 +37,10 @@ public class PlayerCameraSystem : MonoBehaviour
     }
     private void SetFollow()
     {
+        Debug.Log(fpp.GetComponent<CinemachineVirtualCamera>()!=null);
         fpp.GetComponent<CinemachineVirtualCamera>().Follow = transform;
-        tpp.GetComponent<CinemachineVirtualCamera>().Follow = transform;
+        tpp.GetComponent<CinemachineFreeLook>().Follow = transform;
+        tpp.GetComponent<CinemachineFreeLook>().LookAt= transform;
     }
 
     #endregion
