@@ -25,6 +25,9 @@ public static class GameConfig
         public const string INPUT_HORIZONTAL = "Horizontal";
         public const string INPUT_VERTICAL = "Vertical";
 
+        //QTE
+        public static KeyCode[] QTEKeys = { KeyCode.W , KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.Mouse0, KeyCode.Mouse1};
+
         //public static Transform GetGFX(Transform t)
         //{
         //    return t.GetChild(0);

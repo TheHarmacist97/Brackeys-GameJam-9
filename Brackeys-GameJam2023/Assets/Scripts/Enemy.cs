@@ -97,14 +97,8 @@ public class Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (target == null || specs == null) return;
-        Handles.color = Color.green;
-        Handles.DrawWireDisc(target.position, Vector3.up, specs.falloffRange);
-        Handles.color = Color.red;
-        Handles.DrawWireDisc(target.position, Vector3.up, specs.effectiveRange);
-
         Gizmos.color = Color.red;
-        Debug.DrawRay(turretUnit.transform.position, currentRot * 5f);
+        Gizmos.DrawRay(turretUnit.transform.position, currentRot * 5f);
     }
 
 }

@@ -58,7 +58,6 @@ public class Character : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        Debug.Log("awake called");
         CommonComponentGet();
         CommonComponentInit();
     }

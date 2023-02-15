@@ -34,8 +34,6 @@ public class WeaponsManager:MonoBehaviour
 
         }
     }
-
-    // Update is called once per frame
     
 
     public void ReloadAll()
@@ -58,7 +56,6 @@ public class WeaponsManager:MonoBehaviour
     {
         foreach (WeaponsClass weapon in weapons)
         {
-            Debug.Log("called");
             weapon.FireContinually(fireFromEnemy);
         }
     }

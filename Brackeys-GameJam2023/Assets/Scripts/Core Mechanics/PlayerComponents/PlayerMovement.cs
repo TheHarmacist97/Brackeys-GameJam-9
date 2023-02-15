@@ -16,15 +16,23 @@ public class PlayerMovement : MonoBehaviour
 
 
     private void OnEnable() => EnableComponent();
-    private void OnDisable() => velocity = Vector3.zero;
+    private void OnDisable() => DisableComponent();
 
     private void EnableComponent()
     {
         characterSpecs = GetComponent<Character>().CharacterSpecs;
         controller = GetComponent<CharacterController>();
+        controller.enabled = true;
         groundCheck = transform.GetChild(1).GetComponent<Transform>();
         groundMask = LayerMask.GetMask(GameConfig.Constants.GROUND_TAG);
     }
+
+    private void DisableComponent()
+    {
+        velocity = Vector3.zero;
+        controller.enabled = false;
+    }
+
     void Update()
     {
         MovementLogic();

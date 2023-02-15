@@ -1,29 +1,51 @@
+using System;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 public class SearchForJackSpots : MonoBehaviour
 {
+    [Range(0.1f, 2f)]public float thickness;
     public float maxRange;
-    public LayerMask layer;
+    public float rate;
     public int maxPulses;
+    public LayerMask layer;
     public Collider[] jackInSpots;
 
     private int gotInRange;
     private bool alive = true;
+    private bool isHit;
     private float timeBetweenPulses;
-    private WaitForSeconds pulseWait;
     private int currentPulses;
+
+    private RaycastHit hit;
+    private WaitForSeconds pulseWait;
+    [SerializeField] private Transform mainCamTransform;
+    [SerializeField] private PlayerMovement pMovement;
+    private Vector3 boxCastExtents;
+    private bool startedHijacking;
+
+    private void OnEnable()
+    {
+        alive = true;
+    }
+
+    private void Init(Transform cameraTransform, PlayerMovement movement)
+    {
+        mainCamTransform = cameraTransform;
+        pMovement = movement;
+    }
 
     private void Awake()
     {
-        alive = true;
         jackInSpots = new Collider[20];
         timeBetweenPulses = 100f / maxPulses;
         pulseWait = new WaitForSeconds(timeBetweenPulses);
+        boxCastExtents = Vector3.one*thickness;
+        boxCastExtents.y *= 2;
     }
     private void Start()
     {
+        mainCamTransform = Camera.main.transform;   
         Invoke(nameof(PlayerCharacterDeath), 2f);
     }
 
@@ -47,33 +69,54 @@ public class SearchForJackSpots : MonoBehaviour
     private void Pulse()
     {
         gotInRange = Physics.OverlapSphereNonAlloc(gameObject.transform.position, maxRange, jackInSpots, layer);
-       
     }
-
-    private void FixedUpdate()
+    private void Update()
     {
         if (gotInRange > 0)
         {
-            for (int i = 0; i < gotInRange; i++)
+            if(Input.GetKeyDown(KeyCode.E)&&!startedHijacking)
             {
-                float distance = Vector3.Distance(transform.position, jackInSpots[i].transform.position);
-                Ray ray = new Ray(transform.position, jackInSpots[i].transform.position - transform.position);
-                if (Physics.Raycast(ray, out RaycastHit hit, distance))
+                Debug.Log("Got casted");
+                if(Physics.BoxCast(mainCamTransform.position, boxCastExtents, mainCamTransform.forward, out hit, mainCamTransform.rotation, maxRange))
                 {
-                    if (hit.collider.CompareTag(GameConfig.Constants.JACK_TAG))
+                    isHit = false;
+                    if(hit.transform.CompareTag(GameConfig.Constants.JACK_TAG))
                     {
-                        Debug.Log("Hit jackSpot "+hit.collider.transform.root.name);
-                        Debug.DrawRay(transform.position, jackInSpots[i].transform.position - transform.position);
+                        Debug.Log("Got jack "+hit.collider.name);
+                        isHit = true;
+                        startedHijacking = true;
+                        StartCoroutine(JackParasite(hit.transform.position));
                     }
                 }
             }
         }
     }
+
+    private IEnumerator JackParasite(Vector3 target)
+    {
+        float elapsedTime = 0f;
+        Vector3 startPos = transform.position;
+        while(elapsedTime <=rate)
+        {
+            yield return null;
+            elapsedTime += Time.deltaTime;
+            transform.position = Vector3.Lerp(startPos, target, elapsedTime / rate);
+        }
+        transform.forward = hit.normal;
+    }
     private void OnDrawGizmos()
     {
-        Handles.color = Color.yellow;
-        Handles.DrawWireDisc(transform.position, Vector3.up, maxRange);
-
-
+        if (isHit)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(mainCamTransform.position, mainCamTransform.forward * hit.distance);
+            Gizmos.DrawWireCube(mainCamTransform.position + mainCamTransform.forward * hit.distance, Vector3.one*thickness);
+        }
+        else
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(mainCamTransform.position, mainCamTransform.forward * maxRange);
+        }
     }
 }
+
