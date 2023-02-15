@@ -5,10 +5,11 @@ using UnityEngine;
 //Purpose of this Class is to hold all information of the Game which persists throughout the application
 public static class GameConfig
 {
+    public static int level = 1;
     //==========PLAYER SETTINGS===========
     public static bool fppToggle = false;
 
-    
+    public static int[,] waveInfo = new int[,] { { 10, 20, 25, 27, 30 } };
 
     public static class Constants
     {

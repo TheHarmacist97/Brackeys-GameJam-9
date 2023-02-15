@@ -8,4 +8,6 @@ public class DependencyInjector
 {
     public GameObject firstPersonCamera;
     public GameObject thirdPersonCamera;
+    public Transform enemyParent;
+    public Transform objectiveParent;
 }
