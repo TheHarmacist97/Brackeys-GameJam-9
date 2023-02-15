@@ -21,16 +21,14 @@ public abstract class WeaponsClass : MonoBehaviour
     public  WaitForSeconds waitBetweenBullets;
     public abstract void Init(Transform muzzle);
     public abstract void Fire();
-    public abstract void FireContinually();
+    public abstract void FireContinually(bool callFromEnemy);
     protected virtual IEnumerator CycleFire()
     {
         yield break;
     }
     protected virtual void PropelBullet()
     {
-        Debug.Log(weaponBaseData.bullet.bulletPrefab!=null);
         Instantiate(weaponBaseData.bullet.bulletPrefab, muzzle.position, muzzle.rotation);
-
     }
     public abstract void StopFiring();
     public virtual IEnumerator Reload()

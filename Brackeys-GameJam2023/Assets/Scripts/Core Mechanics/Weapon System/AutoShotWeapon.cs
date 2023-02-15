@@ -16,7 +16,11 @@ public class AutoShotWeapon : WeaponsClass
     }
     public override void Fire()
     {
-        if(state == WeaponState.READY)
+        if (state == WeaponState.EMPTY)
+        {
+            StartCoroutine(Reload());
+        }
+        if (state == WeaponState.READY)
         {
             firingContinually = true;
             StartCoroutine(AutoFire());
@@ -38,12 +42,11 @@ public class AutoShotWeapon : WeaponsClass
         }
     }
 
-    public override void FireContinually()
+    public override void FireContinually(bool callFromEnemy)
     {
         if (firingContinually) return;
 
         firingContinually = true;
-        //Debug.Log("called " + weaponData.name);
         Fire();
         return;
     }

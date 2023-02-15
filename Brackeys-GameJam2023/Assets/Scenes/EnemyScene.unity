@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.177579, g: 0.22232251, b: 0.30451912, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -328,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57147680}
   m_LocalRotation: {x: 0.21201202, y: 0, z: 0, w: 0.9772671}
-  m_LocalPosition: {x: 0, y: 7.5, z: 34.27}
+  m_LocalPosition: {x: -12.1, y: 7.5, z: -0.8000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -873,6 +873,9 @@ GameObject:
   - component: {fileID: 458234815}
   - component: {fileID: 458234814}
   - component: {fileID: 458234813}
+  - component: {fileID: 458234817}
+  - component: {fileID: 458234816}
+  - component: {fileID: 458234818}
   m_Layer: 0
   m_Name: Parasite
   m_TagString: Untagged
@@ -888,7 +891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458234811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 39.27}
+  m_LocalPosition: {x: -12.1, y: 5, z: 4.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -940,10 +943,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfd1ba63f1c4a84d835d4ad888fbb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSpecs: {fileID: 11400000, guid: 567a25848723181429d49facd4939b42, type: 2}
-  weaponSpecs: {fileID: 0}
-  fpp: {fileID: 1168674666}
-  tpp: {fileID: 856029710}
+  data:
+    mobilityUnit: {fileID: 797588215}
+    turretBase: {fileID: 413280454}
+    muzzles:
+    - {fileID: 413280454}
+    weaponsData:
+    - {fileID: 11400000, guid: d1dc9e65ad265214dac5eadff18eba53, type: 2}
+    characterSpecs: {fileID: 11400000, guid: 78e7ec275f522714a8b5055f55ccece0, type: 2}
+    jackInSpot: {fileID: 0}
+--- !u!114 &458234816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458234811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9699d00e3c98371419e8375dd634045d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzleRotateSpeed: 0
+  target: {x: 0, y: 0, z: 0}
+--- !u!114 &458234817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458234811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57f0f79162ddc7429d838b4232f1aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapons: []
+--- !u!114 &458234818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458234811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406e0a8d6b84da04295b9efb66b3b29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxRange: 20
+  layer:
+    serializedVersion: 2
+    m_Bits: 64
+  maxPulses: 30
+  jackInSpots: []
 --- !u!1 &475788525
 GameObject:
   m_ObjectHideFlags: 3
@@ -1166,7 +1219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3614598672515514115, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5031087481695453384, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}
       propertyPath: weaponData
@@ -1431,7 +1484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856029710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.5, z: 34.27}
+  m_LocalPosition: {x: -12.1, y: 7.5, z: -0.8000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1634,7 +1687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172379880}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -52.9, y: 1.3, z: 0.2}
+  m_LocalPosition: {x: -22.6, y: 1.3, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1799,7 +1852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3614598672515514115, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5031087481695453384, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}
       propertyPath: weaponData
@@ -2079,14 +2132,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2104078447}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!1001 &3614598671078415799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2148,11 +2201,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3614598672515514115, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5031087481695453384, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}
       propertyPath: weaponData
       value: 
       objectReference: {fileID: 11400000, guid: e5f8698fc7d59764db0f2494940ac509, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2001971692992215886, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}
+    - {fileID: 3230858107895721147, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}
+    - {fileID: 5031087481695453384, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eb8cd9d943b1e864e9004773ad90fada, type: 3}

@@ -18,7 +18,7 @@ public class Bullet:MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.TryGetComponent<IDamageble>(out IDamageble damage))
+        if(collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damage))
         {
             damage.TakeDamage(this.damage);
         }

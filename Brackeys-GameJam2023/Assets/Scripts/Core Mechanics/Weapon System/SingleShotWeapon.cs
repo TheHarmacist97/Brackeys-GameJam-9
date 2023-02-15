@@ -16,6 +16,10 @@ public class SingleShotWeapon : WeaponsClass
     }
     public override void Fire()
     {
+        if(state== WeaponState.EMPTY) 
+        {
+            StartCoroutine(Reload());
+        }
         if (state == WeaponState.READY)
         {
             currentAmmo--;
@@ -33,9 +37,9 @@ public class SingleShotWeapon : WeaponsClass
         state = currentAmmo > 0 ? WeaponState.READY : WeaponState.EMPTY;
     }
 
-    public override void FireContinually()
+    public override void FireContinually(bool callFromEnemy)
     {
-        if (!weaponData.canContinuallyFire) return;
+        if (!callFromEnemy|| !weaponData.canContinuallyFire) return;
         if (firingContinually) return;
         Debug.Log("called " + weaponData.name);
         firingContinually = true;

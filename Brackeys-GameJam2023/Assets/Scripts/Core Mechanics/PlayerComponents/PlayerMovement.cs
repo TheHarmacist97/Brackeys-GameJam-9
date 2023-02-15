@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
-    private CharacterSpecs characterSpecs;
+    private CharacterSO characterSpecs;
     private Transform groundCheck;
     private LayerMask groundMask;
     private Vector3 velocity;

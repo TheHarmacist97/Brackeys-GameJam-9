@@ -9,7 +9,7 @@ public enum WalkType
 }
 
 [CreateAssetMenu(fileName = "CharacterSpec", menuName = "Character Specification", order = 1)]
-public class CharacterSpecs : ScriptableObject
+public class CharacterSO : ScriptableObject
 {
     [Header("NavMesh Variables")]
     public float maxMoveSpeed;

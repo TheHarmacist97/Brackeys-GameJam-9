@@ -1,18 +1,20 @@
-using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class Character : MonoBehaviour, IDamageble
+
+[RequireComponent(typeof(WeaponsManager))]
+[RequireComponent(typeof(CharacterMovementVFX))]
+public class Character : MonoBehaviour, IDamageable
 {
-    [SerializeField] private CharacterSpecs characterSpecs;
-    [SerializeField] private WeaponSO weaponSpecs;
+    private CharacterMovementVFX cmVFX;
+    private WeaponsManager weaponsManager;
 
     private GameObject fpp;
     private GameObject tpp;
 
     #region public References
+    public CharacterData data;
     public GameObject FirstPersonCamera
     {
         get
@@ -32,28 +34,45 @@ public class Character : MonoBehaviour, IDamageble
         }
     }
 
-    public CharacterSpecs CharacterSpecs
+    public CharacterSO CharacterSpecs
     {
         get
         {
-            return characterSpecs;
+            return data.characterSpecs;
         }
-        private set { characterSpecs = value; }
     }
-    public WeaponSO WeaponSpecs
+    public List<WeaponSO> WeaponData
     {
         get
         {
-            return weaponSpecs;
+            return data.weaponsData;
         }
-        private set { weaponSpecs = value; }
+
     }
     public int currentHealth { get => this.currentHealth; set => this.currentHealth = value; }
     public int totalHealth { get => this.totalHealth; set => this.totalHealth = value; }
     #endregion
 
-    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(WeaponsManager) };
-    private List<Type> enemyComponents = new List<Type>();//{ typeof(Enemy), typeof(NavMeshAgent), typeof(WeaponsManager)}; will need these later
+    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(PlayerWeaponInput) };
+    private List<Type> enemyComponents = new List<Type>();//{ typeof(Enemy), typeof(NavMeshAgent)}; will need these later
+
+    private void Awake()
+    {
+        Debug.Log("awake called");
+        CommonComponentGet();
+        CommonComponentInit();
+    }
+    private void CommonComponentGet()
+    {
+        cmVFX = GetComponent<CharacterMovementVFX>();
+        weaponsManager = GetComponent<WeaponsManager>();
+    }
+
+    private void CommonComponentInit()
+    {
+        cmVFX.Init(data.characterSpecs.muzzleRotateSpeed, data.turretBase, data.mobilityUnit);
+        weaponsManager.Init(data.weaponsData.ToArray(), data.muzzles.ToArray());
+    }
     public void Switch(bool isPlayer)
     {
         foreach (Type type in isPlayer ? enemyComponents : playerComponents)
@@ -72,6 +91,8 @@ public class Character : MonoBehaviour, IDamageble
         }
     }
 
+
+    #region IDamageable properties
     public void TakeDamage(int value)
     {
         currentHealth -= value;
@@ -91,4 +112,5 @@ public class Character : MonoBehaviour, IDamageble
     {
         Destroy(gameObject);
     }
+    #endregion
 }

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
         CHASE,
         ATTACK
     }
-    [SerializeField] private CharacterSpecs specs;
+    [SerializeField] private CharacterSO specs;
     [SerializeField] private EnemyState enemyState;
     [SerializeField] private Transform target;
 
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         weaponsManager = GetComponent<WeaponsManager>();
         Init();
-        outsideFalloffRangeTrigger = new Trigger(() => { StartAttack();  });
+        outsideFalloffRangeTrigger = new Trigger(() => { StartAttack(); });
     }
     private void Start()
     {
@@ -53,36 +53,6 @@ public class Enemy : MonoBehaviour
         TrackDistance();
     }
 
-    private void FixedUpdate()
-    {
-        TreadMovement();
-        TurretOrientation();
-    }
-
-    private void TurretOrientation()
-    {
-        currentRot = turretUnit.forward;
-        currentRot = Vector3.RotateTowards(currentRot, target.position - turretUnit.position, specs.muzzleRotateSpeed, 0.0f);
-        currentRot.y = Mathf.Clamp(currentRot.y, -0.5f, 0.5f);
-        turretUnit.forward = currentRot;
-    }
-
-    private void TreadMovement()
-    {
-        if (!willTurn) return;
-
-        difference = transform.position - lastPos;
-        difference.Normalize();
-        difference.y = 0;
-        if (difference.sqrMagnitude > 0)
-        {
-            origRot = mobilityUnit.transform.forward;
-            mobilityUnit.transform.forward = Vector3.Lerp(origRot, difference, 0.2f);
-
-        }
-        lastPos = transform.position;
-    }
-
     private void Init()
     {
         agent.updateRotation = false;
@@ -90,8 +60,6 @@ public class Enemy : MonoBehaviour
         agent.angularSpeed = specs.rotateSpeed;
         agent.speed = specs.maxMoveSpeed;
     }
-
-
 
     private void TrackDistance()
     {
@@ -117,13 +85,13 @@ public class Enemy : MonoBehaviour
     {
         enemyState = EnemyState.CHASE;
         agent.destination = target.position;
-        weaponsManager.weapon.StopFiring();
+        weaponsManager.StopFiring();
     }
 
     private void StartAttack()
     {
         agent.ResetPath();
-        weaponsManager.weapon.FireContinually();
+        weaponsManager.FireContinually(true);
     }
 
 

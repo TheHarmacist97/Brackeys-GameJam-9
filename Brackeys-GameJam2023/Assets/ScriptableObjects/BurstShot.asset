@@ -15,7 +15,7 @@ MonoBehaviour:
   damage: 20
   reloadTime: 5
   magazineSize: 30
-  canContinuallyFire: 1
+  canContinuallyFire: 0
   bullet: {fileID: 11400000, guid: fb238859920b37142bdf32689b3507f5, type: 2}
   fireRate: 6
   minimumTimeBetweenBursts: 1

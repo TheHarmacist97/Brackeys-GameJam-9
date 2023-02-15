@@ -18,6 +18,10 @@ public class BurstShotWeapon : WeaponsClass
     }
     public override void Fire()
     {
+        if (state == WeaponState.EMPTY)
+        {
+            StartCoroutine(Reload());
+        }
         if (state == WeaponState.READY)
         {
             StartCoroutine(Burst());
@@ -44,9 +48,9 @@ public class BurstShotWeapon : WeaponsClass
         state = currentAmmo > 0 ? WeaponState.READY : WeaponState.EMPTY;
     }
 
-    public override void FireContinually()
+    public override void FireContinually(bool callFromEnemy)
     {
-        if (!weaponData.canContinuallyFire) return;
+        if (!callFromEnemy||!weaponData.canContinuallyFire) return;
         if (firingContinually) return;
 
         Debug.Log("called " + weaponData.name);
