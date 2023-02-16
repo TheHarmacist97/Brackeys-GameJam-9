@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Cinemachine;
 
 public class Character : MonoBehaviour, IDamageable
 {
-
     private GameObject fpp;
     private GameObject tpp;
+    private CinemachineFreeLook tppCamera;
+    private CinemachineVirtualCamera fppCamera;
 
     #region public References
     public CharacterData data;
@@ -16,7 +18,10 @@ public class Character : MonoBehaviour, IDamageable
         get
         {
             if (fpp == null)
+            {
                 fpp = GameManager.Instance.dependencyInjector.firstPersonCamera;
+                fppCamera = fpp.GetComponent<CinemachineVirtualCamera>();
+            }
             return fpp;
         }
     }
@@ -25,7 +30,10 @@ public class Character : MonoBehaviour, IDamageable
         get
         {
             if (tpp == null)
+            {
                 tpp = GameManager.Instance.dependencyInjector.thirdPersonCamera;
+                tppCamera = tpp.GetComponent<CinemachineFreeLook>();    
+            }
             return tpp;
         }
     }
@@ -34,6 +42,7 @@ public class Character : MonoBehaviour, IDamageable
     {
         get
         {
+
             return data.characterSpecs;
         }
     }
@@ -47,6 +56,26 @@ public class Character : MonoBehaviour, IDamageable
     }
     public int currentHealth { get => this.currentHealth; set => this.currentHealth = value; }
     public int totalHealth { get => this.totalHealth; set => this.totalHealth = value; }
+    public CinemachineFreeLook TppCinemachineCamera 
+    { 
+        get 
+        {
+            if (tppCamera == null)
+                _ = ThirdPersonCamera;
+            return tppCamera; 
+        }
+    }
+    public CinemachineVirtualCamera FppCamera 
+    { 
+        get 
+        { 
+            if(fppCamera == null)
+            {
+                _ = FirstPersonCamera;
+            }
+            return fppCamera;
+        } 
+    }
     #endregion
 
     private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(PlayerWeaponInput), typeof(PlayerMovementVFX) };

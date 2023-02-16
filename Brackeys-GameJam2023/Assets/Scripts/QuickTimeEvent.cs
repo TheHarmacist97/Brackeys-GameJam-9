@@ -40,11 +40,6 @@ public class QuickTimeEvent : MonoBehaviour
         bufferWait = new WaitForSeconds(data.bufferTime);
     }
 
-    private void Start()
-    {
-        StartQTEWrapper();
-    }
-
     public void StartQTEWrapper()
     {
         state = QTStates.START;

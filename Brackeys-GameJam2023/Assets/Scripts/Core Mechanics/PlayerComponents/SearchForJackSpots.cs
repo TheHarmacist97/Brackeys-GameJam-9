@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using Cinemachine;
 public class SearchForJackSpots : MonoBehaviour
 {
     public Collider[] jackInSpots;
@@ -22,17 +22,25 @@ public class SearchForJackSpots : MonoBehaviour
 
     private PlayerMovement pMovement;
     private CharacterController characterController;
+    private CinemachineFreeLook freeLook;
+    private float rate=4f;
 
     private void OnEnable()
     {
         alive = true;
     }
-
-    private void Init()
+    private void Awake()
     {
+        StartCoroutine(Init());
+    }
+
+    private IEnumerator Init()
+    {
+        yield return null;
         parasite = GetComponent<Parasite>();
         pMovement = GetComponent<PlayerMovement>();
         characterController = GetComponent<CharacterController>();
+        freeLook = GetComponent<Character>().TppCinemachineCamera;
         data = parasite.parasiteData;
 
         jackInSpots = new Collider[20];
@@ -49,9 +57,6 @@ public class SearchForJackSpots : MonoBehaviour
     {
         mainCamTransform = Camera.main.transform;
         Invoke(nameof(PlayerCharacterDeath), 2f);
-        Init();
-        Debug.Log(pMovement == null);
-        Debug.Log(characterController == null);
     }
 
     public void PlayerCharacterDeath()
@@ -91,27 +96,46 @@ public class SearchForJackSpots : MonoBehaviour
                     Debug.Log("Got jack " + hit.collider.name);
                     isHit = true;
                     //startedHijacking = true;
-                    StartCoroutine(JackParasite(hit.transform.position));
-
+                    StartCoroutine(ShootUp());
                 }
             }
         }
     }
 
-    private IEnumerator JackParasite(Vector3 target)
+    private IEnumerator ShootUp()
     {
         pMovement.enabled = false;
         characterController.enabled = false;
         float elapsedTime = 0f;
+        Vector3 target = transform.position + Vector3.up * 25f;
         Vector3 startPos = transform.position;
-        while (elapsedTime <= parasite.parasiteData.rate)
+        freeLook.LookAt = hit.transform;
+        freeLook.Follow = null;
+        while (elapsedTime <= rate)
         {
             yield return null;
             elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, target, elapsedTime / parasite.parasiteData.rate);
+            transform.position = Vector3.Lerp(startPos, target, elapsedTime/rate);
         }
-        transform.forward = hit.normal;
+        StartCoroutine(Hijack());
     }
+
+    private IEnumerator Hijack()
+    {
+        Vector3 start = hit.transform.position + (Vector3.up * 25f);
+        Vector3 target = hit.transform.GetComponent<Character>().data.jackInSpot.position;
+        float elapsedTime = 0f;
+        while(elapsedTime<=rate)
+        {
+            yield return null;
+            elapsedTime += 2f*Time.deltaTime;
+            transform.position = Vector3.Lerp(start, target, elapsedTime / rate);
+        }
+        freeLook.LookAt = transform;
+        freeLook.Follow = transform;
+    }
+
+
     private void OnDrawGizmos()
     {
 
