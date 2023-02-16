@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 6734231181959024798}
   - component: {fileID: 6347921304957245622}
   - component: {fileID: 3985424856679691933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TestEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e5f8698fc7d59764db0f2494940ac509, type: 2}
     characterSpecs: {fileID: 11400000, guid: 78e7ec275f522714a8b5055f55ccece0, type: 2}
     cameraProfile: {fileID: 0}
-    jackInSpot: {fileID: 0}
+    jackInSpot: {fileID: 3766394956812882596}
 --- !u!1 &3614598672543935239
 GameObject:
   m_ObjectHideFlags: 0

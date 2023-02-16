@@ -39,7 +39,6 @@ public class PlayerCameraSystem : MonoBehaviour
     }
     private void SetFollow()
     {
-        Debug.Log(fpp.GetComponent<CinemachineVirtualCamera>() != null);
         fppCam = fpp.GetComponent<CinemachineVirtualCamera>();
         
         if(transform.childCount > 2)

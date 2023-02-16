@@ -988,7 +988,7 @@ MonoBehaviour:
   stepSize: 0.1
   smoothness: 1
   stepHeight: 0.1
-  bodyOrientation: 1
+  bodyOrientation: 0
 --- !u!4 &4951994978532579937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 841888620963548588, guid: 34e6f0c9f8825ff4085c1b271fc03eb5, type: 3}

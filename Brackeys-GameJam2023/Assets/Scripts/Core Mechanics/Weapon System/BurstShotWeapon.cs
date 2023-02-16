@@ -42,19 +42,15 @@ public class BurstShotWeapon : WeaponsClass
             yield return waitBetweenBullets;
 
         }
-        Debug.Log("Limiting");
         yield return waitBetweenTriggerPulls;
-        Debug.Log("Done limiting");
         state = currentAmmo > 0 ? WeaponState.READY : WeaponState.EMPTY;
     }
 
     public override void FireContinually(bool callFromEnemy)
     {
-        Debug.Log("called");
         if (!callFromEnemy && !weaponData.canContinuallyFire) return;
         if (firingContinually) return;
 
-        Debug.Log("called " + weaponData.name);
         firingContinually = true;
         StartCoroutine(CycleFire());
     }

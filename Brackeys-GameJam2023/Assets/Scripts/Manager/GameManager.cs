@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public DependencyInjector dependencyInjector;
 
-    private Character player;
+    public Character player;
     public Action playerSet;
 
     [SerializeField] private Gate gate;
@@ -42,11 +42,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Initialise();
+        player.Switch(true);
+        playerSet?.Invoke();
     }
     private void Initialise()
     {
         SpawnCharacter(characterTypes[Random.Range(0, characterTypes.Count)]);
-        HackCharacter(enemies[0]);
+        //HackCharacter(enemies[0]);
         SpawnNewWave(characterTypes);
         StartObjectives();
     }

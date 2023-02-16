@@ -7,11 +7,14 @@ using UnityEngine;
 public class Parasite : MonoBehaviour
 {
     public ParasiteData parasiteData;
-    //public Character character;
-    List<Type> ParasiteComponents = new List<Type>() { typeof(SearchForJackSpots)};
+    readonly List<Type> ParasiteComponents = new() { typeof(SearchForJackSpots)};
     private void Awake()
     {
-        //character = GetComponent<Character>();
+        GiveParasiticComponents();
+    }
+
+    private void GiveParasiticComponents()
+    {
         foreach (var component in ParasiteComponents)
         {
             if (!TryGetComponent(component, out _))
@@ -20,5 +23,4 @@ public class Parasite : MonoBehaviour
             }
         }
     }
-
 }

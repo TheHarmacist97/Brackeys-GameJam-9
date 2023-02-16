@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986c1ccbf10e06147b6d2804728de172, type: 3}
   m_Name: ParasiteData
   m_EditorClassIdentifier: 
-  thickness: 2
+  boxCastThickness: 2
   maxRange: 20
   maxTime: 100
   rate: 1
   maxPulses: 30
-  layer:
+  enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
