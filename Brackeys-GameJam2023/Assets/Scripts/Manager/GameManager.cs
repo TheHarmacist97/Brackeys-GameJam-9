@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
             return;
         currentObjectives.Remove(objective);
         //Update Gate
+        gate.ObjecitvesUpdated();
     }
     public void LoadNextScene()
     {

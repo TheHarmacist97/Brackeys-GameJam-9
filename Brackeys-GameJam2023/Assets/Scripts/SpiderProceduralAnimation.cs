@@ -21,7 +21,7 @@ public class SpiderProceduralAnimation : MonoBehaviour
     private Vector3 lastVelocity;
     private Vector3 lastBodyPos;
 
-    private float velocityMultiplier = 15f;
+    private float velocityMultiplier = 1f;
 
     static Vector3[] MatchToSurfaceFromAbove(Vector3 point, float halfRange, Vector3 up)
     {
