@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbdd2d7ee4295a54a81d653414600c5f, type: 3}
+  m_Name: ParasiteCamProfile
+  m_EditorClassIdentifier: 
+  verticalFOVTPP: 0
+  verticalFOVFPP: 40
+  rigs:
+  - rigHeight: 3
+    rigRadius: 2
+    bodyYDamping: 1
+    bodyZDamping: 0.1
+    aimScreenX: 0.5
+    aimScreenY: 0.5
+    softZoneWidth: 0.34
+    softZoneHeight: 0.58
+  - rigHeight: 2.5
+    rigRadius: 3
+    bodyYDamping: 1
+    bodyZDamping: 0.4
+    aimScreenX: 0.5
+    aimScreenY: 0.55
+    softZoneWidth: 0.24
+    softZoneHeight: 0.3
+  - rigHeight: 0.12
+    rigRadius: 1.47
+    bodyYDamping: 0
+    bodyZDamping: 0.4
+    aimScreenX: 0.5
+    aimScreenY: 0.87
+    softZoneWidth: 0.5
+    softZoneHeight: 0.54

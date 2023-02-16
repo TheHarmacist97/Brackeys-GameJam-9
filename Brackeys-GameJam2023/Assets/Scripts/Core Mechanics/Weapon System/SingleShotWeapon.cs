@@ -7,7 +7,7 @@ public class SingleShotWeapon : WeaponsClass
 
     public override void Init(Transform muzzle)
     {
-        this.muzzle = muzzle; 
+        this.muzzle = muzzle;
         weaponData = weaponBaseData as SingleShotSO;
         currentAmmo = weaponData.magazineSize;
         state = WeaponState.READY;
@@ -16,11 +16,11 @@ public class SingleShotWeapon : WeaponsClass
     }
     public override void Fire()
     {
-        if(state== WeaponState.EMPTY) 
+        if (state == WeaponState.EMPTY)
         {
             StartCoroutine(Reload());
         }
-        if (state == WeaponState.READY)
+        else if (state == WeaponState.READY)
         {
             currentAmmo--;
             PropelBullet();
@@ -37,7 +37,7 @@ public class SingleShotWeapon : WeaponsClass
 
     public override void FireContinually(bool callFromEnemy)
     {
-        if (!callFromEnemy|| !weaponData.canContinuallyFire) return;
+        if (!callFromEnemy && !weaponData.canContinuallyFire) return;
         if (firingContinually) return;
 
         firingContinually = true;
@@ -46,7 +46,7 @@ public class SingleShotWeapon : WeaponsClass
 
     protected override IEnumerator CycleFire()
     {
-        while(firingContinually)
+        while (firingContinually)
         {
             Fire();
             yield return waitBetweenBullets;

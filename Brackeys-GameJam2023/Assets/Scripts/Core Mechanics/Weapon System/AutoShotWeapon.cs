@@ -20,7 +20,7 @@ public class AutoShotWeapon : WeaponsClass
         {
             StartCoroutine(Reload());
         }
-        if (state == WeaponState.READY)
+        else if (state == WeaponState.READY)
         {
             firingContinually = true;
             StartCoroutine(AutoFire());

@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable] 
-public class Bullet:MonoBehaviour
+[System.Serializable]
+public class Bullet : MonoBehaviour
 {
+    public bool ignore = true;
     public float speed;
     public int damage;
     private void Start()
     {
-       Destroy(gameObject, 3f);
+        Destroy(gameObject, 3f);
     }
     private void Update()
     {
@@ -18,10 +17,15 @@ public class Bullet:MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damage))
+        if (ignore)
+        {
+            ignore = false;
+            return;
+        }
+        if (collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damage))
         {
             damage.TakeDamage(this.damage);
         }
-        Destroy(gameObject);    
+        Destroy(gameObject);
     }
 }

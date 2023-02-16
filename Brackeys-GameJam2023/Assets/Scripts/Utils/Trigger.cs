@@ -40,6 +40,15 @@ public class Trigger
         resetFunc();
     }
 
+    /// <summary>
+    /// Clears all invokes
+    /// </summary>
+    public void Clear()
+    {
+        func = Dummy;
+        resetFunc = Dummy;
+    }
+
     //Simple dummy function which returns.
     private void Dummy()
     {

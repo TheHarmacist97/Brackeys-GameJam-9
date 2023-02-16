@@ -20,6 +20,7 @@ public static class GameConfig
         public const string GROUND_TAG = "Ground";
         public const string PLAYER_TAG = "Player";
         public const string JACK_TAG = "JackSpot";
+        public const string FPPTAG = "FPP-Position";
 
         //========INPUT=======
         public const string INPUT_HORIZONTAL = "Horizontal";

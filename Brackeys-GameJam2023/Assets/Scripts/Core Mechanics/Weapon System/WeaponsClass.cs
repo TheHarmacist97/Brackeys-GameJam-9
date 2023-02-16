@@ -44,9 +44,7 @@ public abstract class WeaponsClass : MonoBehaviour
             yield break;
         }
         state = WeaponState.RELOADING;
-        Debug.Log("reloading");
         yield return reloadWait;
-        Debug.Log("reloaded");
         currentAmmo = weaponBaseData.magazineSize;
         state = WeaponState.READY;
     }

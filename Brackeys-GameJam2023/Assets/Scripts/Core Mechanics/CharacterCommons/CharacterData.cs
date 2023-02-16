@@ -10,5 +10,6 @@ public class CharacterData
     public List<Transform> muzzles;
     public List<WeaponSO> weaponsData;
     public CharacterSO characterSpecs;
-    public Collider jackInSpot;
+    public CameraProfile cameraProfile;
+    public Transform jackInSpot;
 }

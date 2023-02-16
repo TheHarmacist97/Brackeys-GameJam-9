@@ -12,7 +12,7 @@ public class BurstShotWeapon : WeaponsClass
         this.muzzle = muzzle;
         weaponData = weaponBaseData as BurstShotSO;
         currentAmmo = weaponData.magazineSize;
-        waitBetweenBullets = new WaitForSeconds(1f/weaponData.fireRate);
+        waitBetweenBullets = new WaitForSeconds(1f / weaponData.fireRate);
         waitBetweenTriggerPulls = new WaitForSeconds(weaponData.minimumTimeBetweenBursts);
         continualFireWait = new WaitForSeconds(weaponData.minimumTimeBetweenBursts + (weaponData.burstsPerTriggerPull / weaponData.fireRate));
     }
@@ -22,7 +22,7 @@ public class BurstShotWeapon : WeaponsClass
         {
             StartCoroutine(Reload());
         }
-        if (state == WeaponState.READY)
+        else if (state == WeaponState.READY)
         {
             StartCoroutine(Burst());
         }
@@ -35,12 +35,12 @@ public class BurstShotWeapon : WeaponsClass
         {
             currentAmmo--;
             PropelBullet();
-            if(currentAmmo == 0)
+            if (currentAmmo == 0)
             {
                 break;
             }
             yield return waitBetweenBullets;
-            
+
         }
         Debug.Log("Limiting");
         yield return waitBetweenTriggerPulls;
@@ -50,7 +50,8 @@ public class BurstShotWeapon : WeaponsClass
 
     public override void FireContinually(bool callFromEnemy)
     {
-        if (!callFromEnemy||!weaponData.canContinuallyFire) return;
+        Debug.Log("called");
+        if (!callFromEnemy && !weaponData.canContinuallyFire) return;
         if (firingContinually) return;
 
         Debug.Log("called " + weaponData.name);

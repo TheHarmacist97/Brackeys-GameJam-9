@@ -20,15 +20,15 @@ public class PlayerWeaponInput : MonoBehaviour
             {
                 weaponManager.Fire();
             }
-            if (Input.GetMouseButton(0))
+            else if (Input.GetMouseButton(0))
             {
                 weaponManager.FireContinually(false);
             }
-            if (Input.GetMouseButtonUp(0))
+            else if (Input.GetMouseButtonUp(0))
             {
                 weaponManager.StopFiring();
             }
-            if (Input.GetMouseButtonDown(1))
+            else if (Input.GetKeyDown(KeyCode.R))
             {
                 weaponManager.ReloadAll();
             }
