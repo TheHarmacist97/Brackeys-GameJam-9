@@ -10,11 +10,11 @@ public class SpiderProceduralAnimation : MonoBehaviour
     public float stepHeight = 0.1f;
     public bool bodyOrientation = true;
 
-    private float raycastRange = 1f;
+    public float rayCastHeight = 1f;
     private Vector3[] defaultLegPositions;
     private Vector3[] lastLegPositions;
     private Vector3 lastBodyUp;
-    private bool[] legMoving;
+    private bool legMoving;
     private int nbLegs;
 
     private Vector3 velocity;
@@ -23,22 +23,17 @@ public class SpiderProceduralAnimation : MonoBehaviour
 
     private float velocityMultiplier = 1f;
 
-    static Vector3[] MatchToSurfaceFromAbove(Vector3 point, float halfRange, Vector3 up)
+    static Vector3 MatchToSurfaceFromAbove(Vector3 point, float halfRange, Vector3 up)
     {
-        Vector3[] res = new Vector3[2];
+        Vector3 result = point;
         RaycastHit hit;
         Ray ray = new Ray(point + halfRange * up, -up);
-
-        if (Physics.Raycast(ray, out hit, 2f * halfRange))
+        if (Physics.Raycast(ray, out hit, 2f * halfRange, GameConfig.Constants.GROUND_TAG_INDEX))
         {
-            res[0] = hit.point;
-            res[1] = hit.normal;
+            result = hit.point;
+            Debug.Log(hit.collider.gameObject.name);
         }
-        else
-        {
-            res[0] = point;
-        }
-        return res;
+        return result;
     }
 
     void Start()
@@ -48,12 +43,11 @@ public class SpiderProceduralAnimation : MonoBehaviour
         nbLegs = legTargets.Length;
         defaultLegPositions = new Vector3[nbLegs];
         lastLegPositions = new Vector3[nbLegs];
-        legMoving = new bool[nbLegs];
         for (int i = 0; i < nbLegs; ++i)
         {
             defaultLegPositions[i] = legTargets[i].localPosition;
             lastLegPositions[i] = legTargets[i].position;
-            legMoving[i] = false;
+            legMoving = false;
         }
         lastBodyPos = transform.position;
     }
@@ -69,7 +63,7 @@ public class SpiderProceduralAnimation : MonoBehaviour
         }
         legTargets[index].position = targetPoint;
         lastLegPositions[index] = legTargets[index].position;
-        legMoving[0] = false;
+        legMoving = false;
     }
 
 
@@ -102,12 +96,12 @@ public class SpiderProceduralAnimation : MonoBehaviour
             if (i != indexToMove)
                 legTargets[i].position = lastLegPositions[i];
 
-        if (indexToMove != -1 && !legMoving[0])
+        if (indexToMove != -1 && !legMoving)
         {
             Vector3 targetPoint = desiredPositions[indexToMove] + Mathf.Clamp(velocity.magnitude * velocityMultiplier, 0.0f, 1.5f) * (desiredPositions[indexToMove] - legTargets[indexToMove].position) + velocity * velocityMultiplier;
-            Vector3[] positionAndNormal = MatchToSurfaceFromAbove(targetPoint, raycastRange, transform.up);
-            legMoving[0] = true;
-            StartCoroutine(PerformStep(indexToMove, positionAndNormal[0]));
+            Vector3 position = MatchToSurfaceFromAbove(targetPoint, rayCastHeight, transform.up);
+            legMoving = true;
+            StartCoroutine(PerformStep(indexToMove, position));
         }
 
         lastBodyPos = transform.position;
@@ -131,5 +125,7 @@ public class SpiderProceduralAnimation : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.TransformPoint(defaultLegPositions[i]), stepSize);
         }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position + (transform.up * rayCastHeight), .01f);
     }
 }

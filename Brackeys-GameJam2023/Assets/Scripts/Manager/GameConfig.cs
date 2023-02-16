@@ -18,6 +18,7 @@ public static class GameConfig
 
         //=========TAGS=======
         public const string GROUND_TAG = "Ground";
+        public const int GROUND_TAG_INDEX = 8;
         public const string PLAYER_TAG = "Player";
         public const string JACK_TAG = "JackSpot";
         public const string FPPTAG = "FPP-Position";
