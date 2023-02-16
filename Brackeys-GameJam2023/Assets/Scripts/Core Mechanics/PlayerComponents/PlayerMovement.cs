@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Character))]
@@ -20,8 +21,16 @@ public class PlayerMovement : MonoBehaviour
         characterSpecs = GetComponent<Character>().CharacterSpecs;
         controller = GetComponent<CharacterController>();
         controller.enabled = true;
+        ControllerInit();
         groundCheck = transform.GetChild(1).GetComponent<Transform>();
         groundMask = LayerMask.GetMask(GameConfig.Constants.GROUND_TAG);
+    }
+
+    private void ControllerInit()
+    {
+        controller.height = characterSpecs.height;
+        controller.radius = characterSpecs.radius;
+        controller.center = characterSpecs.center;
     }
 
     private void DisableComponent()

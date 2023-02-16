@@ -17,6 +17,7 @@ public class SearchForJackSpots : MonoBehaviour
     private Parasite parasite;
     private Transform mainCamTransform;
     private PlayerMovement pMovement;
+    private CharacterController characterController;
     private Vector3 boxCastExtents;
     private bool startedHijacking;
 
@@ -39,6 +40,7 @@ public class SearchForJackSpots : MonoBehaviour
         boxCastExtents = Vector3.one * parasite.parasiteData.thickness;
         boxCastExtents.y *= 2;
 
+        characterController = GetComponent<CharacterController>();  
         pMovement = GetComponent<PlayerMovement>();
         mainCamTransform = Camera.main.transform;
     }
@@ -95,6 +97,8 @@ public class SearchForJackSpots : MonoBehaviour
 
     private IEnumerator JackParasite(Vector3 target)
     {
+        pMovement.enabled = false;
+        characterController.enabled = false;
         float elapsedTime = 0f;
         Vector3 startPos = transform.position;
         while(elapsedTime <= parasite.parasiteData.rate)

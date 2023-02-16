@@ -3,6 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterSpec", menuName = "Character Specification", order = 1)]
 public class CharacterSO : ScriptableObject
 {
+    [Header("CharacterController variables")]
+    public float radius;
+    public float height;
+    public Vector3 center;
+
     [Header("NavMesh Variables")]
     public float maxMoveSpeed;
     public float mass;
