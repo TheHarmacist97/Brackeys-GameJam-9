@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         //GET PLAYER INPUT
         float x = Input.GetAxisRaw(GameConfig.Constants.INPUT_HORIZONTAL);
         float z = Input.GetAxis(GameConfig.Constants.INPUT_VERTICAL);
-        if (z != 0)
+        if (z != 0 || velocity.x != 0 || velocity.z !=0)
         {
             velocity = characterSpecs.maxMoveSpeed * Time.deltaTime * (transform.forward * z);
         }
