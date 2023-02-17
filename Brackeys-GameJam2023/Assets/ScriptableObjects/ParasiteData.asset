@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCastThickness: 2
   maxRange: 20
-  maxTime: 100
+  maxTime: 20
   rate: 1
-  maxPulses: 30
+  maxPulses: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

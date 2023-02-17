@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 
 public class Enemy : MonoBehaviour
 {
@@ -20,14 +22,21 @@ public class Enemy : MonoBehaviour
     private float distanceToPlayer;
     private readonly float stunDuration = 10f;
     private float elapsedTime = 0f;
+    private bool playerDead;
+
+    private AimConstraint headAimConstraint;
+    private AimConstraint lTurretConstraint;
+    private AimConstraint rTurretConstraint;
 
     private void OnEnable()
     {
         GameManager.Instance.playerSet += UpdateTarget;
+        QuickTimeEvent.instance.hijackComplete += ResetEnemy;
     }
 
     private void OnDestroy()
     {
+        QuickTimeEvent.instance.hijackComplete -= ResetEnemy;
         GameManager.Instance.playerSet -= UpdateTarget;
     }
 
@@ -50,18 +59,24 @@ public class Enemy : MonoBehaviour
         agent.acceleration = data.characterSpecs.accel;
         agent.angularSpeed = data.characterSpecs.rotateSpeed;
         agent.speed = data.characterSpecs.maxMoveSpeed;
+        headAimConstraint = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<AimConstraint>();
+        lTurretConstraint = headAimConstraint.transform.GetChild(0).GetChild(0).GetComponent<AimConstraint>();
+        rTurretConstraint = headAimConstraint.transform.GetChild(0).GetChild(1).GetComponent<AimConstraint>();
     }
 
     private void Update()
     {
-        data.target.position = playerTransform.position;
         if (enemyState != EnemyState.STUN)
+        {
+            data.target.position = playerTransform.position;
             TrackDistance();
-        else
+        }
+        else if(!playerDead)
         {
             elapsedTime -= Time.deltaTime;
             if (elapsedTime <= 0)
             {
+                SetStateOfConstraints(true);
                 TrackDistance();
             }
         }
@@ -108,8 +123,33 @@ public class Enemy : MonoBehaviour
 
     public void StunEnemy()
     {
+        Debug.Log("stunned");
+        weaponsManager.StopFiring();
+        SetStateOfConstraints(false);
         enemyState = EnemyState.STUN;
         elapsedTime = stunDuration;
     }
+    
+    public void ResetEnemy(bool result)
+    {
+        if(result)
+        {
+            enemyState = EnemyState.CHASE;
+            elapsedTime = 0;
+            SetStateOfConstraints(true);
+        }
+        else
+        {
+            enemyState = EnemyState.STUN;
+            playerDead = true;
+        }
+    }
 
+
+    private void SetStateOfConstraints(bool state)
+    {
+        headAimConstraint.enabled = state;
+        lTurretConstraint.enabled = state;
+        rTurretConstraint.enabled = state;
+    }
 }

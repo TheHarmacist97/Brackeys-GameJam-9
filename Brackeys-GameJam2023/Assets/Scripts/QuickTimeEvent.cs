@@ -23,15 +23,15 @@ public class QuickTimeEvent : MonoBehaviour
     private WaitForSeconds bufferWait;
     private bool stopDecay;
     private bool stopWaitingForInput;
+    public Action<bool> hijackComplete;
 
     private void Awake()
     {
-        if (instance != this)
-        {
-            if (instance != null)
-                Destroy(instance);
+        if (instance != null && instance != this)
+            Destroy(this);
+        else
             instance = this;
-        }
+        Debug.Log(instance);
         Init();
     }
 
@@ -40,20 +40,24 @@ public class QuickTimeEvent : MonoBehaviour
         bufferWait = new WaitForSeconds(data.bufferTime);
     }
 
-    public void StartQTEWrapper()
+    public void StartQTEWrapper(Character ch)
     {
         state = QTStates.START;
-        StartCoroutine(StartQTE());
+        StartCoroutine(StartQTE(ch));
     }
 
-    public IEnumerator StartQTE()
+    private IEnumerator StartQTE(Character character)
     {
         for (int i = 0; i < data.waves; i++)
         {
             yield return StartWave();
         }
         state = QTStates.END;
-        Debug.Log(waveSuccess >= data.winsRequired);
+        hijackComplete?.Invoke(waveSuccess >= data.winsRequired);
+        if (waveSuccess >= data.winsRequired)
+        {
+            GameManager.Instance.HackCharacter(character);
+        }
     }
 
     private IEnumerator StartWave()

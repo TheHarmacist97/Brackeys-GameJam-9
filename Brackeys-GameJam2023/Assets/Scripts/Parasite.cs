@@ -7,7 +7,7 @@ using UnityEngine;
 public class Parasite : MonoBehaviour
 {
     public ParasiteData parasiteData;
-    readonly List<Type> ParasiteComponents = new() { typeof(SearchForJackSpots)};
+    private readonly List<Type> ParasiteComponents = new() { typeof(SearchForJackSpots)};
     private void Awake()
     {
         GiveParasiticComponents();

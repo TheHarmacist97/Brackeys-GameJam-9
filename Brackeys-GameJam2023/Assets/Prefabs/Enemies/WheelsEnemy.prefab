@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4088031022726315035}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &685292832
 GameObject:
@@ -54,14 +54,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685292832}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0.0805, y: 1.434, z: -0.55}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: -0, y: -0.486, z: -0.118}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4088031022726315035}
+  m_Father: {fileID: 2500073552740678229}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &1522753451
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4088031022726315035}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4088031021957355714
 GameObject:
@@ -151,8 +151,7 @@ GameObject:
   - component: {fileID: 1930403398}
   - component: {fileID: 5808825952104946389}
   - component: {fileID: -84700577220162835}
-  - component: {fileID: 5226018943834736442}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WheelsEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +173,6 @@ Transform:
   - {fileID: 4553460224884737957}
   - {fileID: 4088031023547121319}
   - {fileID: 4088031022970043858}
-  - {fileID: 685292833}
   - {fileID: 115133531}
   - {fileID: 1522753452}
   m_Father: {fileID: 0}

@@ -9,11 +9,21 @@ public class EnemyMovementVFX : MonoBehaviour
     private Transform turretUnit;
     private Transform mobilityUnit;
 
-
+    private bool playerDead;
     private Vector3 currentRot;
     private Vector3 difference;
     private Vector3 lastPos;
     private Vector3 origRot;
+
+    private void OnEnable()
+    {
+        QuickTimeEvent.instance.hijackComplete += SetPlayerStatus;
+    }
+
+    private void OnDisable()
+    {
+        QuickTimeEvent.instance.hijackComplete -= SetPlayerStatus;
+    }
 
     private void Awake()
     {
@@ -37,13 +47,19 @@ public class EnemyMovementVFX : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        //MobilityUnitOrientation();
-        TurretUnitOrientation();
+        if(!playerDead)
+            TurretUnitOrientation();
+    }
+     
+    private void SetPlayerStatus(bool result)
+    {
+        playerDead = result;
     }
 
     private void TurretUnitOrientation()
     {
-        data.lookAtTarget.position = target.position;
+        if(target!=null)
+            data.lookAtTarget.position = target.position;
     }
 
     private void MobilityUnitOrientation()

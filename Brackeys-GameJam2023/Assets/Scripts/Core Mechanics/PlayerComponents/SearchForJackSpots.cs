@@ -6,11 +6,12 @@ using UnityEngine;
 public class SearchForJackSpots : MonoBehaviour
 {
     public Collider[] enemyColliders;
-    private List<Enemy> enemiesCaught;
 
     private bool isHit;
     private bool alive = true;
     private bool startedHijacking;
+    private bool hijackingResultOut;
+    private bool hijackedSuccessfully;
     private int gotInRange;
     private int currentPulses;
     private float timeBetweenPulses;
@@ -23,14 +24,27 @@ public class SearchForJackSpots : MonoBehaviour
     private Vector3 boxCastExtents;
     private RaycastHit hit;
 
+    private Character characterTargeted;
     private PlayerMovement pMovement;
     private CharacterController characterController;
     private CinemachineFreeLook freeLook;
-    private float rate = 4f;
+    private readonly float rate = 4f;
 
     private void OnEnable()
     {
+        StartCoroutine(Subscribe());
+    }
+
+    private IEnumerator Subscribe()
+    {
+        yield return new WaitUntil(()=>QuickTimeEvent.instance!=null);
         alive = true;
+        QuickTimeEvent.instance.hijackComplete += StopPulsing;
+    }
+
+    private void OnDisable()
+    {
+        QuickTimeEvent.instance.hijackComplete -= StopPulsing;
     }
     private void Awake()
     {
@@ -52,12 +66,13 @@ public class SearchForJackSpots : MonoBehaviour
         pulseWait = new WaitForSeconds(timeBetweenPulses);
         boxCastExtents = Vector3.one * data.boxCastThickness;
         boxCastExtents.y *= 2;
-        enemiesCaught = new List<Enemy>();
     }
 
 
     private void Start()
     {
+        alive = true;
+        QuickTimeEvent.instance.hijackComplete += StopPulsing;
         Invoke(nameof(PlayerCharacterDeath), 2f);
     }
 
@@ -70,22 +85,44 @@ public class SearchForJackSpots : MonoBehaviour
     {
         while (alive)
         {
-            currentPulses++;
+            if (!startedHijacking)
+            {
+                currentPulses++;
+            }
             yield return pulseWait;
             Pulse();
             if (currentPulses == parasite.parasiteData.maxPulses)
                 alive = false;
         }
+        Death();
+    }
+
+    private void StopPulsing(bool result)
+    {
+        alive = result;
+        if(alive)
+        {
+            StopCoroutine(PulseCoroutine());
+        }
+    }
+
+    private void Death()
+    {
+        GameManager.Instance.HackCharacter(null);
+        Destroy(gameObject);
     }
 
     private void Pulse()
     {
-        enemiesCaught.Clear();
         gotInRange = Physics.OverlapSphereNonAlloc(gameObject.transform.position,
             data.maxRange, enemyColliders, data.enemyLayer);
-        foreach(Collider coll in enemyColliders)
+        for (int i = 0; i < gotInRange; i++)
         {
-            //coll.GetComponent<Enemy>().StunEnemy();
+            Collider coll = enemyColliders[i];
+            if (coll.TryGetComponent(out Enemy enemy))
+            {
+                enemy.StunEnemy();
+            }
         }
     }
 
@@ -102,12 +139,23 @@ public class SearchForJackSpots : MonoBehaviour
                 {
                     Debug.Log("Got jack " + hit.collider.name);
                     isHit = true;
-                    //startedHijacking = true;
-                    StartCoroutine(ShootUp());
+                    startedHijacking = true;
+                    StartJack();
                 }
             }
         }
+    }
 
+    private void StartJack()
+    {
+        characterTargeted = hit.transform.GetComponent<Character>();
+        Transform parent = characterTargeted.data.jackInSpot;
+        transform.SetPositionAndRotation(parent.position, parent.rotation);
+        transform.parent = parent;
+
+        characterController.enabled = false;
+        pMovement.enabled = false;
+        QuickTimeEvent.instance.StartQTEWrapper(characterTargeted);
     }
 
 

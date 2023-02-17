@@ -106,7 +106,6 @@ public class Character : MonoBehaviour, IDamageable
     public void TakeDamage(int value)
     {
         currentHealth -= value;
-        Debug.Log("aaaaaaaaaaaaa");
         if (currentHealth < 0)
         {
             
