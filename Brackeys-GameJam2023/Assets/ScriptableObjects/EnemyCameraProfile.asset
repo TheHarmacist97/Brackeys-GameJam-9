@@ -23,19 +23,19 @@ MonoBehaviour:
     aimScreenY: 0.5
     softZoneWidth: 0
     softZoneHeight: 0
-  - rigHeight: 4.5
+  - rigHeight: 3
     rigRadius: 4
     bodyYDamping: 1
     bodyZDamping: 0.4
     aimScreenX: 0.5
     aimScreenY: 0.55
-    softZoneWidth: 0.24
-    softZoneHeight: 0.3
+    softZoneWidth: 0
+    softZoneHeight: 0
   - rigHeight: 2
     rigRadius: 3
     bodyYDamping: 1
     bodyZDamping: 0.1
     aimScreenX: 0.33
     aimScreenY: 0.65
-    softZoneWidth: 0.34
-    softZoneHeight: 0.58
+    softZoneWidth: 0
+    softZoneHeight: 0
