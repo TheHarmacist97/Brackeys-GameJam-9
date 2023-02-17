@@ -19,6 +19,7 @@ public class EnemyMovementVFX : MonoBehaviour
     {
         data = GetComponent<Character>().data;
         GameManager.Instance.playerSet += UpdateTarget;
+        UpdateTarget();
         Init();
     }
 
@@ -36,9 +37,14 @@ public class EnemyMovementVFX : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        MobilityUnitOrientation();
+        //MobilityUnitOrientation();
+        TurretUnitOrientation();
     }
 
+    private void TurretUnitOrientation()
+    {
+        data.lookAtTarget.position = target.position;
+    }
 
     private void MobilityUnitOrientation()
     {

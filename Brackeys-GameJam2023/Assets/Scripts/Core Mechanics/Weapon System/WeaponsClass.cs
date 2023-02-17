@@ -16,19 +16,20 @@ public abstract class WeaponsClass : MonoBehaviour
     public WeaponState state;
     public WeaponSO weaponBaseData;
     public Transform muzzle;
+    public Vector3 target;
 
     public WaitForSeconds reloadWait;
-    public  WaitForSeconds waitBetweenBullets;
+    public WaitForSeconds waitBetweenBullets;
     public abstract void Init(Transform muzzle);
-    public abstract void Fire();
-    public abstract void FireContinually(bool callFromEnemy);
+    public abstract void Fire(Vector3 target);
+    public abstract void FireContinually(bool callFromEnemy, Vector3 target);
     protected virtual IEnumerator CycleFire()
     {
         yield break;
     }
     protected virtual void PropelBullet()
     {
-        Instantiate(weaponBaseData.bullet.bulletPrefab, muzzle.position, muzzle.rotation);
+        Instantiate(weaponBaseData.bullet.bulletPrefab, muzzle.position, Quaternion.LookRotation(target - transform.position));
     }
     public abstract void StopFiring();
     public virtual IEnumerator Reload()
@@ -38,7 +39,7 @@ public abstract class WeaponsClass : MonoBehaviour
             Debug.Log("Reloaded during shot wait");
             yield break;
         }
-        if(state == WeaponState.RELOADING)
+        if (state == WeaponState.RELOADING)
         {
             Debug.Log("Already reloading");
             yield break;

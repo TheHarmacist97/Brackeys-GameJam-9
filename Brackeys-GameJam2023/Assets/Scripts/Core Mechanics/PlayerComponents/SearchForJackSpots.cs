@@ -85,7 +85,7 @@ public class SearchForJackSpots : MonoBehaviour
             data.maxRange, enemyColliders, data.enemyLayer);
         foreach(Collider coll in enemyColliders)
         {
-            coll.GetComponent<Enemy>().StunEnemy();
+            //coll.GetComponent<Enemy>().StunEnemy();
         }
     }
 
@@ -109,13 +109,16 @@ public class SearchForJackSpots : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(0)) 
         {
-            Teleport(transform.forward * 5f);
+            Debug.Log("work");
+            //characterController.enabled = false;
+            //Teleport(transform.forward * 5f);
         }
     }
 
-    private void Teleport(Vector3 vector3)
+    private void Teleport(Vector3 target)
     {
-        
+        transform.position = target;
+        characterController.enabled = true;
     }
 
     private IEnumerator ShootUp()

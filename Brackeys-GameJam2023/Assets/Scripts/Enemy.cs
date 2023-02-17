@@ -12,20 +12,31 @@ public class Enemy : MonoBehaviour
     private Character character;
     private CharacterData data;
     [SerializeField] private EnemyState enemyState;
-    [SerializeField] private Transform target;
 
     private NavMeshAgent agent;
     private WeaponsManager weaponsManager;
-
+    private Transform playerTransform;
     private Trigger outsideFalloffRangeTrigger;
     private float distanceToPlayer;
     private readonly float stunDuration = 10f;
     private float elapsedTime = 0f;
 
-    private void Awake()
+    private void OnEnable()
+    {
+        GameManager.Instance.playerSet += UpdateTarget;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.playerSet -= UpdateTarget;
+    }
+
+
+    private void Start()
     {
         character = GetComponent<Character>();
         data = character.data;
+        playerTransform = GameManager.Instance.Player.transform;
         agent = GetComponent<NavMeshAgent>();
         weaponsManager = GetComponent<WeaponsManager>();
         Init();
@@ -43,6 +54,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        data.target.position = playerTransform.position;
         if (enemyState != EnemyState.STUN)
             TrackDistance();
         else
@@ -57,8 +69,8 @@ public class Enemy : MonoBehaviour
 
     private void TrackDistance()
     {
-        if (target == null) return;
-        distanceToPlayer = (transform.position - target.position).sqrMagnitude;
+        if (playerTransform == null) return;
+        distanceToPlayer = (transform.position - playerTransform.position).sqrMagnitude;
         if (distanceToPlayer > data.characterSpecs.FalloffRangeSquare)
         {
             outsideFalloffRangeTrigger.Reset();
@@ -79,19 +91,19 @@ public class Enemy : MonoBehaviour
     private void GiveChase()
     {
         enemyState = EnemyState.CHASE;
-        agent.destination = target.position;
+        agent.destination = playerTransform.position;
         weaponsManager.StopFiring();
     }
 
     private void StartAttack()
     {
         agent.ResetPath();
-        weaponsManager.FireContinually(true);
+        weaponsManager.FireContinually(true, playerTransform.position);
     }
 
     private void UpdateTarget()
     {
-        target = GameManager.Instance.Player.transform;
+        playerTransform = GameManager.Instance.Player.transform;
     }
 
     public void StunEnemy()

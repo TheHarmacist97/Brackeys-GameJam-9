@@ -14,8 +14,9 @@ public class SingleShotWeapon : WeaponsClass
         waitBetweenBullets = new WaitForSeconds(weaponData.minimumTimeBetweenShots);
         reloadWait = new WaitForSeconds(weaponData.reloadTime);
     }
-    public override void Fire()
+    public override void Fire(Vector3 target)
     {
+        this.target = target;
         if (state == WeaponState.EMPTY)
         {
             StartCoroutine(Reload());
@@ -35,8 +36,9 @@ public class SingleShotWeapon : WeaponsClass
         state = currentAmmo > 0 ? WeaponState.READY : WeaponState.EMPTY;
     }
 
-    public override void FireContinually(bool callFromEnemy)
+    public override void FireContinually(bool callFromEnemy, Vector3 target)
     {
+        this.target = target;
         if (!callFromEnemy && !weaponData.canContinuallyFire) return;
         if (firingContinually) return;
 
@@ -48,7 +50,7 @@ public class SingleShotWeapon : WeaponsClass
     {
         while (firingContinually)
         {
-            Fire();
+            Fire(target);
             yield return waitBetweenBullets;
         }
     }

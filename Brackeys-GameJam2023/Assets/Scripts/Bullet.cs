@@ -30,15 +30,17 @@ public class Bullet : MonoBehaviour
             transform.Translate(speed * Time.deltaTime * Vector3.forward, transform);
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnCollisionEnter(Collision collision)
     {
-        TryDamage(collider);
+        TryDamage(collision.collider);
         Destroy(gameObject);
     }
+
     private void TryDamage(Collider collider)
     {
         if (collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damage))
         {
+            Debug.Log("damaged");
             damage.TakeDamage(this.damage);
         }
     }

@@ -14,8 +14,9 @@ public class AutoShotWeapon : WeaponsClass
         waitBetweenBullets = new WaitForSeconds(1f/weaponData.fireRate);
         reloadWait = new WaitForSeconds(weaponData.reloadTime);
     }
-    public override void Fire()
+    public override void Fire(Vector3 target)
     {
+        this.target = target; 
         if (state == WeaponState.EMPTY)
         {
             StartCoroutine(Reload());
@@ -29,7 +30,7 @@ public class AutoShotWeapon : WeaponsClass
 
     private IEnumerator AutoFire()
     {
-        while(firingContinually)
+        while (firingContinually)
         {
             currentAmmo--;
             PropelBullet();
@@ -42,12 +43,13 @@ public class AutoShotWeapon : WeaponsClass
         }
     }
 
-    public override void FireContinually(bool callFromEnemy)
+    public override void FireContinually(bool callFromEnemy, Vector3 target)
     {
+        this.target = target;
         if (firingContinually) return;
 
         firingContinually = true;
-        Fire();
+        Fire(target);
         return;
     }
 

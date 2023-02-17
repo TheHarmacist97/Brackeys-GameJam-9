@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Character> characterTypes;
     [SerializeField] private List<IObjective> currentObjectives = new List<IObjective>();
     [SerializeField] private List<Transform> spawnPositions = new List<Transform>();
-    [SerializeField] private Vector2 spawnArea = new Vector2(1, 1);
+    [SerializeField] private Vector2 spawnArea = new Vector2(10, 10);
 
     private List<Character> enemies = new List<Character>();
 
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < count; i++)
         {
-            Character character = Instantiate(characterType, spawnPositions[Random.Range(0, spawnPositions.Count)].position, characterType.transform.rotation, dependencyInjector.enemyParent);
+            Character character = Instantiate(characterType, GetRandomPosition(), characterType.transform.rotation, dependencyInjector.enemyParent);
             character.Switch(false);
             enemies.Add(character);
         }
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
     {
         Vector3 spawnPosition = spawnPositions[Random.Range(0, spawnPositions.Count)].position;
         spawnPosition += (Vector3.forward * Random.Range(-spawnArea.y, spawnArea.y) + Vector3.right * Random.Range(-spawnArea.x, spawnArea.x));
-        return Vector3.zero;
+        return spawnPosition;
     }
     #endregion
     

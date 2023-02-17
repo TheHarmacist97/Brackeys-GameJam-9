@@ -22,7 +22,7 @@ public class PlayerMovementVFX : MonoBehaviour
     {
         ray = cameraMain.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
     
-        if (Physics.Raycast(ray, out raycastHit, 100f))
+        if (Physics.Raycast(ray, out raycastHit, 100f, GameConfig.Constants.GROUND_TAG_INDEX))
         {
             lerpPosition = raycastHit.point;
         }

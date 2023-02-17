@@ -41,7 +41,15 @@ public class WeaponsManager:MonoBehaviour
 
         }
     }
-    
+
+    private void Update()
+    {
+        foreach(WeaponsClass weapon in weapons)
+        {
+            weapon.target = characterData.target.position;
+        }
+    }
+
 
     public void ReloadAll()
     {
@@ -59,19 +67,19 @@ public class WeaponsManager:MonoBehaviour
         }
     }
 
-    public void FireContinually(bool fireFromEnemy)
+    public void FireContinually(bool fireFromEnemy, Vector3 target)
     {
         foreach (WeaponsClass weapon in weapons)
         {
-            weapon.FireContinually(fireFromEnemy);
+            weapon.FireContinually(fireFromEnemy, target);
         }
     }
 
-    public void Fire()
+    public void Fire(Vector3 target)
     {
         foreach (WeaponsClass weapon in weapons)
         {
-            weapon.Fire();
+            weapon.Fire(target);
         }
     }
 
