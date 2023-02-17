@@ -3,29 +3,43 @@ using UnityEngine;
 [System.Serializable]
 public class Bullet : MonoBehaviour
 {
-    public bool ignore = true;
-    public float speed;
-    public int damage;
+    public enum BulletType
+    {
+        PROJECTILE,
+        RAYCAST,
+    }
+    [SerializeField]private float speed;
+    [SerializeField]private int damage;
+    [SerializeField]private BulletType bulletType;
+    [SerializeField]private float bulletRange;
+
     private void Start()
     {
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, bulletRange/speed);
+        if(bulletType == BulletType.RAYCAST)
+        {
+            if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, bulletRange))
+            {
+                TryDamage(hitInfo.collider);
+            }
+        }
     }
     private void Update()
     {
-        transform.Translate(speed * Time.deltaTime * Vector3.forward, transform);
+        if(bulletType== BulletType.PROJECTILE)
+            transform.Translate(speed * Time.deltaTime * Vector3.forward, transform);
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (ignore)
-        {
-            ignore = false;
-            return;
-        }
+        TryDamage(collider);
+        Destroy(gameObject);
+    }
+    private void TryDamage(Collider collider)
+    {
         if (collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damage))
         {
             damage.TakeDamage(this.damage);
         }
-        Destroy(gameObject);
     }
 }

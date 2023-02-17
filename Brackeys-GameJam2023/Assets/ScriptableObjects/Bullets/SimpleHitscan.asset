@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f6966bfeaa274f409fe05d354e48e29, type: 3}
-  m_Name: BulletTest
+  m_Name: SimpleHitscan
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6071114465520334736, guid: 6497b1efdb7b50d4d8a124ad02bee524, type: 3}
   type: 0
