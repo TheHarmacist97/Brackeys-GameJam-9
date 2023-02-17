@@ -1,6 +1,6 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
-using Cinemachine;
 public class SearchForJackSpots : MonoBehaviour
 {
     public Collider[] jackInSpots;
@@ -23,7 +23,7 @@ public class SearchForJackSpots : MonoBehaviour
     private PlayerMovement pMovement;
     private CharacterController characterController;
     private CinemachineFreeLook freeLook;
-    private float rate=4f;
+    private float rate = 4f;
 
     private void OnEnable()
     {
@@ -115,7 +115,7 @@ public class SearchForJackSpots : MonoBehaviour
         {
             yield return null;
             elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, target, elapsedTime/rate);
+            transform.position = Vector3.Lerp(startPos, target, elapsedTime / rate);
         }
         StartCoroutine(Hijack());
     }
@@ -123,16 +123,19 @@ public class SearchForJackSpots : MonoBehaviour
     private IEnumerator Hijack()
     {
         Vector3 start = hit.transform.position + (Vector3.up * 25f);
-        Vector3 target = hit.transform.GetComponent<Character>().data.jackInSpot.position;
+        Transform parent = hit.transform.GetComponent<Character>().data.jackInSpot;
+        Vector3 target = parent.position;
         float elapsedTime = 0f;
-        while(elapsedTime<=rate)
+        while (elapsedTime <= rate)
         {
             yield return null;
-            elapsedTime += 2f*Time.deltaTime;
+            elapsedTime += 3f * Time.deltaTime;
             transform.position = Vector3.Lerp(start, target, elapsedTime / rate);
         }
         freeLook.LookAt = transform;
         freeLook.Follow = transform;
+        transform.rotation = parent.localRotation;
+        transform.parent = parent;
     }
 
 
