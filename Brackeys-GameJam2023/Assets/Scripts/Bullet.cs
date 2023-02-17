@@ -30,9 +30,10 @@ public class Bullet : MonoBehaviour
             transform.Translate(speed * Time.deltaTime * Vector3.forward, transform);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        TryDamage(collision.collider);
+        Debug.Log("Collided");
+        TryDamage(collider);
         Destroy(gameObject);
     }
 

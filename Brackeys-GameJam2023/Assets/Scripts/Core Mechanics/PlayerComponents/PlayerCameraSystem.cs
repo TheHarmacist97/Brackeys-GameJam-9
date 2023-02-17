@@ -1,4 +1,5 @@
 using Cinemachine;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerCameraSystem : MonoBehaviour
@@ -61,17 +62,6 @@ public class PlayerCameraSystem : MonoBehaviour
 
     #endregion
 
-    private void Update()
-    {
-        if (!GameConfig.fppToggle)
-        {
-            FPPHold();
-        }
-        else
-        {
-            FPPToggle();
-        }
-    }
 
     private void ChangeCamProfile(CinemachineFreeLook currentFreeLook)
     {
@@ -110,17 +100,18 @@ public class PlayerCameraSystem : MonoBehaviour
     /// <summary>
     /// Logic for switching to FPP on Hold
     /// </summary>
-    private void FPPHold()
+    public void FPPHold(bool hold)
     {
-        if (Input.GetMouseButton(1))
+        if(hold)
             fppTrigger.Fire();
         else
             fppTrigger.Reset();
+        
     }
     /// <summary>
     /// Logic for Switching to FPP on Toggle
     /// </summary>
-    private void FPPToggle()
+    public void FPPToggle()
     {
         if (Input.GetMouseButtonDown(1))
         {

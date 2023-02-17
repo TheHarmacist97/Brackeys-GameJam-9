@@ -6,5 +6,5 @@ public class WeaponSO:ScriptableObject
     public float reloadTime;
     public int magazineSize;
     public bool canContinuallyFire;
-    public BulletSO bullet;
+    public GameObject bullet;
 }

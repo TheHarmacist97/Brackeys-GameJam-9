@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponsManager:MonoBehaviour
+public class WeaponsManager:InputAbility
 {
     [HideInInspector]
     public List<WeaponsClass> weapons;
@@ -51,7 +51,7 @@ public class WeaponsManager:MonoBehaviour
     }
 
 
-    public void ReloadAll()
+    public override void ReloadAll()
     {
         foreach (WeaponsClass weapon in weapons)
         {
@@ -59,7 +59,7 @@ public class WeaponsManager:MonoBehaviour
         }
     }
 
-    public void StopFiring()
+    public override void StopFiring()
     {
         foreach (WeaponsClass weapon in weapons)
         {
@@ -67,7 +67,7 @@ public class WeaponsManager:MonoBehaviour
         }
     }
 
-    public void FireContinually(bool fireFromEnemy, Vector3 target)
+    public override void FireContinually(bool fireFromEnemy, Vector3 target)
     {
         foreach (WeaponsClass weapon in weapons)
         {
@@ -75,7 +75,7 @@ public class WeaponsManager:MonoBehaviour
         }
     }
 
-    public void Fire(Vector3 target)
+    public override void Fire(Vector3 target)
     {
         foreach (WeaponsClass weapon in weapons)
         {

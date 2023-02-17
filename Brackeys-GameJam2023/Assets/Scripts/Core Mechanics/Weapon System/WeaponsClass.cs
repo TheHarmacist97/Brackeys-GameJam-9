@@ -23,13 +23,14 @@ public abstract class WeaponsClass : MonoBehaviour
     public abstract void Init(Transform muzzle);
     public abstract void Fire(Vector3 target);
     public abstract void FireContinually(bool callFromEnemy, Vector3 target);
+    protected Transform bulletParent;
     protected virtual IEnumerator CycleFire()
     {
         yield break;
     }
     protected virtual void PropelBullet()
     {
-        Instantiate(weaponBaseData.bullet.bulletPrefab, muzzle.position, Quaternion.LookRotation(target - transform.position));
+        Instantiate(weaponBaseData.bullet, muzzle.position, Quaternion.LookRotation(target - transform.position), bulletParent??= GameManager.Instance.dependencyInjector.bulletParent);
     }
     public abstract void StopFiring();
     public virtual IEnumerator Reload()

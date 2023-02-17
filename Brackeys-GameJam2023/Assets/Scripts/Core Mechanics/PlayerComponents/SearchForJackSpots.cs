@@ -107,19 +107,9 @@ public class SearchForJackSpots : MonoBehaviour
                 }
             }
         }
-        if(Input.GetMouseButtonDown(0)) 
-        {
-            Debug.Log("work");
-            //characterController.enabled = false;
-            //Teleport(transform.forward * 5f);
-        }
+
     }
 
-    private void Teleport(Vector3 target)
-    {
-        transform.position = target;
-        characterController.enabled = true;
-    }
 
     private IEnumerator ShootUp()
     {

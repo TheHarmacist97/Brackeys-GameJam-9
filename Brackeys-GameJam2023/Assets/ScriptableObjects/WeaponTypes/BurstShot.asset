@@ -16,7 +16,7 @@ MonoBehaviour:
   reloadTime: 5
   magazineSize: 30
   canContinuallyFire: 0
-  bullet: {fileID: 11400000, guid: fb238859920b37142bdf32689b3507f5, type: 2}
+  bullet: {fileID: 6071114465520334736, guid: 6497b1efdb7b50d4d8a124ad02bee524, type: 3}
   fireRate: 6
   minimumTimeBetweenBursts: 1
   burstsPerTriggerPull: 6

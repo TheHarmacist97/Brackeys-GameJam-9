@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b5eb0758c11a1429bc2bc257a741ee, type: 3}
   m_Name: Enemy1
   m_EditorClassIdentifier: 
+  radius: 0.5
+  height: 2.5
+  center: {x: 0, y: 1.25, z: 0}
   maxMoveSpeed: 10
+  mass: 10
+  jumpForce: 0
   accel: 20
   rotateSpeed: 200
   effectiveRange: 13
   falloffRange: 18
-  walkType: 1
   muzzleRotateSpeed: 0.015

@@ -268,7 +268,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57147680}
-  m_LocalRotation: {x: 0.29891944, y: 0.000000034204152, z: -0.000000010714155, w: 0.95427835}
+  m_LocalRotation: {x: 0.29891944, y: 0.00000003283936, z: -0.000000010286644, w: 0.95427835}
   m_LocalPosition: {x: 10.986862, y: 4.65, z: 32.731983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -378,6 +378,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 20243598}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &705684066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 705684067}
+  m_Layer: 0
+  m_Name: BulletParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &705684067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705684066}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.655412, y: 3.7477758, z: 37.46766}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &804518544
 GameObject:
@@ -897,6 +928,7 @@ MonoBehaviour:
     firstPersonCamera: {fileID: 1168674666}
     thirdPersonCamera: {fileID: 856029710}
     enemyParent: {fileID: 7512122}
+    bulletParent: {fileID: 705684067}
   player: {fileID: 1930403398}
   gate: {fileID: 0}
   characterTypes:
@@ -1712,7 +1744,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873495609}
-  m_LocalRotation: {x: 0.31622776, y: -0.000000011711049, z: 0.0000000039036827, w: 0.9486833}
+  m_LocalRotation: {x: 0.31622773, y: -0, z: -0, w: 0.9486833}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1815,6 +1847,22 @@ PrefabInstance:
       propertyPath: data.weaponsData.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: d1dc9e65ad265214dac5eadff18eba53, type: 2}
+    - target: {fileID: 1352863454223554872, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6524045
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352863454223554872, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0056020655
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352863454223554872, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0022135272
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352863454223554872, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.757847
+      objectReference: {fileID: 0}
     - target: {fileID: 4088031022726315034, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
       propertyPath: m_Name
       value: WheelsEnemy
@@ -1900,7 +1948,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956599761}
-  m_LocalRotation: {x: 0.2626476, y: 0.10427553, z: -0.02856412, w: 0.9588154}
+  m_LocalRotation: {x: 0.2626498, y: 0.10420104, z: -0.02854371, w: 0.9588235}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2099,7 +2147,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090135662}
-  m_LocalRotation: {x: 0.29891938, y: 0.000000019002814, z: -0.000000005952465, w: 0.9542784}
+  m_LocalRotation: {x: 0.29891938, y: 0.00000001641968, z: -0.000000005143322, w: 0.9542784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

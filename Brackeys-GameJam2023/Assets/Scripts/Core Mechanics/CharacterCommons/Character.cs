@@ -54,8 +54,10 @@ public class Character : MonoBehaviour, IDamageable
         }
 
     }
-    public int currentHealth { get => this.currentHealth; set => this.currentHealth = value; }
-    public int totalHealth { get => this.totalHealth; set => this.totalHealth = value; }
+    private int _currentHealth;
+    private int _totalHealth;
+    public int currentHealth { get => _currentHealth; set => _currentHealth = value; }
+    public int totalHealth { get => _totalHealth; set => _totalHealth = value; }
     public CinemachineFreeLook TppCinemachineCamera 
     { 
         get 
@@ -78,7 +80,7 @@ public class Character : MonoBehaviour, IDamageable
     }
     #endregion
 
-    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(PlayerWeaponInput), typeof(PlayerMovementVFX) };
+    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(InputHandler), typeof(PlayerMovementVFX) };
     private List<Type> enemyComponents = new List<Type>(){ typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX)}; //will need these now 
 
     public void Switch(bool isPlayer)
