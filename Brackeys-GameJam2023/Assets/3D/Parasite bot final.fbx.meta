@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a9d87f72b46ec774dbdf3ead6c2413c4
+guid: ac861378c2b498349adc168da72c7a1e
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,33 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Black Metal
-    second: {fileID: 2100000, guid: 321d4e76a980dd34a9ea8079cb4cc071, type: 2}
+      name: BODY
+    second: {fileID: 2100000, guid: 0c246df17f5fa814b9fb53e3a2f058c3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Grey metal
-    second: {fileID: 2100000, guid: 25dc2f55ba6a95741b865ede839145b4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 6a7fd27d351b731408cc8207c310f2aa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: connector
-    second: {fileID: 2100000, guid: 3ae24fd1604c376499e722b4071fe544, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: light strips
-    second: {fileID: 2100000, guid: 6498f4b3674ec1c49806dac4c6c725a0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: red eye
-    second: {fileID: 2100000, guid: 65a80b4868d52414793c84afecf1859e, type: 2}
+      name: LIGHTS
+    second: {fileID: 2100000, guid: 7cd0de0d5dd86a149926481856177b83, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
