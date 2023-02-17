@@ -53,7 +53,9 @@ MonoBehaviour:
     muzzles: []
     weaponsData: []
     characterSpecs: {fileID: 11400000, guid: 567a25848723181429d49facd4939b42, type: 2}
+    cameraProfile: {fileID: 11400000, guid: 7c77906ff7c82084782dcd9eabc97b24, type: 2}
     jackInSpot: {fileID: 0}
+    target: {fileID: 0}
 --- !u!114 &2911295243138314678
 MonoBehaviour:
   m_ObjectHideFlags: 0

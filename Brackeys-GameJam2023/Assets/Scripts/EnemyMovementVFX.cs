@@ -29,7 +29,6 @@ public class EnemyMovementVFX : MonoBehaviour
 
     public void Init()
     {
-        turretUnit = data.turretBase;
         muzzleRotateSpeed = data.characterSpecs.muzzleRotateSpeed;
         mobilityUnit = data.mobilityUnit;
     }
@@ -37,18 +36,9 @@ public class EnemyMovementVFX : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(target != null)
-            TurretOrientation();
         MobilityUnitOrientation();
     }
 
-    private void TurretOrientation()
-    {
-        currentRot = turretUnit.forward;
-        currentRot = Vector3.RotateTowards(currentRot, target.position - turretUnit.position, muzzleRotateSpeed, 0.0f);
-        currentRot.y = Mathf.Clamp(currentRot.y, -0.5f, 0.5f);
-        turretUnit.forward = currentRot;
-    }
 
     private void MobilityUnitOrientation()
     {

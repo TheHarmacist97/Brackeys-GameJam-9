@@ -9,6 +9,7 @@ public class PlayerCameraSystem : MonoBehaviour
     private CameraProfile camProfile;
     CinemachineVirtualCamera fppCam;
     CinemachineFreeLook tppCam;
+    Character character;
     private void OnEnable() => Initialise();
     private void OnDisable()
     {
@@ -17,7 +18,7 @@ public class PlayerCameraSystem : MonoBehaviour
     #region Enable Functions
     private void Initialise()
     {
-        Character character = GetComponent<Character>();
+        character = GetComponent<Character>();
         this.fpp = character.FirstPersonCamera;
         this.tpp = character.ThirdPersonCamera;
 
@@ -55,7 +56,7 @@ public class PlayerCameraSystem : MonoBehaviour
         fppCam.m_Lens.FieldOfView = camProfile.verticalFOVFPP;
         tppCam = tpp.GetComponent<CinemachineFreeLook>();
         tppCam.Follow = transform;
-        tppCam.LookAt = transform;
+        tppCam.LookAt = character.data.lookAtTarget;
     }
 
     #endregion

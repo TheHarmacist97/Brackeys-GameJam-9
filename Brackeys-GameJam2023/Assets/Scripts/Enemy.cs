@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,11 +19,8 @@ public class Enemy : MonoBehaviour
 
     private Trigger outsideFalloffRangeTrigger;
     private float distanceToPlayer;
-
-    [Header("Movement Visuals")]
-    [SerializeField] Transform turretUnit;
-    [SerializeField] Transform mobilityUnit;
-    [SerializeField] float turnThreshhold;
+    private readonly float stunDuration = 10f;
+    private float elapsedTime = 0f;
 
     private void Awake()
     {
@@ -37,17 +33,26 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.playerSet += UpdateTarget;
     }
 
-    private void Update()
-    {
-        TrackDistance();
-    }
-
     private void Init()
     {
         agent.updateRotation = false;
-        agent.acceleration = data.characterSpecs.accel ;
+        agent.acceleration = data.characterSpecs.accel;
         agent.angularSpeed = data.characterSpecs.rotateSpeed;
         agent.speed = data.characterSpecs.maxMoveSpeed;
+    }
+
+    private void Update()
+    {
+        if (enemyState != EnemyState.STUN)
+            TrackDistance();
+        else
+        {
+            elapsedTime -= Time.deltaTime;
+            if (elapsedTime <= 0)
+            {
+                TrackDistance();
+            }
+        }
     }
 
     private void TrackDistance()
@@ -88,4 +93,11 @@ public class Enemy : MonoBehaviour
     {
         target = GameManager.Instance.Player.transform;
     }
+
+    public void StunEnemy()
+    {
+        enemyState = EnemyState.STUN;
+        elapsedTime = stunDuration;
+    }
+
 }

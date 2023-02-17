@@ -1,44 +1,47 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovementVFX : MonoBehaviour
 {
     private CharacterData data;
     private Camera cameraMain;
-    private Transform turretUnit;
-
-    private float rotateSpeed;
-    private Vector3 target;
-    private Vector3 currentRot;
-
+    private Transform targetTransform;
+    private Vector3 lerpPosition;
+    private Ray ray;
+    private RaycastHit raycastHit;
     private void Awake()
     {
         cameraMain = Camera.main;
         data = GetComponent<Character>().data;
-        Init();
-    }
-
-    public void Init()
-    {
-        turretUnit = data.turretBase;
-        rotateSpeed = data.characterSpecs.rotateSpeed;
+        targetTransform = data.target;
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    private void Update()
     {
-        if(turretUnit!= null)
+        ray = cameraMain.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
+    
+        if (Physics.Raycast(ray, out raycastHit, 100f))
         {
-            target = cameraMain.ScreenToWorldPoint(Vector3.one*0.5f);
-            TurretOrientation();
+            lerpPosition = raycastHit.point;
+        }
+        else
+        {
+            lerpPosition = ray.GetPoint(100f);
         }
     }
-
-    private void TurretOrientation()
+    private void LateUpdate()
     {
-        currentRot = turretUnit.forward;
-        currentRot = Vector3.RotateTowards(currentRot, turretUnit.position - target, rotateSpeed, 0.0f);
-        currentRot.y = Mathf.Clamp(currentRot.y, -0.5f, 0.5f);
-        turretUnit.forward = currentRot;
+        targetTransform.position = Vector3.Lerp(targetTransform.position, lerpPosition, 10f * Time.deltaTime) ;
     }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(cameraMain.transform.position, raycastHit.point*20f);
+        Gizmos.DrawSphere(targetTransform.position, 2f);
+    }
+
 }

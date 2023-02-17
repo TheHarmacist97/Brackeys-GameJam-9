@@ -1,9 +1,12 @@
 using Cinemachine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 public class SearchForJackSpots : MonoBehaviour
 {
-    public Collider[] jackInSpots;
+    public Collider[] enemyColliders;
+    private List<Enemy> enemiesCaught;
 
     private bool isHit;
     private bool alive = true;
@@ -38,24 +41,23 @@ public class SearchForJackSpots : MonoBehaviour
     {
         yield return null;
         parasite = GetComponent<Parasite>();
+        mainCamTransform = Camera.main.transform;
         pMovement = GetComponent<PlayerMovement>();
         characterController = GetComponent<CharacterController>();
         freeLook = GetComponent<Character>().TppCinemachineCamera;
         data = parasite.parasiteData;
 
-        jackInSpots = new Collider[20];
+        enemyColliders = new Collider[20];
         timeBetweenPulses = data.maxTime / data.maxPulses;
         pulseWait = new WaitForSeconds(timeBetweenPulses);
         boxCastExtents = Vector3.one * data.boxCastThickness;
         boxCastExtents.y *= 2;
-
-        mainCamTransform = Camera.main.transform;
+        enemiesCaught = new List<Enemy>();
     }
 
 
     private void Start()
     {
-        mainCamTransform = Camera.main.transform;
         Invoke(nameof(PlayerCharacterDeath), 2f);
     }
 
@@ -78,8 +80,13 @@ public class SearchForJackSpots : MonoBehaviour
 
     private void Pulse()
     {
+        enemiesCaught.Clear();
         gotInRange = Physics.OverlapSphereNonAlloc(gameObject.transform.position,
-            parasite.parasiteData.maxRange, jackInSpots, parasite.parasiteData.enemyLayer);
+            data.maxRange, enemyColliders, data.enemyLayer);
+        foreach(Collider coll in enemyColliders)
+        {
+            coll.GetComponent<Enemy>().StunEnemy();
+        }
     }
 
     private void Update()
@@ -100,6 +107,15 @@ public class SearchForJackSpots : MonoBehaviour
                 }
             }
         }
+        if(Input.GetMouseButtonDown(0)) 
+        {
+            Teleport(transform.forward * 5f);
+        }
+    }
+
+    private void Teleport(Vector3 vector3)
+    {
+        
     }
 
     private IEnumerator ShootUp()
