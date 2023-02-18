@@ -49,6 +49,7 @@ public class EnemyMovementVFX : MonoBehaviour
     {
         if(!playerDead)
             TurretUnitOrientation();
+        MobilityUnitOrientation();
     }
      
     private void SetPlayerStatus(bool result)
@@ -59,7 +60,9 @@ public class EnemyMovementVFX : MonoBehaviour
     private void TurretUnitOrientation()
     {
         if(target!=null)
+        {
             data.lookAtTarget.position = target.position;
+        }
     }
 
     private void MobilityUnitOrientation()

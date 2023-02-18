@@ -60,10 +60,8 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = acceleration * Time.deltaTime;
         acceleration -= Time.deltaTime * characterSpecs.mass;
         acceleration = Mathf.Max(acceleration, GameConfig.Constants.MAX_GAME_GRAVITY);
-        Debug.Log("ACCEL: " + acceleration);
         if (Physics.CheckSphere(groundCheck.position, 0.5f, groundMask))
         {
-            Debug.Log("CheckSphere");
             velocity.y = Mathf.Max(velocity.y, 0f);
             acceleration = Mathf.Max(acceleration, 0f);
             if (Input.GetKeyDown(KeyCode.Space))

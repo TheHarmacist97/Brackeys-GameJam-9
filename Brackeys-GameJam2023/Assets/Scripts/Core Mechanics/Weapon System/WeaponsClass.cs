@@ -30,7 +30,7 @@ public abstract class WeaponsClass : MonoBehaviour
     }
     protected virtual void PropelBullet()
     {
-        Instantiate(weaponBaseData.bullet, muzzle.position, Quaternion.LookRotation(target - transform.position), bulletParent??= GameManager.Instance.dependencyInjector.bulletParent);
+        Instantiate(weaponBaseData.bullet, muzzle.position, Quaternion.LookRotation(target - transform.position), bulletParent = bulletParent != null ? bulletParent : GameManager.Instance.dependencyInjector.bulletParent);
     }
     public abstract void StopFiring();
     public virtual IEnumerator Reload()

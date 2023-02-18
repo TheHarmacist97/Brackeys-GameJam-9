@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ParasiteData
   m_EditorClassIdentifier: 
   boxCastThickness: 2
-  maxRange: 20
-  maxTime: 20
+  maxRange: 2
+  maxTime: 30
   rate: 1
   maxPulses: 10
   enemyLayer:

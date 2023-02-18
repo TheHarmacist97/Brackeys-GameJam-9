@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
@@ -13,8 +11,8 @@ public class InputHandler : MonoBehaviour
     }
     private void Initialise()
     {
-        inputAbility= GetComponent<InputAbility>();
-        playerMovement= GetComponent<PlayerCameraSystem>();
+        inputAbility = GetComponent<InputAbility>();
+        playerMovement = GetComponent<PlayerCameraSystem>();
         targetTransform = GetComponent<Character>().data.target;
     }
     private void Update()
