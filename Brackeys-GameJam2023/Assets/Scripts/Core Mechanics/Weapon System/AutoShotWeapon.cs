@@ -16,6 +16,7 @@ public class AutoShotWeapon : WeaponsClass
     }
     public override void Fire(Vector3 target)
     {
+        if (targetTransform == null) return;
         targetTransform.position = target; 
         if (state == WeaponState.EMPTY)
         {

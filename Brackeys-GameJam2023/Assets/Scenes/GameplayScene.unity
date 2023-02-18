@@ -569,10 +569,6 @@ PrefabInstance:
       propertyPath: m_LocalRotation.y
       value: -0.07544527
       objectReference: {fileID: 0}
-    - target: {fileID: 3781602429054770463, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4088031022726315034, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
       propertyPath: m_Name
       value: WheelsEnemy
