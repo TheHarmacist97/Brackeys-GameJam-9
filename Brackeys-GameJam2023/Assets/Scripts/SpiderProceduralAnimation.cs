@@ -31,13 +31,13 @@ public class SpiderProceduralAnimation : MonoBehaviour
     }
     private void OnDisable()
     {
-        QuickTimeEvent.instance.hijackStarted -= StartHijack;
+        QuickTimeEvent.Instance.hijackStarted -= StartHijack;
     }
 
     private IEnumerator Init()
     {
         yield return null;
-        QuickTimeEvent.instance.hijackStarted += StartHijack;
+        QuickTimeEvent.Instance.hijackStarted += StartHijack;
     }
 
     private void StartHijack()

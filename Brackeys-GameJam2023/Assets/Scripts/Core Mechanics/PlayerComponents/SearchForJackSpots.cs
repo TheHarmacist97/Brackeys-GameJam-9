@@ -36,14 +36,14 @@ public class SearchForJackSpots : MonoBehaviour
 
     private IEnumerator Subscribe()
     {
-        yield return new WaitUntil(()=>QuickTimeEvent.instance!=null);
+        yield return new WaitUntil(()=>QuickTimeEvent.Instance !=null);
         alive = true;
-        QuickTimeEvent.instance.hijackComplete += StopPulsing;
+        QuickTimeEvent.Instance.hijackComplete += StopPulsing;
     }
 
     private void OnDisable()
     {
-        QuickTimeEvent.instance.hijackComplete -= StopPulsing;
+        QuickTimeEvent.Instance.hijackComplete -= StopPulsing;
     }
     private void Awake()
     {
@@ -71,7 +71,7 @@ public class SearchForJackSpots : MonoBehaviour
     private void Start()
     {
         alive = true;
-        QuickTimeEvent.instance.hijackComplete += StopPulsing;
+        QuickTimeEvent.Instance.hijackComplete += StopPulsing;
         Invoke(nameof(PlayerCharacterDeath), 2f);
     }
 
@@ -156,7 +156,7 @@ public class SearchForJackSpots : MonoBehaviour
 
         characterController.enabled = false;
         pMovement.enabled = false;
-        QuickTimeEvent.instance.StartQTEWrapper(characterTargeted);
+        QuickTimeEvent.Instance.StartQTEWrapper(characterTargeted);
     }
 
 

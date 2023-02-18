@@ -13,7 +13,7 @@ public class StaticInstances<T> : MonoBehaviour where T: MonoBehaviour
         {
             if(_instance==null)
             {
-                _instance = GameObject.FindObjectOfType<T>();
+                _instance = FindObjectOfType<T>();
                 if(_instance==null)
                 {
                     _instance = new GameObject(typeof(T).Name).AddComponent<T>();
@@ -24,7 +24,9 @@ public class StaticInstances<T> : MonoBehaviour where T: MonoBehaviour
     }
     protected virtual void Awake()
     {
-        if (_instance != null)
+        if (_instance != null && _instance != this as T)
             Destroy(this);
+        else
+            _instance = this as T;
     }
 }

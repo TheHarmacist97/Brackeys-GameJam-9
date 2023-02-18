@@ -10,21 +10,21 @@ public class TeleportAbility : InputAbility
     private float coolDown;
     private bool canTeleport = true;
     private CharacterController controller;
-
-    private void OnEnable() => StartCoroutine(Initialise());
+    private Material baseBodyMat;
+    private Material lineBodyMat;
+    private void OnEnable() => Initialise();
 
     private void OnDisable()
     {
-        QuickTimeEvent.instance.hijackStarted -= StartedHijacking;
-        QuickTimeEvent.instance.hijackComplete -= CompletedHijacking;
+        QuickTimeEvent.Instance.hijackStarted -= StartedHijacking;
+        QuickTimeEvent.Instance.hijackComplete -= CompletedHijacking;
         GameManager.Instance.PlayerDeathEvent -= TeleportBack;
     }
 
-    private IEnumerator Initialise()
+    private void Initialise()
     {
-        yield return null;
-        QuickTimeEvent.instance.hijackStarted += StartedHijacking;
-        QuickTimeEvent.instance.hijackComplete += CompletedHijacking;
+        QuickTimeEvent.Instance.hijackStarted += StartedHijacking;
+        QuickTimeEvent.Instance.hijackComplete += CompletedHijacking;
         GameManager.Instance.PlayerDeathEvent += TeleportBack;
         controller = GetComponent<CharacterController>();
     }

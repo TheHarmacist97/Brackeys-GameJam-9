@@ -18,12 +18,12 @@ public class EnemyMovementVFX : MonoBehaviour
 
     private void OnEnable()
     {
-        QuickTimeEvent.instance.hijackComplete += SetPlayerStatus;
+        QuickTimeEvent.Instance.hijackComplete += SetPlayerStatus;
     }
 
     private void OnDisable()
     {
-        QuickTimeEvent.instance.hijackComplete -= SetPlayerStatus;
+        QuickTimeEvent.Instance.hijackComplete -= SetPlayerStatus;
     }
 
     private void Awake()

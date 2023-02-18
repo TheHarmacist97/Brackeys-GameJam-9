@@ -11,9 +11,8 @@ public enum QTStates
     AWAITING_INPUT,
     END
 }
-public class QuickTimeEvent : MonoBehaviour
+public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
 {
-    public static QuickTimeEvent instance;
     [SerializeField] private KeyCode currentKeycode;
     [SerializeField] private QTStates state = QTStates.INACTIVE;
     [SerializeField] private QTEData data;
@@ -26,13 +25,9 @@ public class QuickTimeEvent : MonoBehaviour
     public Action<bool> hijackComplete;
     public Action hijackStarted;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (instance != null && instance != this)
-            Destroy(this);
-        else
-            instance = this;
-        Debug.Log(instance);
+        base.Awake();
         Init();
     }
 

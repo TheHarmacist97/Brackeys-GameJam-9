@@ -14,7 +14,7 @@ public class PlayerCameraSystem : MonoBehaviour
     private void OnEnable() => Initialise();
     private void OnDisable()
     {
-        QuickTimeEvent.instance.hijackComplete -= CameraSystemShutDown;
+        QuickTimeEvent.Instance.hijackComplete -= CameraSystemShutDown;
     }
     #region Enable Functions
     private void Initialise()
@@ -32,7 +32,7 @@ public class PlayerCameraSystem : MonoBehaviour
         
 
         SetFPP(false);
-        QuickTimeEvent.instance.hijackComplete += CameraSystemShutDown;
+        QuickTimeEvent.Instance.hijackComplete += CameraSystemShutDown;
     }
 
     private void SetCursor(bool cursorLocked)
