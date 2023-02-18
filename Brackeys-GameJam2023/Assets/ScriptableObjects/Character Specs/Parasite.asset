@@ -16,8 +16,8 @@ MonoBehaviour:
   radius: 0.3
   height: 0.5
   center: {x: 0, y: 0.385, z: 0}
-  maxMoveSpeed: 15
-  mass: 10
+  maxMoveSpeed: 2
+  mass: 15
   jumpForce: 10
   accel: 4
   rotateSpeed: 200

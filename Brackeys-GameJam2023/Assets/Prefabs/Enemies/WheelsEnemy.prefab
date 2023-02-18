@@ -764,7 +764,7 @@ Animator:
   m_GameObject: {fileID: 3781602429054770463}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6ba60dca74f4b27468343bf683881336, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -855,6 +855,18 @@ MonoBehaviour:
   - {fileID: 3465188356518516654}
   - {fileID: 4088031021957355724}
   - {fileID: 0}
+--- !u!114 &4750551666038902521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3781602429054770463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba750fa3c322de4eaf5205a26b8cf24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3976071733136913669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8100213613366241973, guid: a9d87f72b46ec774dbdf3ead6c2413c4, type: 3}
