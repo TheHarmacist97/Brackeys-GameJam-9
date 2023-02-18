@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Cinemachine;
+using System.Collections;
 
 public class Character : MonoBehaviour, IDamageable
 {
+    public bool isPlayer;
     private GameObject fpp;
     private GameObject tpp;
     private CinemachineFreeLook tppCamera;
@@ -90,6 +92,7 @@ public class Character : MonoBehaviour, IDamageable
     }
     public void Switch(bool isPlayer)
     {
+        this.isPlayer = isPlayer;
         foreach (Type type in isPlayer ? enemyComponents : playerComponents)
         {
             if (TryGetComponent(type, out var component))
@@ -113,7 +116,6 @@ public class Character : MonoBehaviour, IDamageable
         currentHealth -= value;
         if (currentHealth < 0)
         {
-            
             Die();
         }
     }
@@ -126,7 +128,11 @@ public class Character : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        Destroy(gameObject);
+        if(isPlayer)
+        {
+            GameManager.Instance.PlayerCharacterDeath();
+        }
+        Destroy(gameObject, 0.5f);
     }
     #endregion
 }

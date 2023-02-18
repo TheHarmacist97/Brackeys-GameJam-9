@@ -14,7 +14,7 @@ public class PlayerCameraSystem : MonoBehaviour
     private void OnEnable() => Initialise();
     private void OnDisable()
     {
-
+        QuickTimeEvent.instance.hijackComplete -= CameraSystemShutDown;
     }
     #region Enable Functions
     private void Initialise()
@@ -32,6 +32,7 @@ public class PlayerCameraSystem : MonoBehaviour
         
 
         SetFPP(false);
+        QuickTimeEvent.instance.hijackComplete += CameraSystemShutDown;
     }
 
     private void SetCursor(bool cursorLocked)
@@ -61,6 +62,12 @@ public class PlayerCameraSystem : MonoBehaviour
     }
 
     #endregion
+
+    public void CameraSystemShutDown(bool result)
+    {
+        if(transform.TryGetComponent<Parasite>(out _))
+            enabled = false;
+    }
 
 
     private void ChangeCamProfile(CinemachineFreeLook currentFreeLook)

@@ -52,6 +52,7 @@ public class QuickTimeEvent : MonoBehaviour
     {
         for (int i = 0; i < data.waves; i++)
         {
+            if (waveSuccess >= data.winsRequired) break;
             yield return StartWave();
         }
         state = QTStates.END;

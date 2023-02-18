@@ -10,7 +10,6 @@ public class SearchForJackSpots : MonoBehaviour
     private bool isHit;
     private bool alive = true;
     private bool startedHijacking;
-    private bool hijackingResultOut;
     private bool hijackedSuccessfully;
     private int gotInRange;
     private int currentPulses;
@@ -85,11 +84,12 @@ public class SearchForJackSpots : MonoBehaviour
     {
         while (alive)
         {
+            yield return pulseWait;
+            if (hijackedSuccessfully) yield break;
             if (!startedHijacking)
             {
                 currentPulses++;
             }
-            yield return pulseWait;
             Pulse();
             if (currentPulses == parasite.parasiteData.maxPulses)
                 alive = false;
@@ -99,17 +99,18 @@ public class SearchForJackSpots : MonoBehaviour
 
     private void StopPulsing(bool result)
     {
-        alive = result;
-        if(alive)
-        {
-            StopCoroutine(PulseCoroutine());
-        }
+        hijackedSuccessfully = result;
+        enabled = !result;
     }
 
     private void Death()
     {
-        GameManager.Instance.HackCharacter(null);
-        Destroy(gameObject);
+        Debug.Log(alive);
+        if (!alive&&!hijackedSuccessfully)
+        {
+            GameManager.Instance.HackCharacter(null);
+            Destroy(gameObject);
+        }
     }
 
     private void Pulse()

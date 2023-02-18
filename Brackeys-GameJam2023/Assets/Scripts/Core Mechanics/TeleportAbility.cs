@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.Sockets;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -20,20 +17,22 @@ public class TeleportAbility : InputAbility
     {
         QuickTimeEvent.instance.hijackStarted -= StartedHijacking;
         QuickTimeEvent.instance.hijackComplete -= CompletedHijacking;
+        GameManager.Instance.PlayerDeathEvent -= TeleportBack;
     }
 
     private IEnumerator Initialise()
     {
-        yield return null;  
+        yield return null;
         QuickTimeEvent.instance.hijackStarted += StartedHijacking;
         QuickTimeEvent.instance.hijackComplete += CompletedHijacking;
+        GameManager.Instance.PlayerDeathEvent += TeleportBack;
         controller = GetComponent<CharacterController>();
     }
     public override void Fire(Vector3 target)
     {
-        if(canTeleport)
+        if (canTeleport)
         {
-            StartCoroutine(Teleport(transform.forward * 5f));
+            StartCoroutine(Teleport(transform.position + transform.forward * 5f));
         }
     }
 
@@ -51,20 +50,30 @@ public class TeleportAbility : InputAbility
     {
         //Does Nothing
     }
-    private IEnumerator Teleport(Vector3 vector3)
+    private IEnumerator Teleport(Vector3 destination)
     {
-        canTeleport= false;        
-        transform.position = transform.position + transform.forward * range;
+        canTeleport = false;
+        transform.position = destination;
         yield return new WaitForSeconds(coolDown);
-        canTeleport= true;
+        canTeleport = true;
     }
+
+    public void TeleportBack()
+    {
+        Debug.Log("Called");
+        Vector3 destination = transform.position + (transform.up * 3f);
+        StartCoroutine(Teleport(destination));
+    }
+
     private void CompletedHijacking(bool result)
     {
-        canTeleport = result;
+        canTeleport = false;
     }
 
     private void StartedHijacking()
     {
         canTeleport = false;
-    }    
+        StopCoroutine(Teleport(transform.forward * 5f));
+        StopAllCoroutines();
+    }
 }

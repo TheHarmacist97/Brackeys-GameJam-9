@@ -343,7 +343,6 @@ GameObject:
   - component: {fileID: 3408334934942070844}
   - component: {fileID: 1702213894701017165}
   - component: {fileID: 3985765635541270076}
-  - component: {fileID: 7968179681102772489}
   m_Layer: 0
   m_Name: Parasite Rigged
   m_TagString: Untagged
@@ -384,6 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfd1ba63f1c4a84d835d4ad888fbb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   data:
     muzzles: []
     weaponsData: []
@@ -425,20 +425,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7968179681102772489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3408334934942070846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8207f6845b0e3489a5c87d53858b6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 10
-  coolDown: 10
 --- !u!1 &3408334934952461430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1159,7 @@ MonoBehaviour:
   stepHeight: 0.1
   bodyOrientation: 0
   rayCastHeight: 1
+  velocityMultiplier: 0.2
 --- !u!114 &5495158620358908691
 MonoBehaviour:
   m_ObjectHideFlags: 0

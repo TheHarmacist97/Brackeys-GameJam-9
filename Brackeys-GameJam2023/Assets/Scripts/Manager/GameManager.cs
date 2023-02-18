@@ -7,9 +7,9 @@ public class GameManager : StaticInstances<GameManager>
 {
     public DependencyInjector dependencyInjector;
 
+    public Parasite parasite;
     public Character player;
-    public Action playerSet;
-
+     
     [SerializeField] private Gate gate;
     [SerializeField] private List<Character> characterTypes;
     [SerializeField] private List<IObjective> currentObjectives = new List<IObjective>();
@@ -20,6 +20,8 @@ public class GameManager : StaticInstances<GameManager>
 
     private int waveNumber = 0;
     private int enemyThreshold;
+    public Action playerSet;
+    public Action PlayerDeathEvent;
 
     public Character Player
     {
@@ -36,6 +38,22 @@ public class GameManager : StaticInstances<GameManager>
         player.Switch(true);
         playerSet?.Invoke();
     }
+    private void Update()
+    {
+        if (player != null)
+        {
+            if(Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                KillPlayer();
+            }
+        }
+    }
+
+    private void KillPlayer()
+    {
+        player.Die();
+    }
+
     private void Initialise()
     {
         SpawnCharacter(characterTypes[Random.Range(0, characterTypes.Count)]);
@@ -70,6 +88,14 @@ public class GameManager : StaticInstances<GameManager>
     public void LoadNextScene()
     {
         Debug.Log("NEXT SCENE");
+    }
+
+    public void PlayerCharacterDeath()
+    {
+        Debug.Log("death");
+        parasite.transform.SetParent(null, true);
+        PlayerDeathEvent?.Invoke();
+        HackCharacter(parasite.GetComponent<Character>());
     }
     #endregion
 
