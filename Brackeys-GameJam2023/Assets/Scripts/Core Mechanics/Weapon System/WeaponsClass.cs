@@ -16,13 +16,13 @@ public abstract class WeaponsClass : MonoBehaviour
     public WeaponState state;
     public WeaponSO weaponBaseData;
     public Transform muzzle;
-    public Vector3 target;
+    public Transform targetTransform;
 
     public WaitForSeconds reloadWait;
     public WaitForSeconds waitBetweenBullets;
     public abstract void Init(Transform muzzle);
     public abstract void Fire(Vector3 target);
-    public abstract void FireContinually(bool callFromEnemy, Vector3 target);
+    public abstract void FireContinually(bool callFromEnemy, Transform target);
     protected Transform bulletParent;
     protected virtual IEnumerator CycleFire()
     {
@@ -30,7 +30,8 @@ public abstract class WeaponsClass : MonoBehaviour
     }
     protected virtual void PropelBullet()
     {
-        Instantiate(weaponBaseData.bullet, muzzle.position, Quaternion.LookRotation(target - transform.position), bulletParent = bulletParent != null ? bulletParent : GameManager.Instance.dependencyInjector.bulletParent);
+        Instantiate(weaponBaseData.bullet, muzzle.position, Quaternion.LookRotation(targetTransform.position - muzzle.position),
+            bulletParent = bulletParent != null ? bulletParent : GameManager.Instance.dependencyInjector.bulletParent);
     }
     public abstract void StopFiring();
     public virtual IEnumerator Reload()

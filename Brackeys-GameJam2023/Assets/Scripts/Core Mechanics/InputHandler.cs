@@ -30,7 +30,7 @@ public class InputHandler : MonoBehaviour
         }
         else if (Input.GetKey(GameConfig.PRIMARY_FIRE_BUTTON))
         {
-            inputAbility.FireContinually(false, targetTransform.position);
+            inputAbility.FireContinually(false, targetTransform);
         }
         else if (Input.GetKeyUp(GameConfig.PRIMARY_FIRE_BUTTON))
         {

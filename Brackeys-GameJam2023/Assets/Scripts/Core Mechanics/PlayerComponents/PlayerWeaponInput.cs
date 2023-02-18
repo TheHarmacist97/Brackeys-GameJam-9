@@ -26,7 +26,7 @@ public class PlayerWeaponInput : MonoBehaviour
             }
             else if (Input.GetMouseButton(0))
             {
-                weaponManager.FireContinually(false, pos);
+                weaponManager.FireContinually(false, targetTransform);
             }
             else if (Input.GetMouseButtonUp(0))
             {

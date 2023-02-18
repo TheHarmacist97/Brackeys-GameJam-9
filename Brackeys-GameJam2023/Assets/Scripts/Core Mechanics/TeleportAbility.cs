@@ -18,7 +18,7 @@ public class TeleportAbility : InputAbility
         Teleport(transform.forward * 5f);
     }
 
-    public override void FireContinually(bool fireFromEnemy, Vector3 target)
+    public override void FireContinually(bool fireFromEnemy, Transform target)
     {
         //Does Nothing
     }

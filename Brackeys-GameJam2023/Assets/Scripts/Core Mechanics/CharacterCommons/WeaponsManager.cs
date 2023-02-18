@@ -42,15 +42,6 @@ public class WeaponsManager:InputAbility
         }
     }
 
-    private void Update()
-    {
-        foreach(WeaponsClass weapon in weapons)
-        {
-            weapon.target = characterData.target.position;
-        }
-    }
-
-
     public override void ReloadAll()
     {
         foreach (WeaponsClass weapon in weapons)
@@ -67,7 +58,7 @@ public class WeaponsManager:InputAbility
         }
     }
 
-    public override void FireContinually(bool fireFromEnemy, Vector3 target)
+    public override void FireContinually(bool fireFromEnemy, Transform target)
     {
         foreach (WeaponsClass weapon in weapons)
         {

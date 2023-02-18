@@ -16,7 +16,7 @@ public class AutoShotWeapon : WeaponsClass
     }
     public override void Fire(Vector3 target)
     {
-        this.target = target; 
+        targetTransform.position = target; 
         if (state == WeaponState.EMPTY)
         {
             StartCoroutine(Reload());
@@ -43,13 +43,13 @@ public class AutoShotWeapon : WeaponsClass
         }
     }
 
-    public override void FireContinually(bool callFromEnemy, Vector3 target)
+    public override void FireContinually(bool callFromEnemy, Transform target)
     {
-        this.target = target;
+        this.targetTransform = target;
         if (firingContinually) return;
 
         firingContinually = true;
-        Fire(target);
+        Fire(targetTransform.position);
         return;
     }
 

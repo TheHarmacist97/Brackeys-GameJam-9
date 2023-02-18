@@ -18,7 +18,7 @@ public class BurstShotWeapon : WeaponsClass
     }
     public override void Fire(Vector3 target)
     {
-        this.target = target;
+        targetTransform.position = target;
         if (state == WeaponState.EMPTY)
         {
             StartCoroutine(Reload());
@@ -47,9 +47,9 @@ public class BurstShotWeapon : WeaponsClass
         state = currentAmmo > 0 ? WeaponState.READY : WeaponState.EMPTY;
     }
 
-    public override void FireContinually(bool callFromEnemy, Vector3 target)
+    public override void FireContinually(bool callFromEnemy, Transform target)
     {
-        this.target = target;
+        this.targetTransform = target;
         if (!callFromEnemy && !weaponData.canContinuallyFire) return;
         if (firingContinually) return;
 
@@ -66,7 +66,7 @@ public class BurstShotWeapon : WeaponsClass
     {
         while (firingContinually)
         {
-            Fire(target);
+            Fire(targetTransform.position);
             yield return continualFireWait;
         }
     }

@@ -12,5 +12,6 @@ public class CharacterData
     public Transform mobilityUnit;
     public Transform jackInSpot;
     public Transform target;
+    public Transform center;
     public Transform lookAtTarget;
 }

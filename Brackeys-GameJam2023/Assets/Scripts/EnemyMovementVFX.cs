@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
 
 public class EnemyMovementVFX : MonoBehaviour
 {
     private CharacterData data;
     private float muzzleRotateSpeed;
-    private Transform target;
     private Transform turretUnit;
     private Transform mobilityUnit;
 
@@ -14,6 +12,9 @@ public class EnemyMovementVFX : MonoBehaviour
     private Vector3 difference;
     private Vector3 lastPos;
     private Vector3 origRot;
+    private Vector3 smoothTarget;
+    private Vector3 lastSmoothPos;
+    private Enemy enemyComponent;
 
     private void OnEnable()
     {
@@ -28,14 +29,8 @@ public class EnemyMovementVFX : MonoBehaviour
     private void Awake()
     {
         data = GetComponent<Character>().data;
-        GameManager.Instance.playerSet += UpdateTarget;
-        UpdateTarget();
+        enemyComponent = GetComponent<Enemy>();
         Init();
-    }
-
-    private void UpdateTarget()
-    {
-        target = GameManager.Instance.Player.transform;
     }
 
     public void Init()
@@ -47,11 +42,11 @@ public class EnemyMovementVFX : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(!playerDead)
+        if (!playerDead)
             TurretUnitOrientation();
         MobilityUnitOrientation();
     }
-     
+
     private void SetPlayerStatus(bool result)
     {
         playerDead = result;
@@ -59,10 +54,7 @@ public class EnemyMovementVFX : MonoBehaviour
 
     private void TurretUnitOrientation()
     {
-        if(target!=null)
-        {
-            data.lookAtTarget.position = target.position;
-        }
+        data.lookAtTarget.position = enemyComponent.smoothTarget;
     }
 
     private void MobilityUnitOrientation()

@@ -28,6 +28,9 @@ public class Enemy : MonoBehaviour
     private AimConstraint lTurretConstraint;
     private AimConstraint rTurretConstraint;
 
+    public Vector3 smoothTarget;
+    private Vector3 lastTarget;
+
     private void OnEnable()
     {
         GameManager.Instance.playerSet += UpdateTarget;
@@ -45,7 +48,7 @@ public class Enemy : MonoBehaviour
     {
         character = GetComponent<Character>();
         data = character.data;
-        playerTransform = GameManager.Instance.Player.transform;
+        playerTransform = GameManager.Instance.Player.GetComponent<Character>().data.center;
         agent = GetComponent<NavMeshAgent>();
         weaponsManager = GetComponent<WeaponsManager>();
         Init();
@@ -80,6 +83,13 @@ public class Enemy : MonoBehaviour
                 TrackDistance();
             }
         }
+
+        if(playerTransform!=null)
+        {
+            smoothTarget = Vector3.Lerp(lastTarget, playerTransform.position, data.characterSpecs.muzzleRotateSpeed);
+            lastTarget = smoothTarget;
+            data.target.position = smoothTarget;
+        }
     }
 
     private void TrackDistance()
@@ -113,12 +123,13 @@ public class Enemy : MonoBehaviour
     private void StartAttack()
     {
         agent.ResetPath();
-        weaponsManager.FireContinually(true, playerTransform.position);
+        weaponsManager.FireContinually(true, data.target);
     }
 
     private void UpdateTarget()
     {
-        playerTransform = GameManager.Instance.Player.transform;
+        playerTransform = GameManager.Instance.Player.GetComponent<Character>().data.center;
+        lastTarget = playerTransform.position;
     }
 
     public void StunEnemy()
@@ -144,12 +155,17 @@ public class Enemy : MonoBehaviour
             playerDead = true;
         }
     }
-
+    
 
     private void SetStateOfConstraints(bool state)
     {
         headAimConstraint.enabled = state;
         lTurretConstraint.enabled = state;
         rTurretConstraint.enabled = state;
+    }
+    private void OnDrawGizmos()
+    {
+        Debug.DrawRay(transform.position, smoothTarget);
+        Gizmos.DrawSphere(smoothTarget, 1f);
     }
 }
