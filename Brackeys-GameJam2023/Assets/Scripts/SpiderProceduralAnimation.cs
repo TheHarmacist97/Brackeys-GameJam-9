@@ -38,6 +38,7 @@ public class SpiderProceduralAnimation : MonoBehaviour
     {
         yield return null;
         QuickTimeEvent.Instance.hijackStarted += StartHijack;
+        hijacking = false;
     }
 
     private void StartHijack()

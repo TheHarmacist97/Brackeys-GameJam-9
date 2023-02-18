@@ -7,7 +7,7 @@ using UnityEngine;
 public class Parasite : MonoBehaviour
 {
     public ParasiteData parasiteData;
-    private readonly List<Type> ParasiteComponents = new() { typeof(SearchForJackSpots), typeof(TeleportAbility) };
+    private readonly List<Type> ParasiteComponents = new() { typeof(SearchForJackSpots), typeof(TeleportAbility)};
     private SearchForJackSpots searchForJackSpots;
     private TeleportAbility teleportAbility;
     private PlayerMovement playerMovement;
