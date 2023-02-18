@@ -10,6 +10,11 @@ public class Character : MonoBehaviour, IDamageable
     private GameObject tpp;
     private CinemachineFreeLook tppCamera;
     private CinemachineVirtualCamera fppCamera;
+    private int _currentHealth;
+    private int _totalHealth;
+
+    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(InputHandler), typeof(PlayerMovementVFX) };
+    private List<Type> enemyComponents = new List<Type>() { typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX) }; //will need these now 
 
     #region public References
     public CharacterData data;
@@ -54,8 +59,6 @@ public class Character : MonoBehaviour, IDamageable
         }
 
     }
-    private int _currentHealth;
-    private int _totalHealth;
     public int currentHealth { get => _currentHealth; set => _currentHealth = value; }
     public int totalHealth { get => _totalHealth; set => _totalHealth = value; }
     public CinemachineFreeLook TppCinemachineCamera 
@@ -80,9 +83,11 @@ public class Character : MonoBehaviour, IDamageable
     }
     #endregion
 
-    private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(InputHandler), typeof(PlayerMovementVFX) };
-    private List<Type> enemyComponents = new List<Type>(){ typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX)}; //will need these now 
-
+    private void Awake()
+    {
+        _totalHealth = data.characterSpecs.maxHealth;
+        _currentHealth = _totalHealth;
+    }
     public void Switch(bool isPlayer)
     {
         foreach (Type type in isPlayer ? enemyComponents : playerComponents)

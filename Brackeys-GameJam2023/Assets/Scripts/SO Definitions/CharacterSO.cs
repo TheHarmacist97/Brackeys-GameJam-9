@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterSpec", menuName = "Character Specification", order = 1)]
 public class CharacterSO : ScriptableObject
 {
+    [Header("General")]
+    public int maxHealth;
     [Header("CharacterController variables")]
     public float radius;
     public float height;

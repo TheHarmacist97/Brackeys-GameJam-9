@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b5eb0758c11a1429bc2bc257a741ee, type: 3}
   m_Name: CharacterSpec
   m_EditorClassIdentifier: 
+  maxHealth: 100
   radius: 2
   height: 2
   center: {x: 0, y: 0.3, z: 0}
