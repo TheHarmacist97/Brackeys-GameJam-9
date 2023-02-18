@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 1139156087}
   - component: {fileID: 1139156086}
   - component: {fileID: 1139156088}
+  - component: {fileID: 1139156089}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1065,18 +1066,10 @@ MonoBehaviour:
     thirdPersonCamera: {fileID: 856029710}
     enemyParent: {fileID: 7512122}
     bulletParent: {fileID: 705684067}
+  parasite: {fileID: 0}
   player: {fileID: 274523294}
   gate: {fileID: 0}
-  characterTypes:
-  - {fileID: 1930403398, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
   currentObjectives: []
-  spawnPositions:
-  - {fileID: 804518545}
-  - {fileID: 882633749}
-  - {fileID: 1322840947}
-  - {fileID: 621909229}
-  - {fileID: 1508397925}
-  spawnArea: {x: 10, y: 10}
 --- !u!4 &1139156087
 Transform:
   m_ObjectHideFlags: 0
@@ -1115,6 +1108,29 @@ MonoBehaviour:
     correctHitIncrement: 0.15
   successMeter: 0
   waveSuccess: 0
+--- !u!114 &1139156089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139156085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b81c989e36623740b5fda6a45e50e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterTypes:
+  - {fileID: 1930403398, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
+  - {fileID: 1930403398, guid: 20d6cda86f97bdf43b76f004f6c66f3d, type: 3}
+  - {fileID: 3458413410511773821, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+  spawnPositions:
+  - {fileID: 804518545}
+  - {fileID: 882633749}
+  - {fileID: 1322840947}
+  - {fileID: 621909229}
+  - {fileID: 1508397925}
+  spawnArea: {x: 10, y: 10}
 --- !u!1 &1168674666
 GameObject:
   m_ObjectHideFlags: 0

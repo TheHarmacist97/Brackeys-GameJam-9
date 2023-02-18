@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+[RequireComponent(typeof(SpawnManager))]
 public class GameManager : StaticInstances<GameManager>
 {
     public DependencyInjector dependencyInjector;
@@ -11,15 +11,12 @@ public class GameManager : StaticInstances<GameManager>
     public Character player;
      
     [SerializeField] private Gate gate;
-    [SerializeField] private List<Character> characterTypes;
+    
     [SerializeField] private List<IObjective> currentObjectives = new List<IObjective>();
-    [SerializeField] private List<Transform> spawnPositions = new List<Transform>();
-    [SerializeField] private Vector2 spawnArea = new Vector2(10, 10);
 
-    private List<Character> enemies = new List<Character>();
 
-    private int waveNumber = 0;
-    private int enemyThreshold;
+
+    private SpawnManager spawnManager;
     public Action playerSet;
     public Action PlayerDeathEvent;
 
@@ -56,26 +53,21 @@ public class GameManager : StaticInstances<GameManager>
 
     private void Initialise()
     {
-        SpawnCharacter(characterTypes[Random.Range(0, characterTypes.Count)]);
-        //HackCharacter(enemies[0]);
-        SpawnNewWave(characterTypes);
+        spawnManager = GetComponent<SpawnManager>();
+        spawnManager.SpawnNewWave();
         StartObjectives();
     }
 
     #region Public Functions
     public void HackCharacter(Character character)
     {
-        //if (!enemies.Contains(character))
-          //  return;
         character.Switch(true);
-        enemies.Remove(character);
-        CheckNewWave();
+        spawnManager.RemoveEnemy(character);
         Player = character;
     }
     public void EnemyDestroyed(Character character)
     {
-        enemies.Remove(character);
-        CheckNewWave();
+        spawnManager.RemoveEnemy(character);
     }
     public void UpdateObjective(IObjective objective)
     {
@@ -100,28 +92,7 @@ public class GameManager : StaticInstances<GameManager>
 
     #region Utility Functions
     #region Spawner
-    private void SpawnNewWave(List<Character> characterTypes)
-    {
-        foreach (Character character in characterTypes)
-        {
-            SpawnCharacter(character, GameConfig.waveInfo[0, waveNumber]);
-        }
-    }
-    private void SpawnCharacter(Character characterType, int count = 1)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            Character character = Instantiate(characterType, GetRandomPosition(), characterType.transform.rotation, dependencyInjector.enemyParent);
-            character.Switch(false);
-            enemies.Add(character);
-        }
-    }
-    private Vector3 GetRandomPosition()
-    {
-        Vector3 spawnPosition = spawnPositions[Random.Range(0, spawnPositions.Count)].position;
-        spawnPosition += (Vector3.forward * Random.Range(-spawnArea.y, spawnArea.y) + Vector3.right * Random.Range(-spawnArea.x, spawnArea.x));
-        return spawnPosition;
-    }
+    
     #endregion
     
     private void StartObjectives()
@@ -133,13 +104,7 @@ public class GameManager : StaticInstances<GameManager>
         }
     }
 
-    private void CheckNewWave()
-    {
-        if (enemies.Count <= enemyThreshold)
-        {
-            SpawnNewWave(characterTypes);
-        }
-    }
+    
     #endregion
 
 }
