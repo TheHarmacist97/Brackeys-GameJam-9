@@ -9,7 +9,7 @@ public static class GameConfig
     //==========PLAYER SETTINGS===========
     public static bool fppToggle = false;
 
-    public static int[,] waveInfo = new int[,] { { 5, 20, 25, 27, 30 } };
+    public static int[,] waveInfo = new int[,] { { 1, 20, 25, 27, 30 } };
     public static KeyCode PRIMARY_FIRE_BUTTON = KeyCode.Mouse0;
     public static KeyCode SECONDARY_FIRE_BUTTON = KeyCode.Mouse1;
     public static KeyCode RELOAD_BUTTON = KeyCode.R;

@@ -24,6 +24,7 @@ public class QuickTimeEvent : MonoBehaviour
     private bool stopDecay;
     private bool stopWaitingForInput;
     public Action<bool> hijackComplete;
+    public Action hijackStarted;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class QuickTimeEvent : MonoBehaviour
 
     public void StartQTEWrapper(Character ch)
     {
+        hijackStarted();
         state = QTStates.START;
         StartCoroutine(StartQTE(ch));
     }

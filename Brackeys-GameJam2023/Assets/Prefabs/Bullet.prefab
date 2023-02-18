@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  damage: 0
+  damage: 3
   bulletType: 0
   bulletRange: 100
 --- !u!136 &3203862307265397136

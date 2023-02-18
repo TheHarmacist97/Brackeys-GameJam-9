@@ -14,10 +14,19 @@ public class TeleportAbility : InputAbility
     private bool canTeleport = true;
     private CharacterController controller;
 
-    private void OnEnable() => Initialise();
+    private void OnEnable() => StartCoroutine(Initialise());
 
-    private void Initialise()
+    private void OnDisable()
     {
+        QuickTimeEvent.instance.hijackStarted -= StartedHijacking;
+        QuickTimeEvent.instance.hijackComplete -= CompletedHijacking;
+    }
+
+    private IEnumerator Initialise()
+    {
+        yield return null;  
+        QuickTimeEvent.instance.hijackStarted += StartedHijacking;
+        QuickTimeEvent.instance.hijackComplete += CompletedHijacking;
         controller = GetComponent<CharacterController>();
     }
     public override void Fire(Vector3 target)
@@ -49,4 +58,13 @@ public class TeleportAbility : InputAbility
         yield return new WaitForSeconds(coolDown);
         canTeleport= true;
     }
+    private void CompletedHijacking(bool result)
+    {
+        canTeleport = result;
+    }
+
+    private void StartedHijacking()
+    {
+        canTeleport = false;
+    }    
 }
