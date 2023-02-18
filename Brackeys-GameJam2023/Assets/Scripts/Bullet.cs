@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Collided");
+        //Debug.Log("Collided");
         TryDamage(collider);
         Destroy(gameObject);
     }
@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
     {
         if (collider.gameObject.TryGetComponent<IDamageable>(out IDamageable damage))
         {
-            Debug.Log("damaged");
+            //Debug.Log("damaged");
             damage.TakeDamage(this.damage);
         }
     }

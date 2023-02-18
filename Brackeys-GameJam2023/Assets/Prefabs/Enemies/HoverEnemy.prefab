@@ -125,7 +125,7 @@ MonoBehaviour:
     characterSpecs: {fileID: 11400000, guid: 78e7ec275f522714a8b5055f55ccece0, type: 2}
     cameraProfile: {fileID: 11400000, guid: 7c77906ff7c82084782dcd9eabc97b24, type: 2}
     mobilityUnit: {fileID: 3795425084430126668}
-    jackInSpot: {fileID: 0}
+    jackInSpot: {fileID: 6924518343163396662}
     target: {fileID: 1522753452}
     center: {fileID: 2233402744195214849}
     lookAtTarget: {fileID: 115133531}
