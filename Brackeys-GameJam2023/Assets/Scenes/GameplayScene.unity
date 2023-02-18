@@ -1790,6 +1790,7 @@ GameObject:
   - component: {fileID: 1397094208}
   - component: {fileID: 1397094207}
   - component: {fileID: 1397094206}
+  - component: {fileID: 1397094209}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1840,17 +1841,7 @@ MonoBehaviour:
   parasite: {fileID: 258306910}
   player: {fileID: 258306907}
   gate: {fileID: 0}
-  characterTypes:
-  - {fileID: 1930403398, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
-  - {fileID: 1930403398, guid: 20d6cda86f97bdf43b76f004f6c66f3d, type: 3}
-  - {fileID: 3458413410511773821, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
   currentObjectives: []
-  spawnPositions:
-  - {fileID: 673789876}
-  - {fileID: 1092712739}
-  - {fileID: 1185435415}
-  - {fileID: 1734270309}
-  spawnArea: {x: 10, y: 10}
 --- !u!4 &1397094208
 Transform:
   m_ObjectHideFlags: 0
@@ -1866,6 +1857,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1397094209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397094205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b81c989e36623740b5fda6a45e50e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterTypes:
+  - {fileID: 1930403398, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
+  - {fileID: 3458413410511773821, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+  - {fileID: 1930403398, guid: 20d6cda86f97bdf43b76f004f6c66f3d, type: 3}
+  spawnPositions:
+  - {fileID: 673789876}
+  - {fileID: 1092712739}
+  - {fileID: 1185435415}
+  - {fileID: 1734270309}
+  spawnArea: {x: 10, y: 10}
 --- !u!1 &1734270308
 GameObject:
   m_ObjectHideFlags: 0

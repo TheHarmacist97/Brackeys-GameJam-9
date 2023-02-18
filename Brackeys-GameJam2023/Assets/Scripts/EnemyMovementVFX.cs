@@ -54,7 +54,7 @@ public class EnemyMovementVFX : MonoBehaviour
 
     private void TurretUnitOrientation()
     {
-        data.lookAtTarget.position = enemyComponent.smoothTarget;
+        data.target.position = enemyComponent.smoothTarget;
     }
 
     private void MobilityUnitOrientation()
