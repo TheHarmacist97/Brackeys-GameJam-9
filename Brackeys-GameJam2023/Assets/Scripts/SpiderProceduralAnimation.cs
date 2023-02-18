@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,13 +23,28 @@ public class SpiderProceduralAnimation : MonoBehaviour
     private Vector3 lastBodyPos;
 
     public float velocityMultiplier = .2f;
+    private bool hijacking;
 
     private void OnEnable()
     {
-        
+        StartCoroutine(Init());
+    }
+    private void OnDisable()
+    {
+        QuickTimeEvent.instance.hijackStarted -= StartHijack;
     }
 
-    
+    private IEnumerator Init()
+    {
+        yield return null;
+        QuickTimeEvent.instance.hijackStarted += StartHijack;
+    }
+
+    private void StartHijack()
+    {
+        hijacking = true;
+    }
+
     static Vector3 MatchToSurfaceFromAbove(Vector3 point, float halfRange, Vector3 up)
     {
         Vector3 result = point;
@@ -74,6 +90,8 @@ public class SpiderProceduralAnimation : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (hijacking) return;
+
         velocity = transform.position - lastBodyPos;
         velocity = (velocity + smoothness * lastVelocity) / (smoothness + 1f);
 
