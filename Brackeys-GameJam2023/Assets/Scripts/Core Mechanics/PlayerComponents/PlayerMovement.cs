@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = acceleration * Time.deltaTime;
         acceleration -= Time.deltaTime * characterSpecs.mass;
         acceleration = Mathf.Max(acceleration, GameConfig.Constants.MAX_GAME_GRAVITY);
-        if (Physics.CheckSphere(groundCheck.position, 0.5f, groundMask))
+        if (Physics.CheckSphere(groundCheck.position, 0.05f, groundMask))
         {
             velocity.y = Mathf.Max(velocity.y, 0f);
             acceleration = Mathf.Max(acceleration, 0f);
@@ -69,7 +69,8 @@ public class PlayerMovement : MonoBehaviour
                 acceleration = characterSpecs.jumpForce;
             }
         }
-        controller.Move(velocity);
+        if(velocity!=Vector3.zero)
+            controller.Move(velocity);
     }
     private void OnDestroy()
     {

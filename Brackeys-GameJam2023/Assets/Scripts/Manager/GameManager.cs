@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GameManager : MonoBehaviour
+public class GameManager : StaticInstances<GameManager>
 {
-    public static GameManager Instance;
     public DependencyInjector dependencyInjector;
 
     public Character player;
@@ -30,15 +29,7 @@ public class GameManager : MonoBehaviour
             player = value;
             playerSet?.Invoke();
         }
-    }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-            Destroy(this);
-        else
-            Instance = this;
-    }
+    }   
     private void Start()
     {
         Initialise();

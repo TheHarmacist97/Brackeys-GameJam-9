@@ -21,7 +21,7 @@ public class SpiderProceduralAnimation : MonoBehaviour
     private Vector3 lastVelocity;
     private Vector3 lastBodyPos;
 
-    private float velocityMultiplier = 1f;
+    private float velocityMultiplier = .2f;
 
     static Vector3 MatchToSurfaceFromAbove(Vector3 point, float halfRange, Vector3 up)
     {
@@ -31,7 +31,6 @@ public class SpiderProceduralAnimation : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 2f * halfRange, GameConfig.Constants.GROUND_TAG_INDEX))
         {
             result = hit.point;
-            Debug.Log(hit.collider.gameObject.name);
         }
         return result;
     }

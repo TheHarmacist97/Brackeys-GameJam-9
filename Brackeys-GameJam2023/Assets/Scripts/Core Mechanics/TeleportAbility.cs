@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class TeleportAbility : InputAbility
 {
+    [SerializeField]
+    private float range;
+    [SerializeField]
+    private float coolDown;
+    private bool canTeleport = true;
     private CharacterController controller;
+
     private void OnEnable() => Initialise();
 
     private void Initialise()
@@ -15,7 +22,10 @@ public class TeleportAbility : InputAbility
     }
     public override void Fire(Vector3 target)
     {
-        Teleport(transform.forward * 5f);
+        if(canTeleport)
+        {
+            StartCoroutine(Teleport(transform.forward * 5f));
+        }
     }
 
     public override void FireContinually(bool fireFromEnemy, Vector3 target)
@@ -32,8 +42,11 @@ public class TeleportAbility : InputAbility
     {
         //Does Nothing
     }
-    private void Teleport(Vector3 vector3)
+    private IEnumerator Teleport(Vector3 vector3)
     {
-
+        canTeleport= false;        
+        transform.position = transform.position + transform.forward * range;
+        yield return new WaitForSeconds(coolDown);
+        canTeleport= true;
     }
 }
