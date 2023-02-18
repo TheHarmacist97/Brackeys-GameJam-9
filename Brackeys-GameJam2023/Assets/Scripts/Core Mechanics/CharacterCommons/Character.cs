@@ -132,7 +132,7 @@ public class Character : MonoBehaviour, IDamageable
         {
             GameManager.Instance.PlayerCharacterDeath();
         }
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, isPlayer?0f:2f);
     }
     #endregion
 }

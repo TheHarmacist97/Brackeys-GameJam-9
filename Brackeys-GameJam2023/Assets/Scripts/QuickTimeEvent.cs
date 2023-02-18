@@ -38,9 +38,15 @@ public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
 
     public void StartQTEWrapper(Character ch)
     {
-        hijackStarted();
+        ResetQTE();
         state = QTStates.START;
+        hijackStarted();
         StartCoroutine(StartQTE(ch));
+    }
+
+    private void ResetQTE()
+    {
+        waveSuccess = 0;
     }
 
     private IEnumerator StartQTE(Character character)

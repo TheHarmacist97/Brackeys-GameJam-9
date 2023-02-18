@@ -76,4 +76,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Destroy(controller);
     }
+
+    public void Reset()
+    {
+        transform.forward = Vector3.forward;
+    }
 }

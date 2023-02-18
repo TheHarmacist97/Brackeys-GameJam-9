@@ -63,9 +63,9 @@ public class Enemy : MonoBehaviour
         agent.acceleration = data.characterSpecs.accel;
         agent.angularSpeed = data.characterSpecs.rotateSpeed;
         agent.speed = data.characterSpecs.maxMoveSpeed;
-        headAimConstraint = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<AimConstraint>();
-        lTurretConstraint = headAimConstraint.transform.GetChild(0).GetChild(0).GetComponent<AimConstraint>();
-        rTurretConstraint = headAimConstraint.transform.GetChild(0).GetChild(1).GetComponent<AimConstraint>();
+        headAimConstraint = data.headConstraint;
+        lTurretConstraint = data.leftTurretConstraint;
+        rTurretConstraint = data.rightTurretConstraint;
     }
 
     private void Update()
@@ -130,6 +130,7 @@ public class Enemy : MonoBehaviour
     private void UpdateTarget()
     {
         playerTransform = GameManager.Instance.Player.GetComponent<Character>().data.center;
+        Debug.Log(playerTransform.root.name);
         lastTarget = playerTransform.position;
     }
 
@@ -157,13 +158,14 @@ public class Enemy : MonoBehaviour
         }
     }
     
-
     private void SetStateOfConstraints(bool state)
     {
         headAimConstraint.enabled = state;
         lTurretConstraint.enabled = state;
-        rTurretConstraint.enabled = state;
+        if (rTurretConstraint != null)
+            rTurretConstraint.enabled = state;
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(smoothTarget, 1f);

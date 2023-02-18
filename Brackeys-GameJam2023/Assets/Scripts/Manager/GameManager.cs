@@ -65,8 +65,8 @@ public class GameManager : StaticInstances<GameManager>
     #region Public Functions
     public void HackCharacter(Character character)
     {
-        if (!enemies.Contains(character))
-            return;
+        //if (!enemies.Contains(character))
+          //  return;
         character.Switch(true);
         enemies.Remove(character);
         CheckNewWave();
@@ -92,7 +92,6 @@ public class GameManager : StaticInstances<GameManager>
 
     public void PlayerCharacterDeath()
     {
-        Debug.Log("death");
         parasite.transform.SetParent(null, true);
         PlayerDeathEvent?.Invoke();
         HackCharacter(parasite.GetComponent<Character>());

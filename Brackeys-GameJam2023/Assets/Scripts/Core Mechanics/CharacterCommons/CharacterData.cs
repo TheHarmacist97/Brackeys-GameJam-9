@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 [System.Serializable]
 public class CharacterData
@@ -14,4 +15,7 @@ public class CharacterData
     public Transform target;
     public Transform center;
     public Transform lookAtTarget;
+    public AimConstraint headConstraint;
+    public AimConstraint leftTurretConstraint;
+    public AimConstraint rightTurretConstraint;
 }

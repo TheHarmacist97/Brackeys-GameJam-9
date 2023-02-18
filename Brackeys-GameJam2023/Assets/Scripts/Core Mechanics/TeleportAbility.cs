@@ -18,14 +18,13 @@ public class TeleportAbility : InputAbility
     {
         QuickTimeEvent.Instance.hijackStarted -= StartedHijacking;
         QuickTimeEvent.Instance.hijackComplete -= CompletedHijacking;
-        GameManager.Instance.PlayerDeathEvent -= TeleportBack;
     }
 
     private void Initialise()
     {
         QuickTimeEvent.Instance.hijackStarted += StartedHijacking;
         QuickTimeEvent.Instance.hijackComplete += CompletedHijacking;
-        GameManager.Instance.PlayerDeathEvent += TeleportBack;
+        //GameManager.Instance.PlayerDeathEvent += TeleportBack;
         controller = GetComponent<CharacterController>();
     }
     public override void Fire(Vector3 target)
@@ -60,7 +59,6 @@ public class TeleportAbility : InputAbility
 
     public void TeleportBack()
     {
-        Debug.Log("Called");
         Vector3 destination = transform.position + (transform.up * 3f);
         StartCoroutine(Teleport(destination));
     }

@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfd1ba63f1c4a84d835d4ad888fbb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   data:
     muzzles:
     - {fileID: 1784749311285776290}
@@ -369,6 +370,9 @@ MonoBehaviour:
     target: {fileID: 823407816482787739}
     center: {fileID: 2522573634752495790}
     lookAtTarget: {fileID: 7095005580010506644}
+    headConstraint: {fileID: 2440299471182961216}
+    leftTurretConstraint: {fileID: 5103429205595288718}
+    rightTurretConstraint: {fileID: 3823398918467708361}
 --- !u!136 &4125931167981509331
 CapsuleCollider:
   m_ObjectHideFlags: 0

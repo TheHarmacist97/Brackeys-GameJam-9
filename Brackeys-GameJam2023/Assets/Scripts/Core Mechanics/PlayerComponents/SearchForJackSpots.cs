@@ -29,8 +29,21 @@ public class SearchForJackSpots : MonoBehaviour
     private CinemachineFreeLook freeLook;
     private readonly float rate = 4f;
 
+    
+    public void ResetParasite()
+    {
+        isHit = false;
+        alive = true;
+        startedHijacking = false;
+        hijackedSuccessfully = false;
+        currentPulses = 0;
+        characterTargeted = null;
+        StartCoroutine(PulseCoroutine());
+    }
+
     private void OnEnable()
     {
+        ResetParasite();
         StartCoroutine(Subscribe());
     }
 
@@ -196,21 +209,5 @@ public class SearchForJackSpots : MonoBehaviour
         transform.parent = parent;
     }
 
-
-    private void OnDrawGizmos()
-    {
-
-        if (isHit)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(mainCamTransform.position, mainCamTransform.forward * hit.distance);
-            Gizmos.DrawWireCube(mainCamTransform.position + mainCamTransform.forward * hit.distance, Vector3.one * parasite.parasiteData.boxCastThickness);
-        }
-        else
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawRay(mainCamTransform.position, mainCamTransform.forward * parasite.parasiteData.maxRange);
-        }
-    }
 }
 

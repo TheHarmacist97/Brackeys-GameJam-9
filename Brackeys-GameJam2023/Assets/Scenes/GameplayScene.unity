@@ -179,8 +179,8 @@ MonoBehaviour:
   m_ScreenY: 0.55
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
-  m_SoftZoneWidth: 0
-  m_SoftZoneHeight: 0
+  m_SoftZoneWidth: 0.24
+  m_SoftZoneHeight: 0.3
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -4}
+  m_FollowOffset: {x: 0, y: 2.5, z: -3}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 0.4
@@ -766,8 +766,8 @@ MonoBehaviour:
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
-  m_SoftZoneWidth: 0
-  m_SoftZoneHeight: 0
+  m_SoftZoneWidth: 0.34
+  m_SoftZoneHeight: 0.58
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -784,10 +784,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -4}
+  m_FollowOffset: {x: 0, y: 2.5, z: -3}
   m_XDamping: 1
-  m_YDamping: 0.2
-  m_ZDamping: 0.2
+  m_YDamping: 1
+  m_ZDamping: 0.1
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1118,6 +1118,67 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1001 &693131330
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516584, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516587, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_Name
+      value: EnemiesSpider
+      objectReference: {fileID: 0}
+    - target: {fileID: 4665930465440516587, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
 --- !u!1 &765660020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,12 +1329,12 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0
   m_VerticalDamping: 0
-  m_ScreenX: 0.33
-  m_ScreenY: 0.65
+  m_ScreenX: 0.5
+  m_ScreenY: 0.87
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
-  m_SoftZoneWidth: 0
-  m_SoftZoneHeight: 0
+  m_SoftZoneWidth: 0.5
+  m_SoftZoneHeight: 0.54
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -1290,10 +1351,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -4}
+  m_FollowOffset: {x: 0, y: 2.5, z: -3}
   m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 0.1
+  m_YDamping: 0
+  m_ZDamping: 0.4
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1537,12 +1598,12 @@ MonoBehaviour:
   m_BindingMode: 4
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 5
-    m_Radius: 3
   - m_Height: 3
-    m_Radius: 4
-  - m_Height: 2
+    m_Radius: 2
+  - m_Height: 2.5
     m_Radius: 3
+  - m_Height: 0.12
+    m_Radius: 1.47
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
   - {fileID: 1039631165}
@@ -1751,8 +1812,8 @@ MonoBehaviour:
   currentKeycode: 0
   state: 0
   data:
-    winsRequired: 2
-    waves: 3
+    winsRequired: 1
+    waves: 2
     timeAllowedPerWave: 4
     bufferTime: 1
     successDecayRate: 0.2
@@ -1781,6 +1842,8 @@ MonoBehaviour:
   gate: {fileID: 0}
   characterTypes:
   - {fileID: 1930403398, guid: e4041d407bf3bc549b72a2feadb2736b, type: 3}
+  - {fileID: 1930403398, guid: 20d6cda86f97bdf43b76f004f6c66f3d, type: 3}
+  - {fileID: 3458413410511773821, guid: b0d70a69d2fed694e8acbd6843203e75, type: 3}
   currentObjectives: []
   spawnPositions:
   - {fileID: 673789876}

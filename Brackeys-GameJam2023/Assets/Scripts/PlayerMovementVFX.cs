@@ -11,17 +11,6 @@ public class PlayerMovementVFX : MonoBehaviour
     private Ray ray;
     private RaycastHit raycastHit;
 
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-       
-    }
-
-
     private void Awake()
     {
         cameraMain = Camera.main;
@@ -47,12 +36,6 @@ public class PlayerMovementVFX : MonoBehaviour
     {
         targetTransform.position = Vector3.Lerp(targetTransform.position, lerpPosition, 10f * Time.deltaTime) ;
     }
-
-    public void PlayerSwitch()
-    {
-
-    }
-
 
     private void OnDrawGizmos()
     {
