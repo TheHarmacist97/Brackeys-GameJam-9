@@ -165,7 +165,6 @@ public class Enemy : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Debug.DrawRay(transform.position, smoothTarget);
         Gizmos.DrawSphere(smoothTarget, 1f);
     }
 }
