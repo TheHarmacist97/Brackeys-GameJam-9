@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54b5eb0758c11a1429bc2bc257a741ee, type: 3}
   m_Name: Parasite
   m_EditorClassIdentifier: 
-  radius: 0.15
-  height: 0.25
+  maxHealth: 100
+  radius: 0.3
+  height: 0.5
   center: {x: 0, y: 0.385, z: 0}
   maxMoveSpeed: 15
-  mass: 1
+  mass: 10
   jumpForce: 10
   accel: 4
   rotateSpeed: 200

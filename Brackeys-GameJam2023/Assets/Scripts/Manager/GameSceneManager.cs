@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameSceneManager : MonoBehaviour
+public class GameSceneManager : StaticInstances<GameSceneManager>
 {
-    
-    public static GameSceneManager instance;
-
-    private void Awake()
+    public enum GameScene
     {
-        if(instance!=null && instance != this)
-        {
-            Destroy(this);
-        }
-        else
-            instance= this;
+        GAME_START = 0,
+        GAME_PLAY = 1,
+        GAME_END = 2
+    }
+    public void SetScene(GameScene scene)
+    {
+        SceneManager.LoadScene((int)scene);
+    }
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(this);
     }
 }
