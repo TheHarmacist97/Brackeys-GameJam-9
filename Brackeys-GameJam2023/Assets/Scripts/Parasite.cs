@@ -65,6 +65,7 @@ public class Parasite : MonoBehaviour
 
     private void OnBotDeath()
     {
+        spiderProceduralAnimation.hijacking = false;
         searchForJackSpots.enabled = true;
         teleportAbility.enabled = true;
         playerMovement.enabled = true;
@@ -80,5 +81,9 @@ public class Parasite : MonoBehaviour
         teleportAbility.TeleportBack();
         playerMovement.Reset();
         searchForJackSpots.ResetParasite();
+    }
+    private void StartHijack()
+    {
+        spiderProceduralAnimation.hijacking = true;
     }
 }

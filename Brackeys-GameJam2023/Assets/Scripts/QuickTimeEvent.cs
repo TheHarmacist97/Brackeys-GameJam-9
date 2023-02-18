@@ -28,12 +28,6 @@ public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
     protected override void Awake()
     {
         base.Awake();
-        Init();
-    }
-
-    private void Init()
-    {
-        bufferWait = new WaitForSeconds(data.bufferTime);
     }
 
     public void StartQTEWrapper(Character ch)
@@ -68,7 +62,7 @@ public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
     {
         state = QTStates.IN_BUFFER;
         currentKeycode = GameConfig.Constants.QTEKeys[Mathf.CeilToInt(Random.Range(0, GameConfig.Constants.QTEKeys.Length))];
-        yield return bufferWait;
+        yield return new WaitForSeconds(data.bufferTime);
 
         StartDecay();
         float elapsedTime = 0f;

@@ -23,28 +23,9 @@ public class SpiderProceduralAnimation : MonoBehaviour
     private Vector3 lastBodyPos;
 
     public float velocityMultiplier = .2f;
-    private bool hijacking;
+    public bool hijacking;
 
-    private void OnEnable()
-    {
-        StartCoroutine(Init());
-    }
-    private void OnDisable()
-    {
-        QuickTimeEvent.Instance.hijackStarted -= StartHijack;
-    }
 
-    private IEnumerator Init()
-    {
-        yield return null;
-        QuickTimeEvent.Instance.hijackStarted += StartHijack;
-        hijacking = false;
-    }
-
-    private void StartHijack()
-    {
-        hijacking = true;
-    }
 
     static Vector3 MatchToSurfaceFromAbove(Vector3 point, float halfRange, Vector3 up)
     {

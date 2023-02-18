@@ -54,7 +54,7 @@ public class GameManager : StaticInstances<GameManager>
     private void Initialise()
     {
         spawnManager = GetComponent<SpawnManager>();
-        spawnManager.SpawnNewWave();
+        StartCoroutine(spawnManager.CheckNewWave());
         StartObjectives();
     }
 
