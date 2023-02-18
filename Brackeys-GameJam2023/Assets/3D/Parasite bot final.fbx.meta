@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BODY
-    second: {fileID: 2100000, guid: 0c246df17f5fa814b9fb53e3a2f058c3, type: 2}
+    second: {fileID: 2100000, guid: c499fe9335444c5419a9c5cb8ed422ad, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: LIGHTS
-    second: {fileID: 2100000, guid: 7cd0de0d5dd86a149926481856177b83, type: 2}
+    second: {fileID: 2100000, guid: 0ac7ddbcc0a89164d92fe265f337e573, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!this.gameObject.scene.isLoaded) return;
         QuickTimeEvent.instance.hijackComplete -= ResetEnemy;
         GameManager.Instance.playerSet -= UpdateTarget;
     }
