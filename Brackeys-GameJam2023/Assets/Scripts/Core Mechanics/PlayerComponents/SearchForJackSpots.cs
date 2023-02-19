@@ -98,7 +98,6 @@ public class SearchForJackSpots : MonoBehaviour
         while (alive)
         {
             yield return pulseWait;
-            if (hijackedSuccessfully) yield break;
             if (!startedHijacking)
             {
                 currentPulses++;
@@ -106,6 +105,7 @@ public class SearchForJackSpots : MonoBehaviour
             Pulse();
             if (currentPulses == parasite.parasiteData.maxPulses)
                 alive = false;
+            if (hijackedSuccessfully) yield break;
         }
         Death();
     }
@@ -118,7 +118,6 @@ public class SearchForJackSpots : MonoBehaviour
 
     private void Death()
     {
-        Debug.Log(alive);
         if (!alive&&!hijackedSuccessfully)
         {
             GameManager.Instance.HackCharacter(null);
