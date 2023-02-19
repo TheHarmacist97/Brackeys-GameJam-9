@@ -13,7 +13,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float timeBetweenSpawn;
     private bool canSpawnWave = true;
 
-
     private void SpawnNewWave()
     {
         if (canSpawnWave)
@@ -25,10 +24,14 @@ public class SpawnManager : MonoBehaviour
     {
         enemies.Remove(character);
     }
-    public IEnumerator CheckNewWave()
+    public void Initialise(Transform enemyParent)
     {
         characterTypes = new List<Character>(Resources.LoadAll<Character>("Prefabs/Enemies/"));
-
+        this.enemyParent = enemyParent;
+        StartCoroutine(CheckNewWave());
+    }
+    private IEnumerator CheckNewWave()
+    {
         while (true)
         {
             if (enemies == null)
