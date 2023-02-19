@@ -25,7 +25,10 @@ public class StaticInstances<T> : MonoBehaviour where T: MonoBehaviour
     protected virtual void Awake()
     {
         if (_instance != null && _instance != this as T)
-            Destroy(this);
+        {
+            Debug.Log("Duplicate found");
+            Destroy(this.gameObject);
+        }
         else
             _instance = this as T;
     }

@@ -27,7 +27,9 @@ public class AudioManager : StaticInstances<AudioManager>
             audioSource.clip = backGroundMusic[0];
         }
         if(!audioSource.isPlaying)
+        {
             audioSource.Play();
+        }
     }
     public void Mute(bool shouldMute)
     {

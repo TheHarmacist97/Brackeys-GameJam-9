@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseMenu;
+    [SerializeField] private Toggle musicToggle;
+    [SerializeField] private Toggle fppToggle;
     private void Awake()
     {
         if (!PlayerPrefs.HasKey(GameConfig.Constants.PLAYERPREFS_FPPTOGGLE))
@@ -17,6 +20,10 @@ public class PauseMenu : MonoBehaviour
         }
         ToggleMusic(PlayerPrefs.GetInt(GameConfig.Constants.PLAYERPREFS_MUSIC) == 1);
         ToggleFPP(PlayerPrefs.GetInt(GameConfig.Constants.PLAYERPREFS_FPPTOGGLE) == 1);
+        fppToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt(GameConfig.Constants.PLAYERPREFS_FPPTOGGLE) == 1);
+        musicToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt(GameConfig.Constants.PLAYERPREFS_MUSIC) == 1);
+
+
     }
     public void ToggleMusic(bool isOn)
     {

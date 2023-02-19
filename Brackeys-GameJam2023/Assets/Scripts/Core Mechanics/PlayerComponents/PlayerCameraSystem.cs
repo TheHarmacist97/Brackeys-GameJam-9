@@ -15,6 +15,7 @@ public class PlayerCameraSystem : MonoBehaviour
     private void OnDisable()
     {
         QuickTimeEvent.Instance.hijackComplete -= CameraSystemShutDown;
+        SetCursor(false);
     }
     #region Enable Functions
     private void Initialise()
