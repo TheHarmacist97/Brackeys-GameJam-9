@@ -62,9 +62,4 @@ public class KOTHObjective : IObjective
     {
         this.player = GameManager.Instance.Player;
     }
-    private void OnDrawGizmos()
-    {
-        Handles.color = Color.Lerp(Color.red, Color.blue, fillBar / 100f);
-        Handles.DrawWireDisc(transform.position, Vector3.up, range);
-    }
 }

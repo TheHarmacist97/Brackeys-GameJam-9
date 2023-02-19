@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Cinemachine;
-using System.Collections;
-using TMPro.EditorUtilities;
 
 public class Character : MonoBehaviour, IDamageable
 {

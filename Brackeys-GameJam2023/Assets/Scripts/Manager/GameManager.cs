@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
-using Random = UnityEngine.Random;
 [RequireComponent(typeof(SpawnManager))]
 [RequireComponent(typeof(QuickTimeEvent))]
 public class GameManager : StaticInstances<GameManager>
