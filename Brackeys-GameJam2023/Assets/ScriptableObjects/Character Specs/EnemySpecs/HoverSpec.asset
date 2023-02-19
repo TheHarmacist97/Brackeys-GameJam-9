@@ -19,7 +19,7 @@ MonoBehaviour:
   maxMoveSpeed: 7
   mass: 0
   jumpForce: 0
-  accel: 0
+  accel: 5
   rotateSpeed: 150
   effectiveRange: 5
   falloffRange: 12
