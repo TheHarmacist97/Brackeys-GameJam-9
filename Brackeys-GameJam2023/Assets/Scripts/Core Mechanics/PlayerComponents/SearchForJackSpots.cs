@@ -3,9 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 public class SearchForJackSpots : MonoBehaviour
 {
     public Collider[] enemyColliders;
+    private Image targetImage;
 
     private bool isHit;
     private bool alive = true;
@@ -143,13 +146,14 @@ public class SearchForJackSpots : MonoBehaviour
     {
         if (gotInRange > 0)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !startedHijacking)
+            if (Physics.BoxCast(mainCamTransform.position, boxCastExtents
+                , mainCamTransform.forward, out hit, mainCamTransform.rotation, data.maxRange, data.enemyLayer))
             {
-                Debug.Log("Got casted");
                 isHit = false;
-                if (Physics.BoxCast(mainCamTransform.position, boxCastExtents
-                    , mainCamTransform.forward, out hit, mainCamTransform.rotation, data.maxRange, data.enemyLayer))
+                TargetedUI.Instance.SetPosition(hit.transform.position + (Vector3.up * 1.5f));
+                if (Input.GetKeyDown(KeyCode.E) && !startedHijacking)
                 {
+                    Debug.Log("Got casted");
                     Debug.Log("Got jack " + hit.collider.name);
                     isHit = true;
                     startedHijacking = true;
