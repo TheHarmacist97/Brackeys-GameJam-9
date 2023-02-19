@@ -25,19 +25,18 @@ public class ManageHealthUIWorld : MonoBehaviour
         cGroup.alpha = 0f;
         mainCamera = Camera.main;
         currentCharacter = transform.parent.parent.GetComponent<Character>();
-        currentCharacter.OnDamage = UpdateHealth;
+        currentCharacter.OnDamage += UpdateHealth;
         GameManager.Instance.playerSet += OnCharacterChange;
     }
 
     private void Update()
     {
-        //transform.LookAt(mainCamera.transform.position);
+        transform.LookAt(mainCamera.transform.position);
     }
 
     private void UpdateHealth()
     {
-        transform.LookAt(mainCamera.transform);
-        healthBar.fillAmount = (float)((float)currentCharacter.currentHealth / (float)currentCharacter.totalHealth);
+        healthBar.fillAmount = (float)(currentCharacter.currentHealth / (float)currentCharacter.totalHealth);
         cGroup.alpha = 1f;
         StartCoroutine(FadeHealth());
     }
