@@ -45,7 +45,7 @@ public class GameManager : StaticInstances<GameManager>
     private void Initialise()
     {
         spawnManager = GetComponent<SpawnManager>();
-        StartCoroutine(spawnManager.CheckNewWave());
+        spawnManager.Initialise(dependencyInjector.enemyParent);
         StartObjectives();
     }
 
@@ -100,6 +100,7 @@ public class GameManager : StaticInstances<GameManager>
             Debug.Log("Called startObjectives");
             objectives.StartObjective();
         }
+        gate.Initialise(currentObjectives.Count);
     }
 
     

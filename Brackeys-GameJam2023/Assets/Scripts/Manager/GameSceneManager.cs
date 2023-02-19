@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,8 +15,11 @@ public class GameSceneManager : StaticInstances<GameSceneManager>
         GAME_PLAY = 1,
         GAME_END = 2
     }
+    private GameScene activeScene;
+    public Action<GameScene> sceneChanged;
     public void SetScene(GameScene scene)
     {
+        sceneChanged?.Invoke(scene);
         int sceneNumber = 0;
         switch (scene)
         {
@@ -24,7 +28,7 @@ public class GameSceneManager : StaticInstances<GameSceneManager>
                 iterator = ((iterator+1) % totalCount);
                 break;
             case GameScene.GAME_END:
-                sceneNumber = iterator + 1;
+                sceneNumber = 0;
                 break;
             default:
                 sceneNumber = 0;
@@ -38,5 +42,9 @@ public class GameSceneManager : StaticInstances<GameSceneManager>
         DontDestroyOnLoad(this);
         totalCount = SceneManager.sceneCountInBuildSettings - 2;
         iterator = 0;
+    }
+    public GameScene GetCuerrentScene()
+    {
+        return activeScene;
     }
 }

@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class MenuCanvasManager : MonoBehaviour
 {
-    private void Update()
+    private void Awake()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-            GameSceneManager.Instance.SetScene(GameSceneManager.GameScene.GAME_PLAY);
+        
+    }
+    public void LoadGamePlay()
+    {
+        GameSceneManager.Instance.SetScene(GameSceneManager.GameScene.GAME_PLAY);
+    }
+    public void QuitApp()
+    {
+        Debug.Log("Application Quit");
+        Application.Quit();
     }
 }
