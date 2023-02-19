@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7812570449374131312}
   - component: {fileID: 6612420027413412821}
   - component: {fileID: 8944430004183715615}
-  - component: {fileID: 7361138521017716687}
+  - component: {fileID: 6045134968315556089}
   m_Layer: 0
   m_Name: lvl Teleport
   m_TagString: Untagged
@@ -169,17 +169,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7361138521017716687
-MeshCollider:
+--- !u!65 &6045134968315556089
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7430943520327265994}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2534964839176971238, guid: 77e8b1dc07f3686458e333b6ef8c254c, type: 3}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.737612, y: 2.6753979, z: 4.7376113}
+  m_Center: {x: -0.00000011920929, y: 1.3001978, z: 0}
