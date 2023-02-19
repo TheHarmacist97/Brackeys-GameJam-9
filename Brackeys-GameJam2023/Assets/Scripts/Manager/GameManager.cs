@@ -37,7 +37,7 @@ public class GameManager : StaticInstances<GameManager>
         player.Switch(true);
         playerSet?.Invoke();
     }
-    private void KillPlayer()
+    public void KillPlayer()
     {
         player.Die();
     }
@@ -52,6 +52,8 @@ public class GameManager : StaticInstances<GameManager>
     #region Public Functions
     public void HackCharacter(Character character)
     {
+        if (!character.Equals(null))
+            Debug.Log(character.gameObject.name);
         character.Switch(true);
         spawnManager.RemoveEnemy(character);
         Player = character;

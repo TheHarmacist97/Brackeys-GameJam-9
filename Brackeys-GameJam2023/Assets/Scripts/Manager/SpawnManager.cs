@@ -33,7 +33,6 @@ public class SpawnManager : MonoBehaviour
         {
             if (enemies == null)
                 break;
-            Debug.Log("Checking enemy count: " + enemies.Count);
             if (enemies.Count <= enemyThreshold)
             {
                 SpawnNewWave();
@@ -67,11 +66,9 @@ public class SpawnManager : MonoBehaviour
                 enemyCount[i]--;
                 SpawnCharacterAtPosition(position, characterTypes[i]);
                 currentCount++;
-                Debug.Log("currentCount");
             }
             yield return new WaitForSeconds(timeBetweenSpawn);
         }
-        Debug.Log("Can Spawn Now");
         canSpawnWave = true;
     }
     private int GetIndex(int[] array)
@@ -88,7 +85,7 @@ public class SpawnManager : MonoBehaviour
         if (!position.isEmpty) return;
         position.isEmpty = false;
         Character character = Instantiate(characterType, position.transform.position, position.transform.rotation, enemyParent);
-        Debug.Log("SPAWNING" + character.name);
+
         character.Switch(false);
         enemies.Add(character);
     }

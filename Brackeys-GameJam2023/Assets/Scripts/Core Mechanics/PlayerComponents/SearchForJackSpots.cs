@@ -3,12 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SearchForJackSpots : MonoBehaviour
 {
     public Collider[] enemyColliders;
-    private Image targetImage;
 
     private bool isHit;
     private bool alive = true;
@@ -47,12 +45,11 @@ public class SearchForJackSpots : MonoBehaviour
     private void OnEnable()
     {
         ResetParasite();
-        StartCoroutine(Subscribe());
+        Subscribe();
     }
 
-    private IEnumerator Subscribe()
+    private void Subscribe()
     {
-        yield return new WaitUntil(()=>QuickTimeEvent.Instance !=null);
         alive = true;
         QuickTimeEvent.Instance.hijackComplete += StopPulsing;
     }
@@ -80,7 +77,6 @@ public class SearchForJackSpots : MonoBehaviour
         timeBetweenPulses = data.maxTime / data.maxPulses;
         pulseWait = new WaitForSeconds(timeBetweenPulses);
         boxCastExtents = Vector3.one * data.boxCastThickness;
-        boxCastExtents.y *= 2;
     }
 
 
@@ -103,6 +99,7 @@ public class SearchForJackSpots : MonoBehaviour
             yield return pulseWait;
             if (!startedHijacking)
             {
+                Debug.Log("Pulse minus");
                 currentPulses++;
             }
             Pulse();
@@ -117,13 +114,18 @@ public class SearchForJackSpots : MonoBehaviour
     {
         hijackedSuccessfully = result;
         enabled = !result;
+        if(!result)
+        {
+            StopAllCoroutines();
+            Death();
+        }
     }
 
     private void Death()
     {
         if (!alive&&!hijackedSuccessfully)
         {
-            GameManager.Instance.HackCharacter(null);
+            GameManager.Instance.KillPlayer();
             Destroy(gameObject);
         }
     }
