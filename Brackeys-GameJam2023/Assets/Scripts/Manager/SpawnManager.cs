@@ -10,15 +10,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private int enemyThreshold = 3;
     [SerializeField] private List<Character> characterTypes;
     [SerializeField] private List<SpawnPosition> spawnPositions = new List<SpawnPosition>();
-    [SerializeField] private Vector2 spawnArea = new Vector2(10, 10);
     [SerializeField] private float timeBetweenSpawn;
-    private WaitForSeconds waitForSeconds;
     private bool canSpawnWave = true;
-    private void Awake()
-    {
-        //StartCoroutine(CheckNewWave());
-    }
-    public void SpawnNewWave()
+
+
+    private void SpawnNewWave()
     {
         if (canSpawnWave)
         {
@@ -28,10 +24,11 @@ public class SpawnManager : MonoBehaviour
     public void RemoveEnemy(Character character)
     {
         enemies.Remove(character);
-        CheckNewWave();
     }
     public IEnumerator CheckNewWave()
     {
+        characterTypes = new List<Character>(Resources.LoadAll<Character>("Prefabs/Enemies/"));
+
         while (true)
         {
             if (enemies == null)

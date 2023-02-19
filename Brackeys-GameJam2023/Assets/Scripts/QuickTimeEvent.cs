@@ -30,12 +30,12 @@ public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
         base.Awake();
     }
 
-    public void StartQTEWrapper(Character ch)
+    public void StartQTEWrapper(Character character)
     {
         ResetQTE();
         state = QTStates.START;
         hijackStarted();
-        StartCoroutine(StartQTE(ch));
+        StartCoroutine(StartQTE(character));
     }
 
     private void ResetQTE()

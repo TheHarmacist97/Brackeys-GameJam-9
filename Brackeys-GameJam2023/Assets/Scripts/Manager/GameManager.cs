@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 [RequireComponent(typeof(SpawnManager))]
+[RequireComponent(typeof(QuickTimeEvent))]
 public class GameManager : StaticInstances<GameManager>
 {
     public DependencyInjector dependencyInjector;
