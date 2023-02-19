@@ -18,10 +18,10 @@ public class Gate : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(GameConfig.Constants.PLAYER_TAG) && currentObjectives>=totalObjectives)
+        if (other.TryGetComponent<Character>(out Character character) && currentObjectives>=totalObjectives)
         {
-            //Player to die
-            GameManager.Instance.LoadNextScene();
+            if(character._characterType==Character.CharacterType.HOST|| character._characterType==Character.CharacterType.PARASITE)
+                GameManager.Instance.LoadNextScene();
         }
     }
 }

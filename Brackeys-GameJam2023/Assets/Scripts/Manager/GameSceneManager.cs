@@ -36,7 +36,7 @@ public class GameSceneManager : StaticInstances<GameSceneManager>
     {
         base.Awake();
         DontDestroyOnLoad(this);
-        totalCount = SceneManager.sceneCount - 2;
+        totalCount = SceneManager.sceneCountInBuildSettings - 2;
         iterator = 0;
     }
 }

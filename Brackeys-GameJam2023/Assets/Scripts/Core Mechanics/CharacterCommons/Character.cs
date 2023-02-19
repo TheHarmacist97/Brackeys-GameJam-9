@@ -125,6 +125,7 @@ public class Character : MonoBehaviour, IDamageable
             else
             {
                 _characterType = CharacterType.HOST;
+                Debug.Log("Charachter SPECS UPDATED");
                 _totalHealth = data.characterSpecs.maxHealth * 10;
             }
         }

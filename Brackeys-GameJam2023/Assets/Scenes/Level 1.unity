@@ -515,7 +515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CollideAgainst:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 8
   m_IgnoreTag: SpawnPoint
   m_TransparentLayers:
     serializedVersion: 2
@@ -958,6 +958,10 @@ PrefabInstance:
     - target: {fileID: 3408334934942070846, guid: a86f7f503bda4b14b8e786d118014575, type: 3}
       propertyPath: m_Name
       value: Parasite Rigged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3408334934942070846, guid: a86f7f503bda4b14b8e786d118014575, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 3408334934942070847, guid: a86f7f503bda4b14b8e786d118014575, type: 3}
       propertyPath: m_RootOrder
@@ -1767,7 +1771,7 @@ MonoBehaviour:
     bulletParent: {fileID: 1320249443}
   parasite: {fileID: 54957725}
   player: {fileID: 54957726}
-  gate: {fileID: 0}
+  gate: {fileID: 1601753186}
   currentObjectives:
   - {fileID: 2631022940323951915}
   - {fileID: 2631022940323951914}
@@ -1817,6 +1821,17 @@ MonoBehaviour:
     correctHitIncrement: 0.15
   successMeter: 0
   waveSuccess: 0
+--- !u!114 &1601753186 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5388992369274399246, guid: 66436d57421409146bb8bf4f4f37677d, type: 3}
+  m_PrefabInstance: {fileID: 2631022940323951913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0652b40013885247accc43ba788377e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1691140072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,7 +1868,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1691140074
@@ -1916,7 +1931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1778116416
