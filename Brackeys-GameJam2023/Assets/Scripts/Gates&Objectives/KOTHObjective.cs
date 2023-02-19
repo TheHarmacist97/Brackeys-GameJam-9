@@ -19,6 +19,7 @@ public class KOTHObjective : IObjective
     private float range = 10.0f;
     
     private bool objectiveCompleted;
+    private KOTHAnimations animations;
 
     public override void ObjectiveCompleted()
     {
@@ -32,6 +33,7 @@ public class KOTHObjective : IObjective
         Debug.Log("Objective Started");
         GetPlayer();
         objectiveCompleted = false;
+        animations = GetComponent<KOTHAnimations>();
         GameManager.Instance.playerSet += GetPlayer;
     }
     private void Update()
@@ -40,6 +42,7 @@ public class KOTHObjective : IObjective
         if(Vector3.Distance(transform.position, player.transform.position)<=range)
         {
             fillBar += fillRate * Time.deltaTime;
+            animations.SetLerp(fillBar / 100f);
         }
         else
         {

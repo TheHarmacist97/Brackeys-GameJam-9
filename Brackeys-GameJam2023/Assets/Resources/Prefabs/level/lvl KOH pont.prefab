@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2203069245885995227}
   - component: {fileID: 7875194537338740754}
   - component: {fileID: 2631022940323951916}
+  - component: {fileID: 7607094745326183727}
   m_Layer: 0
   m_Name: lvl KOH pont
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f8f8b41252626184aa6f72889fe93e58, type: 2}
-  - {fileID: 2100000, guid: ecce565dd0290bf4291d3624dc624338, type: 2}
+  - {fileID: 2100000, guid: 675bbe9d691606247844beb7a024e4e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,6 +119,21 @@ MonoBehaviour:
   decayRate: 10
   fillBar: 0
   range: 10
+--- !u!114 &7607094745326183727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401422618931034382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d814888a584548d40aec0f696f918684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateAfter: 10
+  maxSpeed: 20
+  minSpeed: 1
 --- !u!1 &3578405160710242621
 GameObject:
   m_ObjectHideFlags: 0
