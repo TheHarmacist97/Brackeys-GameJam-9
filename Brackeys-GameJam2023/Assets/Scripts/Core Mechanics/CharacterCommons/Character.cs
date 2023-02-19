@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Cinemachine;
 using System.Collections;
+using TMPro.EditorUtilities;
 
 public class Character : MonoBehaviour, IDamageable
 {
@@ -24,7 +25,7 @@ public class Character : MonoBehaviour, IDamageable
 
     public CharacterType _characterType;
     private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(InputHandler), typeof(PlayerMovementVFX) };
-    private List<Type> enemyComponents = new List<Type>() { typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX)}; //will need these now 
+    private List<Type> enemyComponents = new List<Type>() { typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX) }; //will need these now 
 
     #region public References
     public CharacterData data;
@@ -47,7 +48,7 @@ public class Character : MonoBehaviour, IDamageable
             if (tpp == null)
             {
                 tpp = GameManager.Instance.dependencyInjector.thirdPersonCamera;
-                tppCamera = tpp.GetComponent<CinemachineFreeLook>();    
+                tppCamera = tpp.GetComponent<CinemachineFreeLook>();
             }
             return tpp;
         }
@@ -71,25 +72,25 @@ public class Character : MonoBehaviour, IDamageable
     }
     public int currentHealth { get => _currentHealth; set => _currentHealth = value; }
     public int totalHealth { get => _totalHealth; set => _totalHealth = value; }
-    public CinemachineFreeLook TppCinemachineCamera 
-    { 
-        get 
+    public CinemachineFreeLook TppCinemachineCamera
+    {
+        get
         {
             if (tppCamera == null)
                 _ = ThirdPersonCamera;
-            return tppCamera; 
+            return tppCamera;
         }
     }
-    public CinemachineVirtualCamera FppCamera 
-    { 
-        get 
-        { 
-            if(fppCamera == null)
+    public CinemachineVirtualCamera FppCamera
+    {
+        get
+        {
+            if (fppCamera == null)
             {
                 _ = FirstPersonCamera;
             }
             return fppCamera;
-        } 
+        }
     }
     #endregion
 
@@ -115,15 +116,15 @@ public class Character : MonoBehaviour, IDamageable
                 gameObject.AddComponent(type);
             }
         }
-        if(isPlayer)
+        if (isPlayer)
         {
-            if(TryGetComponent<Parasite>(out _))
+            if (TryGetComponent<Parasite>(out _))
             {
                 _characterType = CharacterType.PARASITE;
             }
             else
             {
-                _characterType= CharacterType.HOST;
+                _characterType = CharacterType.HOST;
                 _totalHealth = data.characterSpecs.maxHealth * 10;
             }
         }
@@ -154,11 +155,19 @@ public class Character : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        if(isPlayer)
+        switch (_characterType)
         {
-            GameManager.Instance.PlayerCharacterDeath();
+            case CharacterType.HOST:
+                GameManager.Instance.PlayerCharacterDeath();
+                break;
+            case CharacterType.PARASITE:
+                GameManager.Instance.GameOver();
+                break;
+            default:
+                GameManager.Instance.EnemyDestroyed(this);
+                break;
         }
-        Destroy(gameObject, isPlayer?0f:2f);
+        Destroy(gameObject, isPlayer ? 0f : 2f);
     }
     #endregion
 }

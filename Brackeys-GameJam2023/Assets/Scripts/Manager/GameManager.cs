@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using Random = UnityEngine.Random;
 [RequireComponent(typeof(SpawnManager))]
@@ -36,17 +37,6 @@ public class GameManager : StaticInstances<GameManager>
         player.Switch(true);
         playerSet?.Invoke();
     }
-    private void Update()
-    {
-        if (player != null)
-        {
-            if(Input.GetKeyDown(KeyCode.Alpha0))
-            {
-                KillPlayer();
-            }
-        }
-    }
-
     private void KillPlayer()
     {
         player.Die();
@@ -80,9 +70,14 @@ public class GameManager : StaticInstances<GameManager>
     }
     public void LoadNextScene()
     {
-        Debug.Log("NEXT SCENE");
+        Debug.Log("Loading Next GamePlay Scene");
+        GameSceneManager.Instance.SetScene(GameSceneManager.GameScene.GAME_PLAY);
     }
-
+    public void GameOver()
+    {
+        Debug.Log("Loading Game Over");
+        GameSceneManager.Instance.SetScene(GameSceneManager.GameScene.GAME_END);
+    }
     public void PlayerCharacterDeath()
     {
         parasite.transform.SetParent(null, true);
