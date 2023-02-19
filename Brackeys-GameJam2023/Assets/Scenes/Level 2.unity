@@ -1220,6 +1220,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a86f7f503bda4b14b8e786d118014575, type: 3}
+--- !u!114 &818231200 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4435313291462208860, guid: 4371c1bd702c42247bbfca5498eddea3, type: 3}
+  m_PrefabInstance: {fileID: 516673903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0652b40013885247accc43ba788377e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &920142335
 GameObject:
   m_ObjectHideFlags: 3
@@ -2090,7 +2101,7 @@ MonoBehaviour:
     bulletParent: {fileID: 1320249443}
   parasite: {fileID: 54957725}
   player: {fileID: 54957726}
-  gate: {fileID: 0}
+  gate: {fileID: 818231200}
   currentObjectives:
   - {fileID: 934524886}
   - {fileID: 185655921}
@@ -2453,7 +2464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1897827445
 Transform:
   m_ObjectHideFlags: 0
