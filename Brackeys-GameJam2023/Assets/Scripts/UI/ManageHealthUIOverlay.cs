@@ -10,19 +10,23 @@ public class ManageHealthUIOverlay : MonoBehaviour
 
     public void UpdatePlayer()
     {
+        currentCharacter.OnDamage -= UpdateHealth;
         currentCharacter = GameManager.Instance.player;
+        currentCharacter.OnDamage += UpdateHealth;
+        UpdateHealth();
     }
 
     private void Awake()
     {
         GameManager.Instance.playerSet += UpdatePlayer;
-        currentCharacter = GameManager.Instance.player;
-        currentCharacter.OnDamage = UpdateHealth;
+        currentCharacter = GameManager.Instance.Player;
+        currentCharacter.OnDamage += UpdateHealth;
     }
 
     private void UpdateHealth()
     {
-        healthBar.fillAmount = (float)(currentCharacter.currentHealth / (float)currentCharacter.totalHealth);
+        Debug.Log(currentCharacter.currentHealth / (float)currentCharacter.totalHealth);
+        healthBar.fillAmount = currentCharacter.currentHealth / (float)currentCharacter.totalHealth;
     }
 
 
