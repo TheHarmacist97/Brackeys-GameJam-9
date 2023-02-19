@@ -139,6 +139,8 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("stunned");
         weaponsManager.StopFiring();
+        agent.destination = transform.position;
+        agent.ResetPath();
         SetStateOfConstraints(false);
         enemyState = EnemyState.STUN;
         elapsedTime = stunDuration;

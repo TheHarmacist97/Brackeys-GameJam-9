@@ -79,7 +79,7 @@ public class Parasite : MonoBehaviour
     private void AfterBotDeath()
     {
         teleportAbility.TeleportBack();
-        playerMovement.Reset();
+        playerMovement.ResetPlayer();
         searchForJackSpots.ResetParasite();
     }
     private void StartHijack()

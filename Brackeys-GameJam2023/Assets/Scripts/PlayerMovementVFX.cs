@@ -11,11 +11,17 @@ public class PlayerMovementVFX : MonoBehaviour
     private Ray ray;
     private RaycastHit raycastHit;
 
+    private void OnEnable()
+    {
+        
+    }
+
     private void Awake()
     {
         cameraMain = Camera.main;
         data = GetComponent<Character>().data;
         targetTransform = data.target;
+
     }
 
     // Update is called once per frame
@@ -34,7 +40,7 @@ public class PlayerMovementVFX : MonoBehaviour
     }
     private void LateUpdate()
     {
-        targetTransform.position = Vector3.Lerp(targetTransform.position, lerpPosition, 10f * Time.deltaTime) ;
+        targetTransform.position = Vector3.Lerp(targetTransform.position, lerpPosition, 10f * Time.deltaTime);
     }
 
     private void OnDrawGizmos()

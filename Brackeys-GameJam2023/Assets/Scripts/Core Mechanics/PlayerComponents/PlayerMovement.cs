@@ -19,11 +19,13 @@ public class PlayerMovement : MonoBehaviour
     private void EnableComponent()
     {
         characterSpecs = GetComponent<Character>().CharacterSpecs;
+        Debug.Log(characterSpecs == null);
         controller = GetComponent<CharacterController>();
         controller.enabled = true;
         ControllerInit();
         groundCheck = transform.GetChild(1).GetComponent<Transform>();
         groundMask = LayerMask.GetMask(GameConfig.Constants.GROUND_TAG);
+        ResetPlayer();
     }
 
     private void ControllerInit()
@@ -77,8 +79,10 @@ public class PlayerMovement : MonoBehaviour
         Destroy(controller);
     }
 
-    public void Reset()
+    public void ResetPlayer()
     {
-        transform.forward = Vector3.forward;
+        Character character = GetComponent<Character>();
+        if (!character.data.mobilityUnit.Equals(null))
+            character.data.mobilityUnit.rotation = Quaternion.identity;
     }
 }
