@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0347a3a583155f4e9c7138af87a5efb, type: 3}
   m_Name: AutoShot
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 5
   reloadTime: 2
   magazineSize: 45
   canContinuallyFire: 1
   bullet: {fileID: 6071114465520334736, guid: 6497b1efdb7b50d4d8a124ad02bee524, type: 3}
-  fireRate: 2
+  fireRate: 8

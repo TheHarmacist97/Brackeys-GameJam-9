@@ -443,9 +443,9 @@ MonoBehaviour:
     - {fileID: 7940395037436990469}
     - {fileID: 2411090766190197977}
     weaponsData:
-    - {fileID: 11400000, guid: 977384fccdb9ba3429516882c707856b, type: 2}
-    - {fileID: 11400000, guid: 977384fccdb9ba3429516882c707856b, type: 2}
-    characterSpecs: {fileID: 11400000, guid: 78e7ec275f522714a8b5055f55ccece0, type: 2}
+    - {fileID: 11400000, guid: e5f8698fc7d59764db0f2494940ac509, type: 2}
+    - {fileID: 11400000, guid: e5f8698fc7d59764db0f2494940ac509, type: 2}
+    characterSpecs: {fileID: 11400000, guid: 290136ac45965f1418348a6c57a228f5, type: 2}
     cameraProfile: {fileID: 11400000, guid: 7c77906ff7c82084782dcd9eabc97b24, type: 2}
     mobilityUnit: {fileID: 4553460224884737957}
     jackInSpot: {fileID: 685292833}

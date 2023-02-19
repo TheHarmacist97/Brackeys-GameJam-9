@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59381f1c27cc4b54a9f80143ead0e417, type: 3}
   m_Name: SingleShot
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 80
   reloadTime: 3
-  magazineSize: 6
+  magazineSize: 10
   canContinuallyFire: 1
   bullet: {fileID: 6071114465520334736, guid: 6497b1efdb7b50d4d8a124ad02bee524, type: 3}
-  minimumTimeBetweenShots: 1.5
+  minimumTimeBetweenShots: 2
