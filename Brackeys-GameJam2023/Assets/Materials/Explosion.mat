@@ -7,15 +7,17 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpiderLines_mat
-  m_Shader: {fileID: -6465566751694194690, guid: 40df159bdbb71e242aa9ed31de14cd08, type: 3}
-  m_ValidKeywords: []
+  m_Name: Explosion
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_ValidKeywords:
+  - _EMISSION
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -89,35 +91,28 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GlossMapScale: 1
-    - _Glossiness: 0.59999996
-    - _GlossyReflections: 1
-    - _Metallic: 0
-    - _Mode: 0
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
+    - _Metallic: 0.477
     - _OcclusionStrength: 1
-    - _Parallax: 0.02
-    - _QueueControl: 0
+    - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.59999996
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _TeleportValue: 0.59394896
-    - _Thickness: 0.15
-    - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.3456018, b: 1, a: 1}
-    - _BaseEmmision: {r: 0, g: 0.22941177, b: 0.3745098, a: 1}
-    - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-    - _EmissionColor: {r: 0, g: 1.2984276, b: 16, a: 1}
-    - _EmmisionColor: {r: 23.968628, g: 0, b: 0.46417135, a: 1}
+    - _BaseColor: {r: 0.48490566, g: 0.85765857, b: 1, a: 1}
+    - _Color: {r: 0.48490554, g: 0.85765857, b: 1, a: 1}
+    - _EmissionColor: {r: 0.273319, g: 0.30485582, b: 2.6806288, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &9119016901739437366
+--- !u!114 &729729380580418365
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

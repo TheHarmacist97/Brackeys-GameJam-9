@@ -21,6 +21,7 @@ public class GameManager : StaticInstances<GameManager>
     private SpawnManager spawnManager;
     public Action playerSet;
     public Action PlayerDeathEvent;
+    public Action<Vector3> CharacterDeathEvent;
 
     public Character Player
     {
@@ -39,6 +40,7 @@ public class GameManager : StaticInstances<GameManager>
     }
     public void KillPlayer()
     {
+        CharacterDeathEvent(player.transform.position);
         player.Die();
     }
 
@@ -60,6 +62,7 @@ public class GameManager : StaticInstances<GameManager>
     }
     public void EnemyDestroyed(Character character)
     {
+        CharacterDeathEvent(character.transform.position);
         spawnManager.RemoveEnemy(character);
     }
     public void UpdateObjective(IObjective objective)

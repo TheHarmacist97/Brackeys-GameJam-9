@@ -168,7 +168,7 @@ public class Character : MonoBehaviour, IDamageable
                 GameManager.Instance.EnemyDestroyed(this);
                 break;
         }
-        Destroy(gameObject, isPlayer ? 0f : 2f);
+        Destroy(gameObject, isPlayer ? 2f : 0f);
     }
     #endregion
 }
