@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class TeleportAbility : InputAbility
 {
-    private readonly float range = 5f;
+    private readonly float range = 15f;
 
     private float coolDown = 5f;
     private bool canTeleport = true;
@@ -35,6 +35,7 @@ public class TeleportAbility : InputAbility
         Vector3 destination;
         if (canTeleport)
         {
+            controller.enabled = false;
             if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, range, GameConfig.Constants.GROUND_TAG_INDEX))
             {
                 destination = hit.point;
@@ -82,6 +83,7 @@ public class TeleportAbility : InputAbility
         canTeleport = false;
         transform.position = destination;
         StartCoroutine(ChangeMaterialProperty(0f, 0.75f, materials[0]));
+        controller.enabled = true;
         yield return StartCoroutine(ChangeMaterialProperty(0f, coolDown, materials[1]));
         canTeleport = true;
     }
