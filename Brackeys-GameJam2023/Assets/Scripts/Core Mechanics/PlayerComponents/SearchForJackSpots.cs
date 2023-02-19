@@ -146,14 +146,14 @@ public class SearchForJackSpots : MonoBehaviour
 
     private void Update()
     {
-        if (gotInRange > 0)
+        if (gotInRange > 0&&!startedHijacking)
         {
             if (Physics.BoxCast(mainCamTransform.position, boxCastExtents
                 , mainCamTransform.forward, out hit, mainCamTransform.rotation, data.maxRange, data.enemyLayer))
             {
                 isHit = false;
                 TargetedUI.Instance.SetPosition(hit.transform.position + (Vector3.up * 1.5f));
-                if (Input.GetKeyDown(KeyCode.E) && !startedHijacking)
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Got casted");
                     Debug.Log("Got jack " + hit.collider.name);

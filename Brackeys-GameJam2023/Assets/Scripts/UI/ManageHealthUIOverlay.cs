@@ -25,7 +25,6 @@ public class ManageHealthUIOverlay : MonoBehaviour
 
     private void UpdateHealth()
     {
-        Debug.Log(currentCharacter.currentHealth / (float)currentCharacter.totalHealth);
         healthBar.fillAmount = currentCharacter.currentHealth / (float)currentCharacter.totalHealth;
     }
 
