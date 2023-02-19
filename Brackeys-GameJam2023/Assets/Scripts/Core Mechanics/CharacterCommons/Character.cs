@@ -15,7 +15,14 @@ public class Character : MonoBehaviour, IDamageable
     private int _currentHealth;
     private int _totalHealth;
     public Action OnDamage;
+    public enum CharacterType
+    {
+        ENEMY,
+        HOST,
+        PARASITE
+    }
 
+    public CharacterType _characterType;
     private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(InputHandler), typeof(PlayerMovementVFX) };
     private List<Type> enemyComponents = new List<Type>() { typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX)}; //will need these now 
 
@@ -108,6 +115,23 @@ public class Character : MonoBehaviour, IDamageable
                 gameObject.AddComponent(type);
             }
         }
+        if(isPlayer)
+        {
+            if(TryGetComponent<Parasite>(out _))
+            {
+                _characterType = CharacterType.PARASITE;
+            }
+            else
+            {
+                _characterType= CharacterType.HOST;
+                _totalHealth = data.characterSpecs.maxHealth * 10;
+            }
+        }
+        else
+        {
+            _characterType = CharacterType.ENEMY;
+        }
+        _currentHealth = _totalHealth;
     }
 
 
