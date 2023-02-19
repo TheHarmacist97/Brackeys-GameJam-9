@@ -14,9 +14,10 @@ public class Character : MonoBehaviour, IDamageable
     private CinemachineVirtualCamera fppCamera;
     private int _currentHealth;
     private int _totalHealth;
+    public Action OnDamage;
 
     private List<Type> playerComponents = new List<Type> { typeof(PlayerMovement), typeof(PlayerCameraSystem), typeof(InputHandler), typeof(PlayerMovementVFX) };
-    private List<Type> enemyComponents = new List<Type>() { typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX) }; //will need these now 
+    private List<Type> enemyComponents = new List<Type>() { typeof(Enemy), typeof(NavMeshAgent), typeof(EnemyMovementVFX)}; //will need these now 
 
     #region public References
     public CharacterData data;
@@ -114,6 +115,7 @@ public class Character : MonoBehaviour, IDamageable
     public void TakeDamage(int value)
     {
         currentHealth -= value;
+        OnDamage?.Invoke();
         if (currentHealth < 0)
         {
             Die();

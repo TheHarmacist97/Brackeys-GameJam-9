@@ -13,11 +13,11 @@ public enum QTStates
 }
 public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
 {
-    [SerializeField] private KeyCode currentKeycode;
-    [SerializeField] private QTStates state = QTStates.INACTIVE;
-    [SerializeField] private QTEData data;
-    [SerializeField, Range(0f, 1f)] private float successMeter;
-    [SerializeField] private int waveSuccess;
+    public KeyCode currentKeycode;
+    public QTStates state = QTStates.INACTIVE;
+    public QTEData data;
+    [Range(0f, 1f)] public float successMeter;
+    public int waveSuccess;
 
     private WaitForSeconds bufferWait;
     private bool stopDecay;
@@ -50,6 +50,7 @@ public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
             if (waveSuccess >= data.winsRequired) break;
             yield return StartWave();
         }
+        QTEUI.Instance.DisableImage();
         state = QTStates.END;
         hijackComplete?.Invoke(waveSuccess >= data.winsRequired);
         if (waveSuccess >= data.winsRequired)
@@ -60,6 +61,7 @@ public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
 
     private IEnumerator StartWave()
     {
+        QTEUI.Instance.DisableImage();
         state = QTStates.IN_BUFFER;
         currentKeycode = GameConfig.Constants.QTEKeys[Mathf.CeilToInt(Random.Range(0, GameConfig.Constants.QTEKeys.Length))];
         yield return new WaitForSeconds(data.bufferTime);
@@ -67,6 +69,7 @@ public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
         StartDecay();
         float elapsedTime = 0f;
         state = QTStates.AWAITING_INPUT;
+        QTEUI.Instance.ShowKey(currentKeycode);
         while (elapsedTime <= data.timeAllowedPerWave)
         {
             yield return null;

@@ -63,6 +63,7 @@ public class Enemy : MonoBehaviour
         agent.acceleration = data.characterSpecs.accel;
         agent.angularSpeed = data.characterSpecs.rotateSpeed;
         agent.speed = data.characterSpecs.maxMoveSpeed;
+        agent.radius = 5f;
         headAimConstraint = data.headConstraint;
         lTurretConstraint = data.leftTurretConstraint;
         rTurretConstraint = data.rightTurretConstraint;
