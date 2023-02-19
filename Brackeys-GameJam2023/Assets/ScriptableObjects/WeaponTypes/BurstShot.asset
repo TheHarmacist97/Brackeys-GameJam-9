@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fc3bc39371e3c459c2bb70f8984d2a, type: 3}
   m_Name: BurstShot
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 75
   reloadTime: 5
   magazineSize: 30
   canContinuallyFire: 0
