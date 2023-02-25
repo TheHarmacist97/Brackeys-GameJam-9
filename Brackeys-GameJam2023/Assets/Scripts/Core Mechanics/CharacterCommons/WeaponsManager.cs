@@ -5,6 +5,7 @@ public class WeaponsManager:InputAbility
 {
     [HideInInspector]
     public List<WeaponsClass> weapons;
+    private Character character;
     private CharacterData characterData;
     public void Init(WeaponSO[] weaponsArray, Transform[] muzzlesArray)
     {
@@ -18,7 +19,8 @@ public class WeaponsManager:InputAbility
 
     private void Awake()
     {
-        characterData = GetComponent<Character>().data;
+        character = GetComponent<Character>();
+        characterData = character.data;
         Init(characterData.weaponsData.ToArray(), characterData.muzzles.ToArray());
     }
 
@@ -62,6 +64,10 @@ public class WeaponsManager:InputAbility
     {
         foreach (WeaponsClass weapon in weapons)
         {
+            if (character._characterType==Character.CharacterType.HOST)
+            {
+                Debug.Log("Fired");
+            }
             weapon.FireContinually(fireFromEnemy, target);
         }
     }

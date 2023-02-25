@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3203862307265397136}
   - component: {fileID: 728349574309322389}
   m_Layer: 10
-  m_Name: Bullet
+  m_Name: AutoShotBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,10 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2506f4e303bde49ba8cb1ee10ac440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
-  damage: 3
+  speed: 80
+  damage: 10
   bulletType: 0
-  bulletRange: 100
+  bulletRange: 200
 --- !u!136 &3203862307265397136
 CapsuleCollider:
   m_ObjectHideFlags: 0

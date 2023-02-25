@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fc3bc39371e3c459c2bb70f8984d2a, type: 3}
   m_Name: BurstShot
   m_EditorClassIdentifier: 
-  damage: 75
   reloadTime: 5
   magazineSize: 30
   canContinuallyFire: 0
-  bullet: {fileID: 6071114465520334736, guid: 6497b1efdb7b50d4d8a124ad02bee524, type: 3}
+  bullet: {fileID: 6071114465520334736, guid: 5179b2611cb71a64c9febab0e12a4d93, type: 3}
   fireRate: 6
-  minimumTimeBetweenBursts: 1
-  burstsPerTriggerPull: 6
+  minimumTimeBetweenBursts: 0.3
+  burstsPerTriggerPull: 4

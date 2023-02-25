@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SpiderSpec
   m_EditorClassIdentifier: 
   maxHealth: 650
-  radius: 2
-  height: 2
-  center: {x: 0, y: 0.3, z: 0}
+  radius: 0.5
+  height: 1.8
+  center: {x: 0, y: 1, z: 0}
   maxMoveSpeed: 5
   mass: 0
   jumpForce: 0
