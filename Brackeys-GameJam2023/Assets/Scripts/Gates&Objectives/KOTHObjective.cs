@@ -20,7 +20,7 @@ public class KOTHObjective : IObjective
     
     private bool objectiveCompleted;
     private KOTHAnimations animations;
-    private KingOfTheHillMarker kothMarker;
+    private KingOfTheHillMarkerAnimation kothMarker;
     public override void ObjectiveCompleted()
     {
         Debug.Log("OBJECTIVE COMPLETED");
@@ -35,7 +35,7 @@ public class KOTHObjective : IObjective
         GetPlayer();
         objectiveCompleted = false;
         animations = GetComponent<KOTHAnimations>();
-        kothMarker = transform.GetChild(1).GetChild(0).GetComponent<KingOfTheHillMarker>();
+        kothMarker = transform.GetChild(1).GetChild(0).GetComponent<KingOfTheHillMarkerAnimation>();
         GameManager.Instance.playerSet += GetPlayer;
     }
     private void Update()

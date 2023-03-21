@@ -38,10 +38,5 @@ public static class GameConfig
         public static KeyCode[] QTEKeys = { KeyCode.W , KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.Mouse0, KeyCode.Mouse1};
         public const string PLAYERPREFS_FPPTOGGLE = "fpp_toggle";
         public const string PLAYERPREFS_MUSIC = "music";
-
-        //public static Transform GetGFX(Transform t)
-        //{
-        //    return t.GetChild(0);
-        //}
     }
 }

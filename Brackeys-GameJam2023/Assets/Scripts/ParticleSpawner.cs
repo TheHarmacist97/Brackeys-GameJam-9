@@ -16,15 +16,4 @@ public class ParticleSpawner : MonoBehaviour
     {
         Instantiate(particles, spawnPos, Quaternion.identity);  
     }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

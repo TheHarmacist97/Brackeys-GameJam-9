@@ -8,7 +8,6 @@ public class SearchForJackSpots : MonoBehaviour
 {
     public Collider[] enemyColliders;
 
-    private bool isHit;
     private bool alive = true;
     private bool startedHijacking;
     private bool hijackedSuccessfully;
@@ -33,7 +32,6 @@ public class SearchForJackSpots : MonoBehaviour
     
     public void ResetParasite()
     {
-        isHit = false;
         alive = true;
         startedHijacking = false;
         hijackedSuccessfully = false;
@@ -151,13 +149,11 @@ public class SearchForJackSpots : MonoBehaviour
             if (Physics.BoxCast(mainCamTransform.position, boxCastExtents
                 , mainCamTransform.forward, out hit, mainCamTransform.rotation, data.maxRange, data.enemyLayer))
             {
-                isHit = false;
                 TargetedUI.Instance.SetPosition(hit.transform.position + (Vector3.up * 1.5f));
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Got casted");
                     Debug.Log("Got jack " + hit.collider.name);
-                    isHit = true;
                     startedHijacking = true;
                     StartJack();
                 }

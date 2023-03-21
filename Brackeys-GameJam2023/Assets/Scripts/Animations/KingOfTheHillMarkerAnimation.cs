@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KingOfTheHillMarker : MonoBehaviour
+public class KingOfTheHillMarkerAnimation : MonoBehaviour
 {
     Transform mainCam;
     private Image image;

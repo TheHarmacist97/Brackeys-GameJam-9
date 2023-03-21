@@ -24,7 +24,6 @@ public class QuickTimeEvent : StaticInstances<QuickTimeEvent>
     private bool stopWaitingForInput;
     public Action<bool> hijackComplete;
     public Action hijackStarted;
-
     protected override void Awake()
     {
         base.Awake();

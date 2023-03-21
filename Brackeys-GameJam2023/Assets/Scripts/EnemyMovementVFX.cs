@@ -3,17 +3,12 @@ using UnityEngine;
 public class EnemyMovementVFX : MonoBehaviour
 {
     private CharacterData data;
-    private float muzzleRotateSpeed;
-    private Transform turretUnit;
     private Transform mobilityUnit;
 
     private bool playerDead;
-    private Vector3 currentRot;
     private Vector3 difference;
     private Vector3 lastPos;
     private Vector3 origRot;
-    private Vector3 smoothTarget;
-    private Vector3 lastSmoothPos;
     private Enemy enemyComponent;
 
     private void OnEnable()
@@ -35,7 +30,6 @@ public class EnemyMovementVFX : MonoBehaviour
 
     public void Init()
     {
-        muzzleRotateSpeed = data.characterSpecs.muzzleRotateSpeed;
         mobilityUnit = data.mobilityUnit;
     }
 
